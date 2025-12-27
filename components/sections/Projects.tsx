@@ -1,39 +1,19 @@
 import Image from 'next/image';
 
-const PROJECTS = [
-  {
-    title: 'HairMuse App',
-    category: 'Machine Learning & Android',
-    desc: 'Aplikasi rekomendasi gaya rambut berbasis bentuk wajah menggunakan TensorFlow dan Google Cloud Run.',
-    image: '/images/projects/hairmuse.png', // Pastikan file ada di folder public
-    tech: ['TensorFlow', 'Python', 'GCP', 'Android'],
-    link: 'https://github.com/C242-PS317-HairMuseApp',
-  },
-  {
-    title: 'VocIntern Platform',
-    category: 'Fullstack Web Dev',
-    desc: 'Platform pencarian magang untuk mahasiswa vokasi USU. Dibangun dengan Laravel (MVC), Queue, dan MySQL.',
-    image: '/images/projects/vocintern.png',
-    tech: ['Laravel', 'MySQL', 'Bootstrap', 'MVC'],
-    link: 'https://github.com/VocIntern',
-  },
-  {
-    title: 'Tesla Stock Prediction',
-    category: 'Data Science',
-    desc: 'Sistem peramalan harga saham Tesla menggunakan metode SARIMA dan analisis Time Series.',
-    image: '/images/projects/tesla.png',
-    tech: ['Python', 'SARIMA', 'Pandas', 'Matplotlib'],
-    link: 'https://github.com/fakhrizamaris/final-project-forecasting',
-  },
-  {
-    title: 'Chess Opening Recommender',
-    category: 'AI System',
-    desc: 'Sistem rekomendasi pembukaan catur menggunakan Hybrid Filtering (Content-Based & Collaborative).',
-    image: '/images/projects/chess.png',
-    tech: ['Streamlit', 'Python', 'Scikit-Learn'],
-    link: 'https://github.com/fakhrizamaris/Opening_Chess_Recommendations',
-  },
-];
+import projectsData from '@/data/projects.json';
+
+// Define the type for better safety
+interface Project {
+  title: string;
+  category: string;
+  desc: string;
+  image: string;
+  tech: string[];
+  link: string;
+  metrics?: Record<string, number>;
+}
+
+const PROJECTS: Project[] = projectsData as unknown as Project[];
 
 export default function Projects() {
   return (
