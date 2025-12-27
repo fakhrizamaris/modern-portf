@@ -1,0 +1,51 @@
+[
+  {
+    "title": "HairMuse App",
+    "category": "Machine Learning & Android",
+    "desc": "Aplikasi rekomendasi gaya rambut berbasis bentuk wajah menggunakan TensorFlow dan Google Cloud Run.",
+    "tech": ["TensorFlow", "Python", "GCP", "Android"],
+    "metrics": {
+      "Python": 60,
+      "TensorFlow": 30,
+      "GCP": 10
+    },
+    "link": "https://github.com/C242-PS317-HairMuseApp",
+    "image": "/images/projects/hairmuse.png"
+  },
+  {
+    "title": "VocIntern Platform",
+    "category": "Fullstack Web Dev",
+    "desc": "Platform pencarian magang untuk mahasiswa vokasi USU. Dibangun dengan Laravel (MVC), Queue, dan MySQL.",
+    "tech": ["Laravel", "MySQL", "Bootstrap", "MVC"],
+    "metrics": {
+      "PHP (Laravel)": 70,
+      "MySQL": 20,
+      "JavaScript": 10
+    },
+    "link": "https://github.com/VocIntern",
+    "image": "/images/projects/vocintern.png"
+  },
+  {
+    "title": "Tesla Stock Prediction",
+    "category": "Data Science",
+    "desc": "Sistem peramalan harga saham Tesla menggunakan metode SARIMA dan analisis Time Series.",
+    "tech": ["Python", "SARIMA", "Pandas", "Matplotlib"],
+    "metrics": {
+      "Python": 100
+    },
+    "link": "https://github.com/fakhrizamaris/final-project-forecasting",
+    "image": "/images/projects/tesla.png"
+  },
+  {
+    "title": "Chess Opening Recommender",
+    "category": "AI System",
+    "desc": "Sistem rekomendasi pembukaan catur menggunakan Hybrid Filtering (Content-Based & Collaborative).",
+    "tech": ["Streamlit", "Python", "Scikit-Learn"],
+    "metrics": {
+      "Python": 90,
+      "Streamlit": 10
+    },
+    "link": "https://github.com/fakhrizamaris/Opening_Chess_Recommendations",
+    "image": "/images/projects/chess.png"
+  }
+]

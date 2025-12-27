@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Google Cloud Certified - Associate Cloud Engineer",
+    "issuer": "Google Cloud",
+    "date": "2024",
+    "image": "https://cdn.qwiklabs.com/badge-image-url",
+    "link": "https://google.cloud/certificate/...",
+    "skills": ["GCP", "Kubernetes", "IAM"]
+  },
+  {
+    "title": "Bangkit Academy 2024 Distinction Graduate",
+    "issuer": "Google, GoTo, Traveloka",
+    "date": "2024",
+    "image": "/images/certificates/bangkit.png",
+    "link": "https://...",
+    "skills": ["Machine Learning", "Soft Skills", "English"]
+  },
+  {
+    "title": "TensorFlow Developer Certificate",
+    "issuer": "TensorFlow",
+    "date": "2023",
+    "image": "/images/certificates/tensorflow.png",
+    "link": "https://...",
+    "skills": ["Deep Learning", "Computer Vision", "NLP"]
+  }
+]
