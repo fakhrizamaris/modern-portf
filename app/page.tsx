@@ -5,14 +5,22 @@ import ProfileSidebar from '@/components/layout/ProfileSidebar';
 import Projects from '@/components/sections/Projects';
 import ArcadeStats from '@/components/features/ArcadeStats';
 import GithubStats from '@/components/features/GithubStats';
+import CryptoTicker from '@/components/features/CryptoTicker';
+import WeatherWidget from '@/components/features/WeatherWidget';
 import Skills from '@/components/sections/Skills';
 import SkillsMatrix from '@/components/sections/SkillsMatrix';
 import Certificates from '@/components/sections/Certificates';
 import Dashboard from '@/components/sections/Dashboard';
 import AILab from '@/components/sections/AILab';
+import LearningTimeline from '@/components/sections/LearningTimeline';
+import AchievementBadges from '@/components/sections/AchievementBadges';
+import TILSection from '@/components/sections/TILSection';
+import HireMeSection from '@/components/sections/HireMeSection';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState('overview');
+  const { t } = useLanguage();
 
   const techStack = [
     // Data Science & AI
@@ -69,7 +77,7 @@ export default function Home() {
                   <h3 className="text-xl text-teal-400 mt-6 mb-2">🏆 Certifications & Training</h3>
                   <ul className="list-none text-gray-400 space-y-2 pl-0">
                     <li>
-                      🎓 <b className="text-white">Bangkit Academy 2024 Batch 2</b> - Machine Learning Path (Distinction Graduate)
+                      🎓 <b className="text-white">Bangkit Academy 2024 Batch 2</b> - Machine Learning Cohort
                     </li>
                     <li>
                       📜 <b className="text-white">Celerates Acceleration Program</b> - Data Science Basics
@@ -114,11 +122,23 @@ export default function Home() {
               <div className="space-y-4">
                 <div className="flex items-center gap-2">
                   <div className="w-1 h-5 bg-teal-500 rounded-full"></div>
-                  <h3 className="text-lg font-bold text-white">Live Activity</h3>
+                  <h3 className="text-lg font-bold text-white">{t('section.liveActivity')}</h3>
                 </div>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                   <GithubStats />
                   <ArcadeStats />
+                </div>
+              </div>
+
+              {/* Real-time Widgets */}
+              <div className="space-y-4">
+                <div className="flex items-center gap-2">
+                  <div className="w-1 h-5 bg-orange-500 rounded-full"></div>
+                  <h3 className="text-lg font-bold text-white">{t('section.liveDataFeeds')}</h3>
+                </div>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                  <CryptoTicker />
+                  <WeatherWidget />
                 </div>
               </div>
             </div>
@@ -154,11 +174,32 @@ export default function Home() {
               <Certificates />
             </div>
           )}
+
+          {activeTab === 'journey' && (
+            <div className="space-y-8 animate-in fade-in duration-500">
+              <LearningTimeline />
+              <AchievementBadges />
+            </div>
+          )}
+
+          {activeTab === 'blog' && (
+            <div className="animate-in fade-in duration-500">
+              <TILSection />
+            </div>
+          )}
+
+          {activeTab === 'hireme' && (
+            <div className="animate-in fade-in duration-500">
+              <HireMeSection />
+            </div>
+          )}
         </div>
 
         {/* Footer */}
         <footer className="py-8 text-center text-gray-600 text-xs border-t border-gray-800 mt-12 bg-[#0d1117]">
-          <p>&copy; {new Date().getFullYear()} Fakhri Djamaris. Layout inspired by GitHub.</p>
+          <p>
+            &copy; {new Date().getFullYear()} Fakhri Djamaris. {t('footer.text')}
+          </p>
         </footer>
       </main>
     </div>

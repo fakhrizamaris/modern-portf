@@ -78,7 +78,7 @@ export default function Dashboard() {
           <Activity className="text-blue-400" />
           Analytics Dashboard
         </h2>
-        <p className="text-gray-400 mt-2">Visualisasi data aktivitas, skill proficiency, dan statistik portofolio saya.</p>
+        <p className="text-gray-400 mt-2">Visualisasi data aktivitas, skill proficiency, dan statistik portofolio saya berdasarkan akun GitHub.</p>
       </div>
 
       {/* Stats Cards */}
@@ -138,12 +138,12 @@ export default function Dashboard() {
           <h3 className="text-xl font-bold text-white mb-6">Technology Distribution</h3>
           <ResponsiveContainer width="100%" height={300}>
             <PieChart>
-              <Pie data={techDistribution} cx="50%" cy="50%" innerRadius={60} outerRadius={100} paddingAngle={3} dataKey="value" label={({ name, value }) => `${name}: ${value}%`} labelLine={{ stroke: '#555' }}>
+              <Pie data={techDistribution} cx="50%" cy="50%" innerRadius={60} outerRadius={100} paddingAngle={2} dataKey="value" label={({ name, value }) => `${name}: ${value}%`} labelLine={{ stroke: '#555' }}>
                 {techDistribution.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={entry.color} />
                 ))}
               </Pie>
-              <Tooltip contentStyle={{ backgroundColor: '#1a1a1a', border: '1px solid #333', borderRadius: '8px' }} />
+              <Tooltip contentStyle={{ backgroundColor: '#fff7f7ff', border: '1px solid #333', borderRadius: '8px' }} />
             </PieChart>
           </ResponsiveContainer>
         </div>
@@ -170,10 +170,10 @@ export default function Dashboard() {
         <h3 className="text-xl font-bold text-white mb-6">Projects by Category</h3>
         <ResponsiveContainer width="100%" height={200}>
           <BarChart data={projectCategories}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#333" />
+            <CartesianGrid strokeDasharray="3 3" stroke="#ffffffff" />
             <XAxis dataKey="category" tick={{ fill: '#9CA3AF' }} />
             <YAxis tick={{ fill: '#9CA3AF' }} />
-            <Tooltip contentStyle={{ backgroundColor: '#1a1a1a', border: '1px solid #333', borderRadius: '8px' }} labelStyle={{ color: '#fff' }} />
+            <Tooltip contentStyle={{ backgroundColor: '#105043ff', border: '1px solid #ebebebff', borderRadius: '8px' }} labelStyle={{ color: '#fff' }} />
             <Bar dataKey="count" radius={[4, 4, 0, 0]}>
               {projectCategories.map((entry, index) => (
                 <Cell key={`cell-${index}`} fill={entry.color} />
