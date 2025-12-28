@@ -31,6 +31,12 @@ export async function GET() {
       const dateText = el.find('.ql-body-medium.l-mbs').text();
       const date = dateText.replace('Earned', '').trim();
 
+      // Ambil URL Badge (dari anchor atau modal link)
+      let badgeUrl = el.find('a').attr('href') || '';
+      if (badgeUrl && !badgeUrl.startsWith('http')) {
+        badgeUrl = `https://www.cloudskillsboost.google${badgeUrl}`;
+      }
+
       // Ambil Judul (Trik mengambil dari Modal ID seperti di referensi gcsbhelper)
       // Mencari tombol di dalam badge untuk mendapatkan ID modal target
       const modalId = el.find('ql-button').attr('modal');
@@ -49,7 +55,7 @@ export async function GET() {
       }
 
       if (title && image) {
-        badges.push({ title, date, image });
+        badges.push({ title, date, image, url: badgeUrl });
       }
     });
 

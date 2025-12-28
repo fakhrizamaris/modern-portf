@@ -1,26 +1,26 @@
 [
   {
-    "title": "Google Cloud Certified - Associate Cloud Engineer",
-    "issuer": "Google Cloud",
+    "title": "Celerates Acceleration Program - Data Science Basics",
+    "issuer": "PT Mitra Talenta Grup (Celerates Indonesia)",
     "date": "2024",
-    "image": "https://cdn.qwiklabs.com/badge-image-url",
-    "link": "https://google.cloud/certificate/...",
-    "skills": ["GCP", "Kubernetes", "IAM"]
+    "image": "/images/certificates/celerates.png",
+    "link": "https://drive.google.com/file/d/10MhPMnYiUISzrONn02yKY7pJFXO9pSEP/view?usp=sharing",
+    "skills": ["Data Science", "Machine Learning", "Python", "Data Visualization", "Data Analysis", "Data Engineering"]
   },
   {
-    "title": "Bangkit Academy 2024 Distinction Graduate",
-    "issuer": "Google, GoTo, Traveloka",
+    "title": "Bangkit Academy 2024 - Machine Learning Cohort",
+    "issuer": "Bangkit Academy 2024 Batch 2 led by Google, GoTo, Traveloka",
     "date": "2024",
-    "image": "/images/certificates/bangkit.png",
-    "link": "https://...",
-    "skills": ["Machine Learning", "Soft Skills", "English"]
+    "image": "/images/certificates/bangkit.jpg",
+    "link": "https://drive.google.com/file/d/1NBjHoUOLKD3wN_VUS7AE0m0gGl1VIj1s/view?usp=sharing",
+    "skills": ["Machine Learning", "Soft Skills", "English", "Deep Learning", "Computer Vision", "NLP"]
   },
   {
-    "title": "TensorFlow Developer Certificate",
-    "issuer": "TensorFlow",
+    "title": "Dev Certification for Machine Learning with TensorFlow (DCML)",
+    "issuer": "dev.cert",
     "date": "2023",
-    "image": "/images/certificates/tensorflow.png",
-    "link": "https://...",
-    "skills": ["Deep Learning", "Computer Vision", "NLP"]
+    "image": "/images/certificates/devcert.jpeg",
+    "link": "https://drive.google.com/file/d/1wCdzMnz8MnlMzKgsoVw000-rB2OcniWH/view?usp=sharing",
+    "skills": ["Deep Learning", "LLM", "NLP", "Computer Vision"]
   }
 ]

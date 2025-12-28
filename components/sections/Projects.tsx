@@ -34,10 +34,10 @@ export default function Projects() {
             rel="noopener noreferrer"
             className="group block bg-[#0a0a0a] border border-gray-800 rounded-3xl overflow-hidden hover:border-gray-600 hover:shadow-2xl hover:shadow-blue-900/10 transition-all duration-300"
           >
-            {/* Image Placeholder */}
+            {/* Project Image */}
             <div className="relative h-56 bg-gray-900 overflow-hidden">
-              {/* <Image ... /> */}
-              <div className="absolute inset-0 flex items-center justify-center text-gray-700 font-mono text-sm">[Project Preview: {project.title}]</div>
+              <Image src={project.image} alt={project.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] to-transparent opacity-60"></div>
 
               {/* Overlay Categories */}
               <div className="absolute top-4 left-4">

@@ -13,9 +13,8 @@ export default function Certificates() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {certificates.map((cert, idx) => (
           <a key={idx} href={cert.link} target="_blank" className="flex items-center gap-4 bg-[#0a0a0a] border border-gray-800 p-4 rounded-2xl hover:bg-[#111] hover:border-blue-500/30 transition-all group">
-            <div className="w-16 h-16 bg-white rounded-xl flex items-center justify-center p-2 shrink-0">
-              {/* Placeholder for Icon */}
-              <div className="text-black font-bold text-xs text-center">{cert.issuer}</div>
+            <div className="w-16 h-16 bg-white rounded-xl flex items-center justify-center p-2 shrink-0 overflow-hidden relative">
+              <Image src={cert.image} alt={cert.issuer} fill className="object-contain p-2" />
             </div>
 
             <div>
