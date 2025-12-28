@@ -65,16 +65,16 @@ export default function Home() {
                   <span>fakhrizamaris</span> / <span>README.md</span>
                 </div>
                 <div className="p-6 md:p-10 prose prose-invert max-w-none">
-                  <h1 className="text-3xl border-b border-gray-800 pb-2 mb-6">Hi there, I'm Fakhri! 👋</h1>
+                  <h1 className="text-3xl border-b border-gray-800 pb-2 mb-6">{t('readme.greeting')}</h1>
 
-                  <h3 className="text-xl text-teal-400 mt-4 mb-2">🎯 About Me</h3>
+                  <h3 className="text-xl text-teal-400 mt-4 mb-2">{t('readme.aboutTitle')}</h3>
                   <p className="text-gray-300 leading-relaxed">
-                    Fresh graduate in <b>Informatics Engineering (D3)</b> from <b>Universitas Sumatera Utara</b> with GPA 3.86. I'm a junior developer passionate about building practical solutions using
+                    {t('readme.aboutContent')}
                     <span className="text-teal-400"> Machine Learning</span>,<span className="text-cyan-400"> Data Science</span>, and
-                    <span className="text-blue-400"> Web Development</span>. Currently focused on expanding my skills through real-world projects and certifications.
+                    <span className="text-blue-400"> Web Development</span>.
                   </p>
 
-                  <h3 className="text-xl text-teal-400 mt-6 mb-2">🏆 Certifications & Training</h3>
+                  <h3 className="text-xl text-teal-400 mt-6 mb-2">{t('readme.certTitle')}</h3>
                   <ul className="list-none text-gray-400 space-y-2 pl-0">
                     <li>
                       🎓 <b className="text-white">Bangkit Academy 2024 Batch 2</b> - Machine Learning Cohort
@@ -87,20 +87,14 @@ export default function Home() {
                     </li>
                   </ul>
 
-                  <h3 className="text-xl text-teal-400 mt-6 mb-2">🔭 Current Focus</h3>
+                  <h3 className="text-xl text-teal-400 mt-6 mb-2">{t('readme.focusTitle')}</h3>
                   <ul className="list-disc list-inside text-gray-400 space-y-2">
-                    <li>
-                      Learning to build <b className="text-white">end-to-end ML pipelines</b> with TensorFlow & Cloud deployment
-                    </li>
-                    <li>
-                      Developing <b className="text-white">fullstack web applications</b> using modern frameworks (Next.js, Laravel)
-                    </li>
-                    <li>
-                      Exploring <b className="text-white">data visualization</b> and analysis with Python libraries
-                    </li>
+                    <li>{t('readme.focus1')}</li>
+                    <li>{t('readme.focus2')}</li>
+                    <li>{t('readme.focus3')}</li>
                   </ul>
 
-                  <h3 className="text-xl text-teal-400 mt-6 mb-3">🛠️ Technologies I Work With</h3>
+                  <h3 className="text-xl text-teal-400 mt-6 mb-3">{t('readme.techTitle')}</h3>
                   <div className="flex flex-wrap gap-2 mt-2">
                     {techStack.map((tech, i) => (
                       <div key={i} className="flex items-center gap-2 px-3 py-1.5 bg-[#161b22] hover:bg-[#21262d] text-gray-300 text-xs rounded-lg border border-gray-700/50 hover:border-teal-500/30 transition-all group cursor-default">
@@ -110,11 +104,8 @@ export default function Home() {
                     ))}
                   </div>
 
-                  <h3 className="text-xl text-teal-400 mt-6 mb-2">📫 Open to Opportunities</h3>
-                  <p className="text-gray-400">
-                    As a fresh graduate, I'm actively seeking <b className="text-teal-300">internship</b> or <b className="text-cyan-300">entry-level positions</b> in Machine Learning, Data Science, or Web Development. I'm eager to learn
-                    and contribute to impactful projects.
-                  </p>
+                  <h3 className="text-xl text-teal-400 mt-6 mb-2">{t('readme.opportunityTitle')}</h3>
+                  <p className="text-gray-400">{t('readme.opportunityContent')}</p>
                 </div>
               </div>
 

@@ -37,12 +37,12 @@ export default function ProfileSidebar({ activeTab, setActiveTab }: ProfileSideb
       <div className="md:hidden fixed top-0 left-0 right-0 z-50 bg-[#0d1117]/95 backdrop-blur-md border-b border-gray-800/50 px-4 py-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="relative w-8 h-8 rounded-full overflow-hidden border border-teal-500/30">
-              <Image src="/images/hero-profile.png" alt="Fakhri" fill className="object-cover" />
+            <div className="relative w-8 h-8 rounded-lg overflow-hidden">
+              <Image src="/images/logo.png" alt="FD Logo" fill className="object-contain" />
             </div>
             <div>
               <h1 className="text-sm font-bold text-white">Fakhri Djamaris</h1>
-              <p className="text-[10px] text-gray-500">@fakhrizamaris</p>
+              <p className="text-[10px] text-gray-500">ML Engineer • Web Dev</p>
             </div>
           </div>
           <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="p-2 rounded-lg bg-gray-800/50 text-gray-400 hover:text-white hover:bg-gray-800 transition-all">

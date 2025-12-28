@@ -2,6 +2,7 @@
 
 import { GraduationCap, Briefcase, Award, Code, Rocket, Star, ChevronDown, ChevronUp } from 'lucide-react';
 import { useState } from 'react';
+import { useLanguage } from '@/context/LanguageContext';
 
 interface TimelineEvent {
   date: string;
@@ -12,33 +13,33 @@ interface TimelineEvent {
 }
 
 const timelineData: TimelineEvent[] = [
-    {
-      date: 'May 2025',
-      title: 'Dev Certification ML with TensorFlow',
-      description: 'Passed comprehensive ML assessment including exam, project, and interview',
-      type: 'certification',
-      highlight: true,
-    },
-    {
-        date: 'Dec 2024',
-        title: 'Bangkit Academy 2024 - Machine Learning Cohort',
-        description: 'Completed Machine Learning path in MSIB Batch 7',
-        type: 'certification',
-        highlight: true,
-    },
-    {
-      date: 'Jun 2024',
-      title: 'Celerates Data Science Program',
-      description: 'Completed Data Science basics including SQL, Python, ML, and Deep Learning',
-      type: 'certification',
-      highlight: true,
-    },
-    {
-      date: 'Apr 2025',
-      title: 'Google Cloud Roadshow Facilitator',
-      description: 'Facilitated hands-on workshop sessions on GCP and Langflow',
-      type: 'work',
-    },
+  {
+    date: 'May 2025',
+    title: 'Dev Certification ML with TensorFlow',
+    description: 'Passed comprehensive ML assessment including exam, project, and interview',
+    type: 'certification',
+    highlight: true,
+  },
+  {
+    date: 'Dec 2024',
+    title: 'Bangkit Academy 2024 - Machine Learning Cohort',
+    description: 'Completed Machine Learning path in MSIB Batch 7',
+    type: 'certification',
+    highlight: true,
+  },
+  {
+    date: 'Jun 2024',
+    title: 'Celerates Data Science Program',
+    description: 'Completed Data Science basics including SQL, Python, ML, and Deep Learning',
+    type: 'certification',
+    highlight: true,
+  },
+  {
+    date: 'Apr 2025',
+    title: 'Google Cloud Roadshow Facilitator',
+    description: 'Facilitated hands-on workshop sessions on GCP and Langflow',
+    type: 'work',
+  },
   {
     date: 'Aug 2024',
     title: 'PKL at LLDIKTI Wilayah 1',
@@ -61,6 +62,7 @@ const timelineData: TimelineEvent[] = [
 
 export default function LearningTimeline() {
   const [expanded, setExpanded] = useState(false);
+  const { t } = useLanguage();
   const displayedEvents = expanded ? timelineData : timelineData.slice(0, 4);
 
   const getIcon = (type: TimelineEvent['type']) => {
@@ -102,9 +104,9 @@ export default function LearningTimeline() {
       <div className="mb-6">
         <h2 className="text-2xl font-bold text-white flex items-center gap-3">
           <Rocket className="w-6 h-6 text-teal-400" />
-          My Learning Journey
+          {t('section.learningJourney')}
         </h2>
-        <p className="text-gray-400 text-sm mt-2">From first code to ML certifications</p>
+        <p className="text-gray-400 text-sm mt-2">{t('section.learningJourneyDesc')}</p>
       </div>
 
       <div className="relative">
@@ -143,12 +145,12 @@ export default function LearningTimeline() {
             {expanded ? (
               <>
                 <ChevronUp className="w-4 h-4" />
-                Show less
+                {t('common.showLess')}
               </>
             ) : (
               <>
                 <ChevronDown className="w-4 h-4" />
-                Show {timelineData.length - 4} more milestones
+                {t('common.showMore')} ({timelineData.length - 4})
               </>
             )}
           </button>

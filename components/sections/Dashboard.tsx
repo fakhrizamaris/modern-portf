@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, LineChart, Line, CartesianGrid, Legend, PieChart, Pie, Cell } from 'recharts';
 import { TrendingUp, Code, Brain, Cloud, Layers, Activity } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
 
 // Skills Proficiency Data for Radar Chart
 const skillsData = [
@@ -70,15 +71,16 @@ const statsCards = [
 
 export default function Dashboard() {
   const [activeChart, setActiveChart] = useState<'radar' | 'bar'>('radar');
+  const { t } = useLanguage();
 
   return (
     <section className="space-y-8">
       <div>
         <h2 className="text-3xl font-bold text-white flex items-center gap-3">
           <Activity className="text-blue-400" />
-          Analytics Dashboard
+          {t('dashboard.title')}
         </h2>
-        <p className="text-gray-400 mt-2">Visualisasi data aktivitas, skill proficiency, dan statistik portofolio saya berdasarkan akun GitHub.</p>
+        <p className="text-gray-400 mt-2">{t('dashboard.desc')}</p>
       </div>
 
       {/* Stats Cards */}
@@ -143,7 +145,7 @@ export default function Dashboard() {
                   <Cell key={`cell-${index}`} fill={entry.color} />
                 ))}
               </Pie>
-              <Tooltip contentStyle={{ backgroundColor: '#fff7f7ff', border: '1px solid #333', borderRadius: '8px' }} />
+              <Tooltip contentStyle={{ backgroundColor: '#1a1a1a', border: '1px solid #333', borderRadius: '8px', color: '#fff' }} labelStyle={{ color: '#fff' }} itemStyle={{ color: '#9CA3AF' }} cursor={{ fill: 'rgba(59, 130, 246, 0.1)' }} />
             </PieChart>
           </ResponsiveContainer>
         </div>
@@ -170,10 +172,10 @@ export default function Dashboard() {
         <h3 className="text-xl font-bold text-white mb-6">Projects by Category</h3>
         <ResponsiveContainer width="100%" height={200}>
           <BarChart data={projectCategories}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#ffffffff" />
+            <CartesianGrid strokeDasharray="3 3" stroke="#333" />
             <XAxis dataKey="category" tick={{ fill: '#9CA3AF' }} />
             <YAxis tick={{ fill: '#9CA3AF' }} />
-            <Tooltip contentStyle={{ backgroundColor: '#105043ff', border: '1px solid #ebebebff', borderRadius: '8px' }} labelStyle={{ color: '#fff' }} />
+            <Tooltip contentStyle={{ backgroundColor: '#1a1a1a', border: '1px solid #333', borderRadius: '8px' }} labelStyle={{ color: '#fff' }} itemStyle={{ color: '#9CA3AF' }} cursor={{ fill: 'rgba(59, 130, 246, 0.1)' }} />
             <Bar dataKey="count" radius={[4, 4, 0, 0]}>
               {projectCategories.map((entry, index) => (
                 <Cell key={`cell-${index}`} fill={entry.color} />

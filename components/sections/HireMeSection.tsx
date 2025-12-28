@@ -2,30 +2,48 @@
 
 import { Briefcase, MapPin, Mail, Send, Clock, CheckCircle, Loader2 } from 'lucide-react';
 import { useState } from 'react';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function HireMeSection() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [errorMsg, setErrorMsg] = useState('');
+  const { t } = useLanguage();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('loading');
+    setErrorMsg('');
 
-    // Simulate form submission (replace with actual API call)
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
 
-    // For demo, always succeed. In production, integrate with email service
-    setStatus('success');
-    setFormData({ name: '', email: '', message: '' });
-
-    setTimeout(() => setStatus('idle'), 3000);
+      if (response.ok) {
+        setStatus('success');
+        setFormData({ name: '', email: '', message: '' });
+        setTimeout(() => setStatus('idle'), 5000);
+      } else {
+        const data = await response.json();
+        setErrorMsg(data.error || 'Failed to send message');
+        setStatus('error');
+        setTimeout(() => setStatus('idle'), 3000);
+      }
+    } catch (error) {
+      setErrorMsg('Network error. Please try again.');
+      setStatus('error');
+      setTimeout(() => setStatus('idle'), 3000);
+    }
   };
 
   const availabilityOptions = [
-    { label: 'Full-time', available: true },
-    { label: 'Internship', available: true },
-    { label: 'Freelance', available: true },
-    { label: 'Contract', available: false },
+    { label: t('hire.fulltime'), available: true },
+    { label: t('hire.internship'), available: true },
+    { label: t('hire.freelance'), available: true },
+    { label: t('hire.contract'), available: false },
   ];
 
   const preferredRoles = ['Machine Learning Engineer', 'Data Scientist', 'AI Engineer', 'Fullstack Developer', 'Backend Developer'];
@@ -38,16 +56,16 @@ export default function HireMeSection() {
           <div>
             <h2 className="text-2xl font-bold text-white flex items-center gap-3">
               <Briefcase className="w-6 h-6 text-teal-400" />
-              Let's Work Together
+              {t('section.hireMeTitle')}
             </h2>
-            <p className="text-gray-400 text-sm mt-2">I'm actively looking for opportunities to grow and contribute to impactful projects.</p>
+            <p className="text-gray-400 text-sm mt-2">{t('section.hireMeDesc')}</p>
           </div>
 
           {/* Availability Status */}
           <div className="bg-[#0a0c10] border border-gray-800/50 rounded-xl p-5">
             <h3 className="text-sm font-bold text-white flex items-center gap-2 mb-4">
               <Clock className="w-4 h-4 text-teal-400" />
-              Availability
+              {t('hire.availability')}
             </h3>
             <div className="flex flex-wrap gap-2">
               {availabilityOptions.map((opt, idx) => (
@@ -63,7 +81,7 @@ export default function HireMeSection() {
           <div className="bg-[#0a0c10] border border-gray-800/50 rounded-xl p-5">
             <h3 className="text-sm font-bold text-white flex items-center gap-2 mb-4">
               <Briefcase className="w-4 h-4 text-purple-400" />
-              Preferred Roles
+              {t('hire.preferredRoles')}
             </h3>
             <div className="flex flex-wrap gap-2">
               {preferredRoles.map((role, idx) => (
@@ -78,7 +96,7 @@ export default function HireMeSection() {
           <div className="flex flex-col gap-3">
             <div className="flex items-center gap-2 text-sm text-gray-400">
               <MapPin className="w-4 h-4 text-teal-400" />
-              <span>Based in Medan, Indonesia (Open to Remote)</span>
+              <span>{t('hire.location')}</span>
             </div>
             <div className="flex items-center gap-2 text-sm text-gray-400">
               <Mail className="w-4 h-4 text-teal-400" />
@@ -91,18 +109,18 @@ export default function HireMeSection() {
 
         {/* Right: Contact Form */}
         <div className="bg-[#0a0c10] border border-gray-800/50 rounded-xl p-6">
-          <h3 className="text-lg font-bold text-white mb-4">Quick Message</h3>
+          <h3 className="text-lg font-bold text-white mb-4">{t('hire.quickMessage')}</h3>
 
           {status === 'success' ? (
             <div className="flex flex-col items-center justify-center py-12 text-center">
               <CheckCircle className="w-12 h-12 text-green-400 mb-4" />
-              <h4 className="text-lg font-bold text-white">Message Sent!</h4>
-              <p className="text-sm text-gray-400 mt-2">I'll get back to you as soon as possible.</p>
+              <h4 className="text-lg font-bold text-white">{t('hire.sent')}</h4>
+              <p className="text-sm text-gray-400 mt-2">{t('hire.sentDesc')}</p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label className="block text-xs text-gray-400 mb-1.5">Your Name</label>
+                <label className="block text-xs text-gray-400 mb-1.5">{t('hire.yourName')}</label>
                 <input
                   type="text"
                   value={formData.name}
@@ -113,7 +131,7 @@ export default function HireMeSection() {
                 />
               </div>
               <div>
-                <label className="block text-xs text-gray-400 mb-1.5">Email Address</label>
+                <label className="block text-xs text-gray-400 mb-1.5">{t('hire.email')}</label>
                 <input
                   type="email"
                   value={formData.email}
@@ -124,7 +142,7 @@ export default function HireMeSection() {
                 />
               </div>
               <div>
-                <label className="block text-xs text-gray-400 mb-1.5">Message</label>
+                <label className="block text-xs text-gray-400 mb-1.5">{t('hire.message')}</label>
                 <textarea
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
@@ -142,12 +160,12 @@ export default function HireMeSection() {
                 {status === 'loading' ? (
                   <>
                     <Loader2 className="w-4 h-4 animate-spin" />
-                    Sending...
+                    {t('hire.sending')}
                   </>
                 ) : (
                   <>
                     <Send className="w-4 h-4" />
-                    Send Message
+                    {t('hire.send')}
                   </>
                 )}
               </button>

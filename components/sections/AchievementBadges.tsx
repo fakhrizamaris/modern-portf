@@ -1,6 +1,7 @@
 'use client';
 
 import { Trophy, GitCommit, Code, Cloud, GraduationCap, Star, Zap, Target, Medal } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
 
 interface Badge {
   id: string;
@@ -15,6 +16,8 @@ interface Badge {
 }
 
 export default function AchievementBadges() {
+  const { t } = useLanguage();
+
   const badges: Badge[] = [
     {
       id: 'commits',
@@ -109,15 +112,15 @@ export default function AchievementBadges() {
         <div>
           <h2 className="text-2xl font-bold text-white flex items-center gap-3">
             <Trophy className="w-6 h-6 text-yellow-400" />
-            Achievements
+            {t('section.achievements')}
           </h2>
-          <p className="text-gray-400 text-sm mt-1">Milestones and badges earned</p>
+          <p className="text-gray-400 text-sm mt-1">{t('section.achievementsDesc')}</p>
         </div>
         <div className="text-right">
           <div className="text-2xl font-bold text-teal-400">
             {earnedCount}/{badges.length}
           </div>
-          <div className="text-[10px] text-gray-500 uppercase tracking-wider">Unlocked</div>
+          <div className="text-[10px] text-gray-500 uppercase tracking-wider">{t('common.unlocked')}</div>
         </div>
       </div>
 
@@ -139,7 +142,9 @@ export default function AchievementBadges() {
                 <div className="w-full h-1 bg-gray-800 rounded-full overflow-hidden">
                   <div className="h-full bg-gray-600 rounded-full transition-all" style={{ width: `${badge.progress}%` }}></div>
                 </div>
-                <span className="text-[9px] text-gray-600 mt-1">{badge.progress}% complete</span>
+                <span className="text-[9px] text-gray-600 mt-1">
+                  {badge.progress}% {t('common.complete')}
+                </span>
               </div>
             )}
 

@@ -1,6 +1,7 @@
 'use client';
 
 import { BookOpen, Calendar, Tag, ChevronRight } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
 
 interface TILPost {
   id: string;
@@ -49,9 +50,11 @@ const tilPosts: TILPost[] = [
 ];
 
 export default function TILSection() {
+  const { t, language } = useLanguage();
+
   const formatDate = (dateStr: string) => {
     const date = new Date(dateStr);
-    return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    return date.toLocaleDateString(language === 'id' ? 'id-ID' : 'en-US', { month: 'short', day: 'numeric' });
   };
 
   return (
@@ -59,9 +62,9 @@ export default function TILSection() {
       <div className="mb-6">
         <h2 className="text-2xl font-bold text-white flex items-center gap-3">
           <BookOpen className="w-6 h-6 text-teal-400" />
-          Today I Learned
+          {t('section.til')}
         </h2>
-        <p className="text-gray-400 text-sm mt-2">Quick notes on things I discover while building</p>
+        <p className="text-gray-400 text-sm mt-2">{t('section.tilDesc')}</p>
       </div>
 
       <div className="space-y-3">
@@ -92,7 +95,7 @@ export default function TILSection() {
 
       <div className="mt-4 text-center">
         <button className="text-xs text-teal-400 hover:text-teal-300 transition-colors flex items-center gap-1 mx-auto">
-          View all notes
+          {t('common.viewAll')}
           <ChevronRight className="w-4 h-4" />
         </button>
       </div>
