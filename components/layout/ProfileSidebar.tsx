@@ -38,7 +38,7 @@ export default function ProfileSidebar({ activeTab, setActiveTab }: ProfileSideb
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="relative w-8 h-8 rounded-lg overflow-hidden">
-              <Image src="/hero-profile.png" alt="FD Logo" fill className="object-contain" />
+              <Image src="/images/hero-profile.png" alt="FD Logo" fill className="object-contain" />
             </div>
             <div>
               <h1 className="text-sm font-bold text-white">Fakhri Djamaris</h1>
