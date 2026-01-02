@@ -71,7 +71,7 @@ export default function Home() {
                   <p className="text-gray-300 leading-relaxed">
                     {t('readme.aboutContent')}
                     <span className="text-teal-400"> Machine Learning</span>,<span className="text-cyan-400"> Data Science</span>, and
-                    <span className="text-lime-400"> Web Development</span>.
+                    <span className="text-sky-400"> Web Development</span>.
                   </p>
 
                   <h3 className="text-xl text-teal-400 mt-6 mb-2">{t('readme.certTitle')}</h3>
