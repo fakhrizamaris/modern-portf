@@ -276,12 +276,6 @@ export default function AILab() {
         </div>
       </div>
 
-      {/* API Status Badge */}
-      <div className="flex items-center gap-2 text-xs text-gray-500">
-        <Server size={14} className="text-green-500" />
-        <span>Server-side inference • No download required • Response time: ~1-3s</span>
-      </div>
-
       {/* Error Display */}
       {error && (
         <div className="bg-red-500/10 border border-red-500/30 rounded-xl p-4 flex items-center gap-3">

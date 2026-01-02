@@ -42,9 +42,13 @@ export const metadata: Metadata = {
   creator: 'Fakhri Djamaris',
   publisher: 'Fakhri Djamaris',
 
-  // Favicon and Icons
+  // Favicon and Icons - Using multiple formats for better compatibility
   icons: {
-    icon: [{ url: '/favicon.png', sizes: '32x32', type: 'image/png' }],
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/favicon.png', sizes: '32x32', type: 'image/png' },
+    ],
+    shortcut: '/favicon.ico',
     apple: [{ url: '/favicon.png', sizes: '180x180', type: 'image/png' }],
   },
 
