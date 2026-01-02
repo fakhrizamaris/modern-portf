@@ -42,6 +42,12 @@ export const metadata: Metadata = {
   creator: 'Fakhri Djamaris',
   publisher: 'Fakhri Djamaris',
 
+  // Favicon and Icons
+  icons: {
+    icon: [{ url: '/favicon.png', sizes: '32x32', type: 'image/png' }],
+    apple: [{ url: '/favicon.png', sizes: '180x180', type: 'image/png' }],
+  },
+
   // Canonical URL
   metadataBase: new URL('https://fakhridjamaris.my.id'),
   alternates: {
