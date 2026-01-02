@@ -1,321 +1,519 @@
 'use client';
 
 import { useState, useRef, useCallback } from 'react';
-import { Upload, Sparkles, X, Image as ImageIcon, Loader2, Brain, Zap, AlertCircle } from 'lucide-react';
+import { Upload, Sparkles, X, Loader2, Brain, Zap, Activity, BarChart3, Scan, FileText, CheckCircle2, AlertTriangle, Box, Server } from 'lucide-react';
 
-// Simulated AI classifications (in a real app, this would use TensorFlow.js or an API)
-const simulatedClassifications = [
-  { label: 'Cat', confidence: 0.92 },
-  { label: 'Dog', confidence: 0.85 },
-  { label: 'Bird', confidence: 0.78 },
-  { label: 'Car', confidence: 0.95 },
-  { label: 'Flower', confidence: 0.88 },
-  { label: 'Building', confidence: 0.82 },
-  { label: 'Person', confidence: 0.91 },
-  { label: 'Food', confidence: 0.79 },
-  { label: 'Nature', confidence: 0.86 },
-  { label: 'Technology', confidence: 0.84 },
-];
-
-// Sentiment Analysis Demo
-const analyzeSentiment = (text: string): { sentiment: string; confidence: number; emoji: string } => {
-  const positiveWords = ['good', 'great', 'amazing', 'love', 'excellent', 'happy', 'wonderful', 'fantastic', 'awesome', 'best', 'bagus', 'keren', 'hebat', 'suka', 'senang'];
-  const negativeWords = ['bad', 'terrible', 'hate', 'awful', 'worst', 'horrible', 'sad', 'angry', 'disappointed', 'buruk', 'jelek', 'benci', 'sedih', 'marah'];
-
-  const lowerText = text.toLowerCase();
-  let positiveCount = 0;
-  let negativeCount = 0;
-
-  positiveWords.forEach((word) => {
-    if (lowerText.includes(word)) positiveCount++;
-  });
-
-  negativeWords.forEach((word) => {
-    if (lowerText.includes(word)) negativeCount++;
-  });
-
-  if (positiveCount > negativeCount) {
-    return { sentiment: 'Positive', confidence: 0.7 + positiveCount * 0.05, emoji: '😊' };
-  } else if (negativeCount > positiveCount) {
-    return { sentiment: 'Negative', confidence: 0.7 + negativeCount * 0.05, emoji: '😔' };
-  } else {
-    return { sentiment: 'Neutral', confidence: 0.6, emoji: '😐' };
-  }
+// Sentiment ratings display
+const SENTIMENT_RATINGS: Record<string, { emoji: string; color: string; text: string }> = {
+  'Sangat Negatif': { emoji: '😠', color: 'bg-red-600', text: 'text-red-400' },
+  Negatif: { emoji: '😕', color: 'bg-orange-500', text: 'text-orange-400' },
+  Netral: { emoji: '😐', color: 'bg-yellow-500', text: 'text-yellow-400' },
+  Positif: { emoji: '😊', color: 'bg-green-500', text: 'text-green-400' },
+  'Sangat Positif': { emoji: '🤩', color: 'bg-emerald-500', text: 'text-emerald-400' },
 };
+
+// Color palette for bounding boxes
+const BOX_COLORS = ['#22d3ee', '#a78bfa', '#f472b6', '#facc15', '#4ade80', '#fb923c', '#38bdf8', '#c084fc', '#f87171', '#34d399'];
+
+interface Detection {
+  label: string;
+  score: number;
+  box: { xmin: number; ymin: number; xmax: number; ymax: number };
+}
+
+interface SentimentResult {
+  label: string;
+  displayLabel: string;
+  stars: number;
+  score: number;
+}
 
 export default function AILab() {
   const [activeDemo, setActiveDemo] = useState<'image' | 'sentiment'>('image');
-  const [uploadedImage, setUploadedImage] = useState<string | null>(null);
-  const [isAnalyzing, setIsAnalyzing] = useState(false);
-  const [classifications, setClassifications] = useState<{ label: string; confidence: number }[]>([]);
-  const [sentimentInput, setSentimentInput] = useState('');
-  const [sentimentResult, setSentimentResult] = useState<{ sentiment: string; confidence: number; emoji: string } | null>(null);
-  const fileInputRef = useRef<HTMLInputElement>(null);
 
+  // Image Detection States
+  const [uploadedImage, setUploadedImage] = useState<string | null>(null);
+  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const [detections, setDetections] = useState<Detection[]>([]);
+  const [analysisLog, setAnalysisLog] = useState<string[]>([]);
+  const [error, setError] = useState<string | null>(null);
+
+  // Sentiment Analysis States
+  const [sentimentInput, setSentimentInput] = useState('');
+  const [sentimentResult, setSentimentResult] = useState<SentimentResult | null>(null);
+  const [isSentimentLoading, setIsSentimentLoading] = useState(false);
+
+  // Refs
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const imageRef = useRef<HTMLImageElement>(null);
+
+  // Add log message
+  const addLog = useCallback((message: string) => {
+    setAnalysisLog((prev) => [...prev, `[${new Date().toLocaleTimeString()}] ${message}`]);
+  }, []);
+
+  // Handle image upload
   const handleImageUpload = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        setUploadedImage(event.target?.result as string);
-        setClassifications([]);
-      };
-      reader.readAsDataURL(file);
-    }
+    if (file) processFile(file);
   }, []);
 
   const handleDrop = useCallback((e: React.DragEvent) => {
     e.preventDefault();
     const file = e.dataTransfer.files[0];
-    if (file && file.type.startsWith('image/')) {
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        setUploadedImage(event.target?.result as string);
-        setClassifications([]);
-      };
-      reader.readAsDataURL(file);
-    }
+    if (file && file.type.startsWith('image/')) processFile(file);
   }, []);
 
-  const runImageClassification = useCallback(() => {
-    if (!uploadedImage) return;
+  const processFile = (file: File) => {
+    setImageFile(file);
+    setError(null);
+    setDetections([]);
+    setAnalysisLog([]);
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      setUploadedImage(event.target?.result as string);
+    };
+    reader.readAsDataURL(file);
+  };
+
+  // Draw bounding boxes on canvas
+  const drawDetections = useCallback((results: Detection[], img: HTMLImageElement) => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const displayWidth = img.clientWidth;
+    const displayHeight = img.clientHeight;
+    canvas.width = displayWidth;
+    canvas.height = displayHeight;
+
+    // Calculate scale factors (DETR returns absolute coordinates)
+    const scaleX = displayWidth / img.naturalWidth;
+    const scaleY = displayHeight / img.naturalHeight;
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    results.forEach((detection, idx) => {
+      const { box, label, score } = detection;
+      const color = BOX_COLORS[idx % BOX_COLORS.length];
+
+      const x = box.xmin * scaleX;
+      const y = box.ymin * scaleY;
+      const width = (box.xmax - box.xmin) * scaleX;
+      const height = (box.ymax - box.ymin) * scaleY;
+
+      // Draw box
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 3;
+      ctx.strokeRect(x, y, width, height);
+
+      // Draw label background
+      const labelText = `${label} ${(score * 100).toFixed(1)}%`;
+      ctx.font = 'bold 14px Inter, system-ui, sans-serif';
+      const textWidth = ctx.measureText(labelText).width;
+
+      ctx.fillStyle = color;
+      ctx.fillRect(x, y - 24, textWidth + 12, 24);
+
+      // Draw label text
+      ctx.fillStyle = '#000';
+      ctx.fillText(labelText, x + 6, y - 7);
+    });
+  }, []);
+
+  // Run Object Detection via API
+  const runDetection = useCallback(async () => {
+    if (!imageFile) return;
 
     setIsAnalyzing(true);
-    // Simulate AI processing delay
-    setTimeout(() => {
-      // Randomly select 3-5 classifications and sort by confidence
-      const numResults = Math.floor(Math.random() * 3) + 3;
-      const shuffled = [...simulatedClassifications].sort(() => Math.random() - 0.5);
-      const results = shuffled
-        .slice(0, numResults)
-        .map((item) => ({
-          ...item,
-          confidence: Math.min(0.99, item.confidence + (Math.random() * 0.1 - 0.05)),
-        }))
-        .sort((a, b) => b.confidence - a.confidence);
+    setError(null);
+    setDetections([]);
+    setAnalysisLog([]);
 
-      setClassifications(results);
+    try {
+      addLog('Sending image to AI server...');
+
+      const formData = new FormData();
+      formData.append('image', imageFile);
+
+      const response = await fetch('/api/ai/detect', {
+        method: 'POST',
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        if (data.loading) {
+          addLog('⏳ Model is warming up, retrying in 3 seconds...');
+          await new Promise((r) => setTimeout(r, 3000));
+          return runDetection(); // Retry
+        }
+        throw new Error(data.error || 'Detection failed');
+      }
+
+      addLog(`✓ Detected ${data.detections.length} objects`);
+
+      // Filter and sort by score
+      const filteredResults = data.detections.filter((r: Detection) => r.score > 0.7).sort((a: Detection, b: Detection) => b.score - a.score);
+
+      setDetections(filteredResults);
+
+      // Draw boxes
+      setTimeout(() => {
+        if (imageRef.current) {
+          drawDetections(filteredResults, imageRef.current);
+        }
+      }, 100);
+
+      addLog('Detection complete!');
+    } catch (err: any) {
+      console.error('Detection error:', err);
+      setError(err.message || 'Detection failed');
+      addLog(`✗ Error: ${err.message}`);
+    } finally {
       setIsAnalyzing(false);
-    }, 1500);
-  }, [uploadedImage]);
+    }
+  }, [imageFile, addLog, drawDetections]);
 
-  const runSentimentAnalysis = useCallback(() => {
+  // Run Sentiment Analysis via API
+  const runSentimentAnalysis = useCallback(async () => {
     if (!sentimentInput.trim()) return;
 
-    setIsAnalyzing(true);
-    setTimeout(() => {
-      const result = analyzeSentiment(sentimentInput);
-      setSentimentResult(result);
-      setIsAnalyzing(false);
-    }, 800);
-  }, [sentimentInput]);
+    setIsSentimentLoading(true);
+    setSentimentResult(null);
+    setError(null);
+    setAnalysisLog([]);
+
+    try {
+      addLog('Sending text to AI server...');
+
+      const response = await fetch('/api/ai/sentiment', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text: sentimentInput }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        if (data.loading) {
+          addLog('⏳ Model is warming up, retrying in 3 seconds...');
+          await new Promise((r) => setTimeout(r, 3000));
+          return runSentimentAnalysis(); // Retry
+        }
+        throw new Error(data.error || 'Analysis failed');
+      }
+
+      const { sentiment } = data;
+      addLog(`✓ Sentiment: ${sentiment.displayLabel} (${(sentiment.score * 100).toFixed(1)}%)`);
+
+      setSentimentResult({
+        label: sentiment.label,
+        displayLabel: sentiment.displayLabel,
+        stars: sentiment.stars,
+        score: sentiment.score,
+      });
+    } catch (err: any) {
+      console.error('Sentiment error:', err);
+      setError(err.message || 'Analysis failed');
+      addLog(`✗ Error: ${err.message}`);
+    } finally {
+      setIsSentimentLoading(false);
+    }
+  }, [sentimentInput, addLog]);
 
   const clearImage = () => {
     setUploadedImage(null);
-    setClassifications([]);
-    if (fileInputRef.current) {
-      fileInputRef.current.value = '';
+    setImageFile(null);
+    setDetections([]);
+    setAnalysisLog([]);
+    setError(null);
+    if (fileInputRef.current) fileInputRef.current.value = '';
+    if (canvasRef.current) {
+      const ctx = canvasRef.current.getContext('2d');
+      ctx?.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
     }
   };
 
   return (
-    <section className="space-y-8">
-      <div>
-        <h2 className="text-3xl font-bold text-white flex items-center gap-3">
-          <Sparkles className="text-purple-400" />
-          AI Lab
-        </h2>
-        <p className="text-gray-400 mt-2">Demo interaktif kemampuan Machine Learning. Coba langsung di browser!</p>
+    <section className="space-y-8 max-w-7xl mx-auto">
+      {/* Header */}
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <h2 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400 flex items-center gap-3">
+            <Sparkles className="text-purple-400 w-8 h-8" />
+            AI Research Lab
+          </h2>
+          <p className="text-gray-400 mt-2 text-lg">Real-time AI inference powered by Hugging Face.</p>
+        </div>
+
+        {/* Demo Selector */}
+        <div className="flex bg-[#0f1218] p-1.5 rounded-xl border border-gray-800">
+          <button
+            onClick={() => setActiveDemo('image')}
+            className={`flex items-center gap-2 px-5 py-2.5 rounded-lg font-medium transition-all ${
+              activeDemo === 'image' ? 'bg-purple-600/20 text-purple-300 border border-purple-500/50 shadow-[0_0_15px_rgba(168,85,247,0.3)]' : 'text-gray-400 hover:text-white hover:bg-gray-800'
+            }`}
+          >
+            <Box size={18} />
+            Object Detection
+          </button>
+          <button
+            onClick={() => setActiveDemo('sentiment')}
+            className={`flex items-center gap-2 px-5 py-2.5 rounded-lg font-medium transition-all ${
+              activeDemo === 'sentiment' ? 'bg-cyan-600/20 text-cyan-300 border border-cyan-500/50 shadow-[0_0_15px_rgba(6,182,212,0.3)]' : 'text-gray-400 hover:text-white hover:bg-gray-800'
+            }`}
+          >
+            <Brain size={18} />
+            Sentiment Analysis
+          </button>
+        </div>
       </div>
 
-      {/* Demo Selector */}
-      <div className="flex gap-3">
-        <button
-          onClick={() => setActiveDemo('image')}
-          className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all ${activeDemo === 'image' ? 'bg-purple-500 text-white' : 'bg-gray-800 text-gray-400 hover:bg-gray-700 hover:text-white'}`}
-        >
-          <ImageIcon size={18} />
-          Image Classifier
-        </button>
-        <button
-          onClick={() => setActiveDemo('sentiment')}
-          className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all ${activeDemo === 'sentiment' ? 'bg-purple-500 text-white' : 'bg-gray-800 text-gray-400 hover:bg-gray-700 hover:text-white'}`}
-        >
-          <Brain size={18} />
-          Sentiment Analysis
-        </button>
+      {/* API Status Badge */}
+      <div className="flex items-center gap-2 text-xs text-gray-500">
+        <Server size={14} className="text-green-500" />
+        <span>Server-side inference • No download required • Response time: ~1-3s</span>
       </div>
 
-      {/* Image Classifier Demo */}
+      {/* Error Display */}
+      {error && (
+        <div className="bg-red-500/10 border border-red-500/30 rounded-xl p-4 flex items-center gap-3">
+          <AlertTriangle className="text-red-400" />
+          <span className="text-red-300">{error}</span>
+        </div>
+      )}
+
+      {/* Object Detection Demo */}
       {activeDemo === 'image' && (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* Upload Area */}
-          <div className="bg-[#0a0a0a] border border-gray-800 rounded-2xl p-6">
-            <h3 className="text-lg font-bold text-white mb-4">Upload Image</h3>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+          {/* Image Display */}
+          <div className="lg:col-span-7 space-y-4">
+            <div className="relative group bg-black/40 backdrop-blur-md border border-gray-800 rounded-2xl overflow-hidden min-h-[400px] flex items-center justify-center transition-all hover:border-purple-500/30">
+              {!uploadedImage ? (
+                <div onDrop={handleDrop} onDragOver={(e) => e.preventDefault()} onClick={() => fileInputRef.current?.click()} className="absolute inset-0 flex flex-col items-center justify-center p-8 cursor-pointer">
+                  <div className="w-20 h-20 bg-gray-900/50 rounded-full flex items-center justify-center border border-gray-700 mb-6 group-hover:scale-110 transition-transform duration-300 shadow-xl">
+                    <Upload className="w-10 h-10 text-purple-400" />
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-2">Upload Image for Detection</h3>
+                  <p className="text-gray-500">Drag & drop or click to browse</p>
+                  <p className="text-xs text-gray-600 mt-4 px-3 py-1 bg-gray-900 rounded-full border border-gray-800">Model: DETR (facebook/detr-resnet-50)</p>
+                  <input ref={fileInputRef} type="file" accept="image/*" onChange={handleImageUpload} className="hidden" />
+                </div>
+              ) : (
+                <div className="relative w-full h-full min-h-[400px]">
+                  <img
+                    ref={imageRef}
+                    src={uploadedImage}
+                    alt="Analysis Target"
+                    className="w-full h-full object-contain max-h-[500px]"
+                    onLoad={() => {
+                      if (detections.length > 0 && imageRef.current) {
+                        drawDetections(detections, imageRef.current);
+                      }
+                    }}
+                  />
 
-            {!uploadedImage ? (
-              <div
-                onDrop={handleDrop}
-                onDragOver={(e) => e.preventDefault()}
-                className="border-2 border-dashed border-gray-700 rounded-xl p-12 text-center hover:border-purple-500/50 transition-colors cursor-pointer"
-                onClick={() => fileInputRef.current?.click()}
+                  <canvas ref={canvasRef} className="absolute top-0 left-0 w-full h-full pointer-events-none" style={{ objectFit: 'contain' }} />
+
+                  {isAnalyzing && (
+                    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                      <div className="w-full h-1 bg-cyan-400/80 shadow-[0_0_20px_rgba(34,211,238,0.8)] absolute top-0 animate-[scan_2s_linear_infinite]" />
+                      <div className="absolute inset-0 bg-cyan-500/5 animate-pulse" />
+                    </div>
+                  )}
+
+                  <button onClick={clearImage} className="absolute top-4 right-4 p-2 bg-black/60 backdrop-blur-md text-white rounded-full hover:bg-red-500/40 border border-white/10 hover:border-red-500/50 transition-all z-10">
+                    <X size={20} />
+                  </button>
+                </div>
+              )}
+            </div>
+
+            {uploadedImage && !isAnalyzing && (
+              <button
+                onClick={runDetection}
+                className="w-full py-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white font-bold text-lg rounded-xl hover:shadow-[0_0_30px_rgba(147,51,234,0.4)] hover:scale-[1.01] active:scale-[0.99] transition-all flex items-center justify-center gap-3"
               >
-                <Upload className="w-12 h-12 text-gray-600 mx-auto mb-4" />
-                <p className="text-gray-400 mb-2">Drag & drop an image here</p>
-                <p className="text-gray-600 text-sm">or click to browse</p>
-                <input ref={fileInputRef} type="file" accept="image/*" onChange={handleImageUpload} className="hidden" />
-              </div>
-            ) : (
-              <div className="relative">
-                <img src={uploadedImage} alt="Uploaded" className="w-full h-64 object-cover rounded-xl" />
-                <button onClick={clearImage} className="absolute top-2 right-2 p-2 bg-black/60 rounded-full hover:bg-red-500/80 transition-colors">
-                  <X size={16} />
-                </button>
-              </div>
+                <Zap className="fill-white" />
+                Detect Objects
+              </button>
             )}
 
-            {uploadedImage && (
-              <button
-                onClick={runImageClassification}
-                disabled={isAnalyzing}
-                className="w-full mt-4 py-3 bg-gradient-to-r from-purple-500 to-blue-500 text-white font-bold rounded-xl hover:opacity-90 transition-opacity disabled:opacity-50 flex items-center justify-center gap-2"
-              >
-                {isAnalyzing ? (
-                  <>
-                    <Loader2 className="animate-spin" size={18} />
-                    Analyzing...
-                  </>
-                ) : (
-                  <>
-                    <Zap size={18} />
-                    Run Classification
-                  </>
-                )}
-              </button>
+            {isAnalyzing && (
+              <div className="w-full py-4 bg-gray-800 text-gray-300 font-medium text-lg rounded-xl flex items-center justify-center gap-3">
+                <Loader2 className="animate-spin" />
+                Running DETR inference...
+              </div>
             )}
           </div>
 
-          {/* Results Area */}
-          <div className="bg-[#0a0a0a] border border-gray-800 rounded-2xl p-6">
-            <h3 className="text-lg font-bold text-white mb-4">Classification Results</h3>
-
-            {classifications.length === 0 ? (
-              <div className="h-64 flex flex-col items-center justify-center text-gray-600">
-                <Brain size={48} className="mb-4 opacity-50" />
-                <p>Upload an image and run classification</p>
-                <p className="text-sm text-gray-700 mt-2">Results will appear here</p>
+          {/* Results Sidebar */}
+          <div className="lg:col-span-5 flex flex-col gap-4">
+            <div className="bg-[#0a0a0a] border border-gray-800 rounded-2xl p-4 overflow-hidden flex flex-col h-[180px]">
+              <div className="flex items-center gap-2 mb-3 pb-2 border-b border-gray-800">
+                <Activity size={16} className="text-purple-400" />
+                <span className="text-xs font-mono text-gray-400">INFERENCE_LOGS</span>
               </div>
-            ) : (
-              <div className="space-y-4">
-                {classifications.map((result, idx) => (
-                  <div key={idx} className="space-y-2">
-                    <div className="flex justify-between items-center">
-                      <span className="text-white font-medium">{result.label}</span>
-                      <span className="text-purple-400 font-mono text-sm">{(result.confidence * 100).toFixed(1)}%</span>
+              <div className="font-mono text-xs space-y-1.5 overflow-y-auto flex-1 custom-scrollbar">
+                {analysisLog.length === 0 ? (
+                  <span className="text-gray-600 italic">// Waiting for input...</span>
+                ) : (
+                  analysisLog.map((log, i) => (
+                    <div key={i} className="flex gap-2 animate-in slide-in-from-left-2 fade-in duration-300">
+                      <span className="text-purple-500">➜</span>
+                      <span className="text-cyan-100">{log}</span>
                     </div>
-                    <div className="w-full h-2 bg-gray-800 rounded-full overflow-hidden">
-                      <div className="h-full bg-gradient-to-r from-purple-500 to-blue-500 rounded-full transition-all duration-500" style={{ width: `${result.confidence * 100}%` }} />
-                    </div>
-                  </div>
-                ))}
+                  ))
+                )}
+              </div>
+            </div>
 
-                <div className="mt-6 p-4 bg-purple-500/10 border border-purple-500/20 rounded-xl">
-                  <div className="flex items-start gap-3">
-                    <AlertCircle className="text-purple-400 shrink-0 mt-0.5" size={18} />
-                    <div className="text-sm text-gray-400">
-                      <p className="font-medium text-purple-300 mb-1">Demo Mode</p>
-                      <p>This is a simulated classification for demonstration. In production, this would use TensorFlow.js or a Cloud ML API.</p>
+            <div className={`bg-[#0a0a0a] border border-gray-800 rounded-2xl p-6 flex-1 overflow-hidden transition-all duration-500 ${detections.length > 0 ? 'border-purple-500/30 shadow-[0_0_30px_rgba(147,51,234,0.1)]' : ''}`}>
+              <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                <Scan size={20} className="text-purple-400" />
+                Detected Objects
+              </h3>
+
+              {detections.length > 0 ? (
+                <div className="space-y-3 max-h-[300px] overflow-y-auto custom-scrollbar pr-2">
+                  {detections.map((det, idx) => (
+                    <div key={idx} className="flex items-center gap-3 p-3 bg-gray-900/50 rounded-lg border border-gray-800 hover:border-purple-500/30 transition-colors">
+                      <div className="w-4 h-4 rounded-full shrink-0" style={{ backgroundColor: BOX_COLORS[idx % BOX_COLORS.length] }} />
+                      <span className="text-white font-medium flex-1 capitalize">{det.label}</span>
+                      <span className="text-cyan-400 font-mono text-sm">{(det.score * 100).toFixed(1)}%</span>
                     </div>
-                  </div>
+                  ))}
                 </div>
-              </div>
-            )}
+              ) : (
+                <div className="text-center text-gray-600 py-8">
+                  <Box size={48} className="mx-auto mb-4 opacity-20" />
+                  <p>No detections yet</p>
+                  <p className="text-xs text-gray-700 mt-1">Upload an image and run detection</p>
+                </div>
+              )}
+
+              {detections.length > 0 && (
+                <div className="mt-4 pt-3 border-t border-gray-800 text-xs text-gray-500 flex justify-between">
+                  <span>Model: DETR ResNet-50</span>
+                  <span>{detections.length} objects</span>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       )}
 
       {/* Sentiment Analysis Demo */}
       {activeDemo === 'sentiment' && (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* Input Area */}
-          <div className="bg-[#0a0a0a] border border-gray-800 rounded-2xl p-6">
-            <h3 className="text-lg font-bold text-white mb-4">Enter Text</h3>
-            <textarea
-              value={sentimentInput}
-              onChange={(e) => setSentimentInput(e.target.value)}
-              placeholder="Type or paste any text here to analyze its sentiment... (English or Indonesian)"
-              className="w-full h-48 bg-[#151515] border border-gray-800 rounded-xl p-4 text-white placeholder-gray-600 resize-none focus:outline-none focus:border-purple-500/50 transition-colors"
-            />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+          <div className="bg-black/40 backdrop-blur-md border border-gray-800 rounded-2xl p-6">
+            <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+              <FileText size={20} className="text-cyan-400" />
+              Input Text
+            </h3>
+            <div className="relative">
+              <textarea
+                value={sentimentInput}
+                onChange={(e) => setSentimentInput(e.target.value)}
+                placeholder="Masukkan teks dalam bahasa apapun... (contoh: 'Produk ini sangat bagus!' atau 'I love this product!')"
+                className="w-full h-48 bg-[#0a0a0a] border border-gray-800 rounded-xl p-6 text-gray-100 placeholder-gray-600 resize-none focus:outline-none focus:border-cyan-500/50 focus:bg-[#0f1218] transition-all font-sans text-lg leading-relaxed"
+              />
+              <div className="absolute bottom-4 right-4 text-xs text-gray-600">{sentimentInput.length} chars</div>
+            </div>
+
             <button
               onClick={runSentimentAnalysis}
-              disabled={isAnalyzing || !sentimentInput.trim()}
-              className="w-full mt-4 py-3 bg-gradient-to-r from-purple-500 to-blue-500 text-white font-bold rounded-xl hover:opacity-90 transition-opacity disabled:opacity-50 flex items-center justify-center gap-2"
+              disabled={isSentimentLoading || !sentimentInput.trim()}
+              className="w-full mt-6 py-4 bg-gradient-to-r from-cyan-600 to-blue-600 text-white font-bold rounded-xl hover:shadow-[0_0_20px_rgba(6,182,212,0.4)] disabled:opacity-50 disabled:grayscale transition-all flex items-center justify-center gap-2"
             >
-              {isAnalyzing ? (
-                <>
-                  <Loader2 className="animate-spin" size={18} />
-                  Analyzing...
-                </>
-              ) : (
-                <>
-                  <Brain size={18} />
-                  Analyze Sentiment
-                </>
-              )}
+              {isSentimentLoading ? <Loader2 className="animate-spin" /> : <Brain />}
+              {isSentimentLoading ? 'Analyzing...' : 'Analyze Sentiment'}
             </button>
+
+            <p className="text-xs text-gray-600 mt-3 text-center">Model: Multilingual BERT (supports ID, EN, DE, FR, ES, IT)</p>
           </div>
 
-          {/* Results Area */}
-          <div className="bg-[#0a0a0a] border border-gray-800 rounded-2xl p-6">
-            <h3 className="text-lg font-bold text-white mb-4">Analysis Result</h3>
-
-            {!sentimentResult ? (
-              <div className="h-64 flex flex-col items-center justify-center text-gray-600">
-                <Brain size={48} className="mb-4 opacity-50" />
-                <p>Enter text and run analysis</p>
-                <p className="text-sm text-gray-700 mt-2">Sentiment result will appear here</p>
+          <div className="space-y-4">
+            <div className="bg-[#0a0a0a] border border-gray-800 rounded-2xl p-4 h-[140px] overflow-hidden flex flex-col font-mono text-xs">
+              <div className="text-gray-500 mb-2 border-b border-gray-800 pb-1">NLP_ENGINE_LOGS</div>
+              <div className="flex-1 overflow-y-auto space-y-1 text-cyan-500/80 custom-scrollbar">
+                {analysisLog.map((l, i) => (
+                  <div key={i}>&gt; {l}</div>
+                ))}
               </div>
-            ) : (
-              <div className="space-y-6">
-                <div className="text-center py-8">
-                  <div className="text-7xl mb-4">{sentimentResult.emoji}</div>
-                  <h4 className={`text-3xl font-bold ${sentimentResult.sentiment === 'Positive' ? 'text-green-400' : sentimentResult.sentiment === 'Negative' ? 'text-red-400' : 'text-gray-400'}`}>{sentimentResult.sentiment}</h4>
-                  <p className="text-gray-500 mt-2">Confidence: {(sentimentResult.confidence * 100).toFixed(0)}%</p>
-                </div>
+            </div>
 
-                <div className="w-full h-3 bg-gray-800 rounded-full overflow-hidden">
-                  <div
-                    className={`h-full rounded-full transition-all duration-500 ${sentimentResult.sentiment === 'Positive' ? 'bg-green-500' : sentimentResult.sentiment === 'Negative' ? 'bg-red-500' : 'bg-gray-500'}`}
-                    style={{ width: `${sentimentResult.confidence * 100}%` }}
-                  />
+            <div className="bg-[#0a0a0a] border border-gray-800 rounded-2xl p-6 relative overflow-hidden min-h-[280px]">
+              {!sentimentResult ? (
+                <div className="h-full flex flex-col items-center justify-center text-gray-600 py-12">
+                  <BarChart3 size={48} className="mb-4 opacity-20" />
+                  <p>Hasil analisis akan muncul di sini</p>
+                  <p className="text-xs text-gray-700 mt-1">Masukkan teks dan analisis</p>
                 </div>
+              ) : (
+                (() => {
+                  const rating = SENTIMENT_RATINGS[sentimentResult.displayLabel] || SENTIMENT_RATINGS['Netral'];
+                  return (
+                    <div className="relative z-10 animate-in fade-in duration-700">
+                      <div className="text-center py-4">
+                        <div className="text-6xl mb-3">{rating.emoji}</div>
+                        <h4 className={`text-3xl font-bold ${rating.text}`}>{sentimentResult.displayLabel}</h4>
 
-                <div className="p-4 bg-purple-500/10 border border-purple-500/20 rounded-xl">
-                  <div className="flex items-start gap-3">
-                    <AlertCircle className="text-purple-400 shrink-0 mt-0.5" size={18} />
-                    <div className="text-sm text-gray-400">
-                      <p className="font-medium text-purple-300 mb-1">Demo Mode</p>
-                      <p>This uses a simple keyword-based analysis. Production version would use NLP models like BERT or GPT.</p>
+                        <div className="flex justify-center gap-1 mt-4">
+                          {[1, 2, 3, 4, 5].map((star) => (
+                            <span key={star} className={`text-2xl transition-all ${star <= sentimentResult.stars ? 'text-yellow-400 scale-110' : 'text-gray-700'}`}>
+                              ★
+                            </span>
+                          ))}
+                        </div>
+
+                        <p className="text-gray-400 mt-4 text-sm">
+                          Confidence: <span className="text-white font-mono">{(sentimentResult.score * 100).toFixed(1)}%</span>
+                        </p>
+                      </div>
+
+                      <div className="mt-4">
+                        <div className="w-full h-3 bg-gray-800 rounded-full overflow-hidden">
+                          <div className={`h-full rounded-full transition-all duration-1000 ${rating.color}`} style={{ width: `${sentimentResult.score * 100}%` }} />
+                        </div>
+                        <div className="flex justify-between text-xs text-gray-500 mt-2">
+                          <span>😠 Negatif</span>
+                          <span>😐</span>
+                          <span>Positif 🤩</span>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-              </div>
-            )}
+                  );
+                })()
+              )}
+
+              {sentimentResult &&
+                (() => {
+                  const rating = SENTIMENT_RATINGS[sentimentResult.displayLabel] || SENTIMENT_RATINGS['Netral'];
+                  return <div className={`absolute top-0 right-0 w-64 h-64 ${rating.color} opacity-10 blur-[80px] rounded-full pointer-events-none -mt-10 -mr-10`} />;
+                })()}
+            </div>
           </div>
         </div>
       )}
 
-      {/* Tech Stack Used */}
-      <div className="bg-gradient-to-r from-purple-500/10 to-blue-500/10 border border-purple-500/20 rounded-2xl p-6">
-        <h3 className="text-lg font-bold text-white mb-4">🧠 Technologies Behind This Demo</h3>
-        <div className="flex flex-wrap gap-3">
-          {['TensorFlow.js', 'React Hooks', 'Canvas API', 'Web Workers', 'ONNX Runtime'].map((tech, idx) => (
-            <span key={idx} className="px-3 py-1.5 bg-[#151515] text-gray-300 text-sm font-medium rounded-lg border border-gray-800">
-              {tech}
-            </span>
-          ))}
+      {/* Footer */}
+      <div className="mt-8 flex flex-col md:flex-row items-center justify-center gap-4 text-xs text-gray-600">
+        <div className="flex items-center gap-2">
+          <CheckCircle2 size={12} className="text-green-500" />
+          <span>Powered by Hugging Face Inference API</span>
         </div>
-        <p className="text-gray-500 text-sm mt-4">In a full implementation, models would be loaded client-side using TensorFlow.js or connected to a Cloud Run endpoint for server-side inference.</p>
+        <span className="hidden md:inline">•</span>
+        <div className="flex items-center gap-2">
+          <span>Models: DETR + Multilingual BERT</span>
+        </div>
       </div>
     </section>
   );
