@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     siteName: 'Fakhri Djamaris Portfolio',
     images: [
       {
-        url: '/images/logo.png',
+        url: '/images/favicon.png',
         width: 800,
         height: 800,
         alt: 'Fakhri Djamaris Logo',
