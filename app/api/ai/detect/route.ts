@@ -25,10 +25,10 @@ export async function POST(request: NextRequest) {
     console.log('Starting object detection...');
 
     // Use the HfInference SDK for object detection
-    // yolos-tiny is much faster than detr-resnet-50
+    // Using facebook/detr-resnet-50 which is available on HF Inference API
     const results = await hf.objectDetection({
       data: blob,
-      model: 'hustvl/yolos-tiny',
+      model: 'facebook/detr-resnet-50',
     });
 
     console.log('Detection results:', results);

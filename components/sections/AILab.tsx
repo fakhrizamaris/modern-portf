@@ -36,12 +36,13 @@ export default function AILab() {
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [detections, setDetections] = useState<Detection[]>([]);
-  const [analysisLog, setAnalysisLog] = useState<string[]>([]);
+  const [detectionLog, setDetectionLog] = useState<string[]>([]);
   const [error, setError] = useState<string | null>(null);
 
   // Sentiment Analysis States
   const [sentimentInput, setSentimentInput] = useState('');
   const [sentimentResult, setSentimentResult] = useState<SentimentResult | null>(null);
+  const [sentimentLog, setSentimentLog] = useState<string[]>([]);
   const [isSentimentLoading, setIsSentimentLoading] = useState(false);
 
   // Refs
@@ -49,9 +50,14 @@ export default function AILab() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
 
-  // Add log message
-  const addLog = useCallback((message: string) => {
-    setAnalysisLog((prev) => [...prev, `[${new Date().toLocaleTimeString()}] ${message}`]);
+  // Add log message for detection
+  const addDetectionLog = useCallback((message: string) => {
+    setDetectionLog((prev) => [...prev, `[${new Date().toLocaleTimeString()}] ${message}`]);
+  }, []);
+
+  // Add log message for sentiment
+  const addSentimentLog = useCallback((message: string) => {
+    setSentimentLog((prev) => [...prev, `[${new Date().toLocaleTimeString()}] ${message}`]);
   }, []);
 
   // Handle image upload
@@ -70,7 +76,7 @@ export default function AILab() {
     setImageFile(file);
     setError(null);
     setDetections([]);
-    setAnalysisLog([]);
+    setDetectionLog([]);
 
     const reader = new FileReader();
     reader.onload = (event) => {
@@ -133,10 +139,10 @@ export default function AILab() {
     setIsAnalyzing(true);
     setError(null);
     setDetections([]);
-    setAnalysisLog([]);
+    setDetectionLog([]);
 
     try {
-      addLog('Sending image to AI server...');
+      addDetectionLog('Sending image to AI server...');
 
       const formData = new FormData();
       formData.append('image', imageFile);
@@ -150,17 +156,19 @@ export default function AILab() {
 
       if (!response.ok) {
         if (data.loading) {
-          addLog('⏳ Model is warming up, retrying in 3 seconds...');
+          addDetectionLog('⏳ Model is warming up, retrying in 3 seconds...');
           await new Promise((r) => setTimeout(r, 3000));
           return runDetection(); // Retry
         }
         throw new Error(data.error || 'Detection failed');
       }
 
-      addLog(`✓ Detected ${data.detections.length} objects`);
+      addDetectionLog(`✓ Raw detections: ${data.detections.length} objects`);
 
-      // Filter and sort by score
-      const filteredResults = data.detections.filter((r: Detection) => r.score > 0.7).sort((a: Detection, b: Detection) => b.score - a.score);
+      // Filter by score threshold (0.3 = 30% confidence) and sort by score
+      const filteredResults = data.detections.filter((r: Detection) => r.score > 0.3).sort((a: Detection, b: Detection) => b.score - a.score);
+
+      addDetectionLog(`✓ Above 30% threshold: ${filteredResults.length} objects`);
 
       setDetections(filteredResults);
 
@@ -171,15 +179,15 @@ export default function AILab() {
         }
       }, 100);
 
-      addLog('Detection complete!');
+      addDetectionLog('Detection complete!');
     } catch (err: any) {
       console.error('Detection error:', err);
       setError(err.message || 'Detection failed');
-      addLog(`✗ Error: ${err.message}`);
+      addDetectionLog(`✗ Error: ${err.message}`);
     } finally {
       setIsAnalyzing(false);
     }
-  }, [imageFile, addLog, drawDetections]);
+  }, [imageFile, addDetectionLog, drawDetections]);
 
   // Run Sentiment Analysis via API
   const runSentimentAnalysis = useCallback(async () => {
@@ -188,10 +196,10 @@ export default function AILab() {
     setIsSentimentLoading(true);
     setSentimentResult(null);
     setError(null);
-    setAnalysisLog([]);
+    setSentimentLog([]);
 
     try {
-      addLog('Sending text to AI server...');
+      addSentimentLog('Sending text to AI server...');
 
       const response = await fetch('/api/ai/sentiment', {
         method: 'POST',
@@ -203,7 +211,7 @@ export default function AILab() {
 
       if (!response.ok) {
         if (data.loading) {
-          addLog('⏳ Model is warming up, retrying in 3 seconds...');
+          addSentimentLog('⏳ Model is warming up, retrying in 3 seconds...');
           await new Promise((r) => setTimeout(r, 3000));
           return runSentimentAnalysis(); // Retry
         }
@@ -211,7 +219,7 @@ export default function AILab() {
       }
 
       const { sentiment } = data;
-      addLog(`✓ Sentiment: ${sentiment.displayLabel} (${(sentiment.score * 100).toFixed(1)}%)`);
+      addSentimentLog(`✓ Sentiment: ${sentiment.displayLabel} (${(sentiment.score * 100).toFixed(1)}%)`);
 
       setSentimentResult({
         label: sentiment.label,
@@ -222,17 +230,17 @@ export default function AILab() {
     } catch (err: any) {
       console.error('Sentiment error:', err);
       setError(err.message || 'Analysis failed');
-      addLog(`✗ Error: ${err.message}`);
+      addSentimentLog(`✗ Error: ${err.message}`);
     } finally {
       setIsSentimentLoading(false);
     }
-  }, [sentimentInput, addLog]);
+  }, [sentimentInput, addSentimentLog]);
 
   const clearImage = () => {
     setUploadedImage(null);
     setImageFile(null);
     setDetections([]);
-    setAnalysisLog([]);
+    setDetectionLog([]);
     setError(null);
     if (fileInputRef.current) fileInputRef.current.value = '';
     if (canvasRef.current) {
@@ -298,6 +306,14 @@ export default function AILab() {
                   <h3 className="text-xl font-bold text-white mb-2">Upload Image for Detection</h3>
                   <p className="text-gray-500">Drag & drop or click to browse</p>
                   <p className="text-xs text-gray-600 mt-4 px-3 py-1 bg-gray-900 rounded-full border border-gray-800">Model: DETR (facebook/detr-resnet-50)</p>
+                  <div className="mt-4 text-center max-w-md">
+                    <p className="text-xs text-gray-500 mb-2">🎯 Dapat mendeteksi 80+ objek dunia nyata:</p>
+                    <p className="text-xs text-gray-600 leading-relaxed">
+                      👤 Person • 🚗 Car • 🚌 Bus • 🏍️ Motorcycle • 🚲 Bicycle • ✈️ Airplane • 🚂 Train • 🐕 Dog • 🐈 Cat • 🐦 Bird • 🐘 Elephant • 🍎 Apple • 🍌 Banana • 🍕 Pizza • 📱 Cell phone • 💻 Laptop • ⌨️ Keyboard • 🪑 Chair • 🛋️
+                      Couch • 🛏️ Bed • 📺 TV • dll.
+                    </p>
+                    <p className="text-xs text-amber-500/80 mt-2">⚠️ Gunakan foto nyata, bukan ilustrasi/kartun</p>
+                  </div>
                   <input ref={fileInputRef} type="file" accept="image/*" onChange={handleImageUpload} className="hidden" />
                 </div>
               ) : (
@@ -356,10 +372,10 @@ export default function AILab() {
                 <span className="text-xs font-mono text-gray-400">INFERENCE_LOGS</span>
               </div>
               <div className="font-mono text-xs space-y-1.5 overflow-y-auto flex-1 custom-scrollbar">
-                {analysisLog.length === 0 ? (
+                {detectionLog.length === 0 ? (
                   <span className="text-gray-600 italic">// Waiting for input...</span>
                 ) : (
-                  analysisLog.map((log, i) => (
+                  detectionLog.map((log: string, i: number) => (
                     <div key={i} className="flex gap-2 animate-in slide-in-from-left-2 fade-in duration-300">
                       <span className="text-purple-500">➜</span>
                       <span className="text-cyan-100">{log}</span>
@@ -416,7 +432,7 @@ export default function AILab() {
               <textarea
                 value={sentimentInput}
                 onChange={(e) => setSentimentInput(e.target.value)}
-                placeholder="Masukkan teks dalam bahasa apapun... (contoh: 'Produk ini sangat bagus!' atau 'I love this product!')"
+                placeholder="Masukkan teks dalam bahasa apapun... (contoh: 'Produk ini bagus!' atau 'I love this!' atau 'C'est génial!')"
                 className="w-full h-48 bg-[#0a0a0a] border border-gray-800 rounded-xl p-6 text-gray-100 placeholder-gray-600 resize-none focus:outline-none focus:border-cyan-500/50 focus:bg-[#0f1218] transition-all font-sans text-lg leading-relaxed"
               />
               <div className="absolute bottom-4 right-4 text-xs text-gray-600">{sentimentInput.length} chars</div>
@@ -431,14 +447,14 @@ export default function AILab() {
               {isSentimentLoading ? 'Analyzing...' : 'Analyze Sentiment'}
             </button>
 
-            <p className="text-xs text-gray-600 mt-3 text-center">Model: Multilingual BERT (supports ID, EN, DE, FR, ES, IT)</p>
+            <p className="text-xs text-gray-600 mt-3 text-center">Model: XLM-RoBERTa Multilingual (ID, EN, AR, FR, DE, HI, IT, ES, PT)</p>
           </div>
 
           <div className="space-y-4">
             <div className="bg-[#0a0a0a] border border-gray-800 rounded-2xl p-4 h-[140px] overflow-hidden flex flex-col font-mono text-xs">
               <div className="text-gray-500 mb-2 border-b border-gray-800 pb-1">NLP_ENGINE_LOGS</div>
               <div className="flex-1 overflow-y-auto space-y-1 text-cyan-500/80 custom-scrollbar">
-                {analysisLog.map((l, i) => (
+                {sentimentLog.map((l: string, i: number) => (
                   <div key={i}>&gt; {l}</div>
                 ))}
               </div>
@@ -506,7 +522,7 @@ export default function AILab() {
         </div>
         <span className="hidden md:inline">•</span>
         <div className="flex items-center gap-2">
-          <span>Models: DETR + Multilingual BERT</span>
+          <span>Models: DETR + XLM-RoBERTa Multilingual</span>
         </div>
       </div>
     </section>

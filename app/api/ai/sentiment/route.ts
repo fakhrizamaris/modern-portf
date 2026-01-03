@@ -3,18 +3,25 @@ import { HfInference } from '@huggingface/inference';
 
 const HF_TOKEN = process.env.HUGGINGFACE_API_KEY;
 
-// Label mapping (model outputs 1-5 stars)
+// Label mapping for Indonesian BERT model (outputs: positive, negative, neutral)
 const LABEL_MAP: Record<string, { label: string; stars: number }> = {
+  // Indonesian BERT model outputs (lowercase)
+  positive: { label: 'Positif', stars: 4 },
+  negative: { label: 'Negatif', stars: 2 },
+  neutral: { label: 'Netral', stars: 3 },
+  // Fallback for other models (uppercase)
+  POSITIVE: { label: 'Positif', stars: 4 },
+  NEGATIVE: { label: 'Negatif', stars: 2 },
+  NEUTRAL: { label: 'Netral', stars: 3 },
+  // Star ratings fallback
   '1 star': { label: 'Sangat Negatif', stars: 1 },
   '2 stars': { label: 'Negatif', stars: 2 },
   '3 stars': { label: 'Netral', stars: 3 },
   '4 stars': { label: 'Positif', stars: 4 },
   '5 stars': { label: 'Sangat Positif', stars: 5 },
-  // Also handle POSITIVE/NEGATIVE from other models
-  POSITIVE: { label: 'Positif', stars: 4 },
-  NEGATIVE: { label: 'Negatif', stars: 2 },
   LABEL_0: { label: 'Negatif', stars: 2 },
-  LABEL_1: { label: 'Positif', stars: 4 },
+  LABEL_1: { label: 'Netral', stars: 3 },
+  LABEL_2: { label: 'Positif', stars: 4 },
 };
 
 export async function POST(request: NextRequest) {
@@ -35,8 +42,9 @@ export async function POST(request: NextRequest) {
     console.log('Starting sentiment analysis...');
 
     // Use the HfInference SDK for text classification
+    // Using XLM-RoBERTa multilingual - supports 8+ languages including ID, EN, AR, FR, DE, etc.
     const results = await hf.textClassification({
-      model: 'nlptown/bert-base-multilingual-uncased-sentiment',
+      model: 'cardiffnlp/twitter-xlm-roberta-base-sentiment-multilingual',
       inputs: text,
     });
 
