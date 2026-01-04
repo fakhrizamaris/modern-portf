@@ -34,8 +34,8 @@ export const translations: Translations = {
   'readme.greeting': { en: "Hi there, I'm Fakhri! 👋", id: 'Halo, Saya Fakhri! 👋' },
   'readme.aboutTitle': { en: '🎯 About Me', id: '🎯 Tentang Saya' },
   'readme.aboutContent': {
-    en: "Fresh graduate in Informatics Engineering (D3) from Universitas Sumatera Utara. I'm a junior developer passionate about building practical solutions using",
-    id: 'Fresh graduate Teknik Informatika (D3) dari Universitas Sumatera Utara. Saya seorang junior developer yang antusias membangun solusi praktis menggunakan',
+    en: "Informatics Engineering Graduate from Universitas Sumatera Utara. I'm a junior developer passionate about building practical solutions using",
+    id: 'Lulusan Teknik Informatika dari Universitas Sumatera Utara. Saya seorang junior developer yang antusias membangun solusi praktis menggunakan',
   },
   'readme.certTitle': { en: '🏆 Certifications & Training', id: '🏆 Sertifikasi & Pelatihan' },
   'readme.focusTitle': { en: '🔭 Current Focus', id: '🔭 Fokus Saat Ini' },

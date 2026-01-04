@@ -19,7 +19,7 @@ interface CryptoData {
 }
 
 export default function CryptoTicker() {
-  const [currency, setCurrency] = useState<'idr' | 'usd'>('idr');
+  const [currency, setCurrency] = useState<'idr' | 'usd'>('usd');
   const [showMore, setShowMore] = useState(false);
 
   // Fetch top 10 cryptocurrencies with selected currency

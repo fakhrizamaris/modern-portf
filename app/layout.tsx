@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     template: '%s | Fakhri Djamaris',
   },
   description:
-    'Portfolio website of Fakhri Djamaris - Fresh graduate from USU, Machine Learning Engineer, Data Scientist, and Fullstack Web Developer based in Deli Serdang, Indonesia. Bangkit Academy 2024 graduate with TensorFlow certification.',
+    'Portfolio website of Fakhri Djamaris - Informatics Engineering Graduate, Machine Learning Engineer, Data Scientist, and Fullstack Web Developer based in Deli Serdang, Indonesia.',
   keywords: [
     'Fakhri Djamaris',
     'Fakhri',
