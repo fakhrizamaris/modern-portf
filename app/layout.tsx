@@ -19,8 +19,7 @@ export const metadata: Metadata = {
     default: 'Fakhri Djamaris | ML Engineer & Web Developer',
     template: '%s | Fakhri Djamaris',
   },
-  description:
-    'Portfolio website of Fakhri Djamaris - Informatics Engineering Graduate, Machine Learning Engineer, Data Scientist, and Fullstack Web Developer based in Deli Serdang, Indonesia.',
+  description: 'Portfolio website of Fakhri Djamaris - Informatics Engineering Graduate, Machine Learning Engineer, Data Scientist, and Fullstack Web Developer based in Deli Serdang, Indonesia.',
   keywords: [
     'Fakhri Djamaris',
     'Fakhri',
@@ -41,16 +40,6 @@ export const metadata: Metadata = {
   authors: [{ name: 'Fakhri Djamaris', url: 'https://fakhridjamaris.my.id' }],
   creator: 'Fakhri Djamaris',
   publisher: 'Fakhri Djamaris',
-
-  // Favicon and Icons - Using multiple formats for better compatibility
-  icons: {
-    icon: [
-      { url: '/favicon.ico', sizes: 'any' },
-      { url: '/favicon.png', sizes: '32x32', type: 'image/png' },
-    ],
-    shortcut: '/favicon.ico',
-    apple: [{ url: '/favicon.png', sizes: '180x180', type: 'image/png' }],
-  },
 
   // Canonical URL
   metadataBase: new URL('https://fakhridjamaris.my.id'),
