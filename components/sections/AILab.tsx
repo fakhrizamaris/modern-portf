@@ -358,7 +358,9 @@ export default function AILab() {
 
             {isAnalyzing && (
               <div className="w-full py-4 bg-gray-800 text-gray-300 font-medium text-lg rounded-xl flex items-center justify-center gap-3">
-                <Loader2 className="animate-spin" />
+                <div className="animate-spin">
+                  <Loader2 />
+                </div>
                 Running DETR inference...
               </div>
             )}
@@ -443,7 +445,7 @@ export default function AILab() {
               disabled={isSentimentLoading || !sentimentInput.trim()}
               className="w-full mt-6 py-4 bg-gradient-to-r from-cyan-600 to-blue-600 text-white font-bold rounded-xl hover:shadow-[0_0_20px_rgba(6,182,212,0.4)] disabled:opacity-50 disabled:grayscale transition-all flex items-center justify-center gap-2"
             >
-              {isSentimentLoading ? <Loader2 className="animate-spin" /> : <Brain />}
+              {isSentimentLoading ? <div className="animate-spin"><Loader2 /></div> : <Brain />}
               {isSentimentLoading ? 'Analyzing...' : 'Analyze Sentiment'}
             </button>
 
@@ -468,47 +470,12 @@ export default function AILab() {
                   <p className="text-xs text-gray-700 mt-1">Masukkan teks dan analisis</p>
                 </div>
               ) : (
-                (() => {
-                  const rating = SENTIMENT_RATINGS[sentimentResult.displayLabel] || SENTIMENT_RATINGS['Netral'];
-                  return (
-                    <div className="relative z-10 animate-in fade-in duration-700">
-                      <div className="text-center py-4">
-                        <div className="text-6xl mb-3">{rating.emoji}</div>
-                        <h4 className={`text-3xl font-bold ${rating.text}`}>{sentimentResult.displayLabel}</h4>
-
-                        <div className="flex justify-center gap-1 mt-4">
-                          {[1, 2, 3, 4, 5].map((star) => (
-                            <span key={star} className={`text-2xl transition-all ${star <= sentimentResult.stars ? 'text-yellow-400 scale-110' : 'text-gray-700'}`}>
-                              ★
-                            </span>
-                          ))}
-                        </div>
-
-                        <p className="text-gray-400 mt-4 text-sm">
-                          Confidence: <span className="text-white font-mono">{(sentimentResult.score * 100).toFixed(1)}%</span>
-                        </p>
-                      </div>
-
-                      <div className="mt-4">
-                        <div className="w-full h-3 bg-gray-800 rounded-full overflow-hidden">
-                          <div className={`h-full rounded-full transition-all duration-1000 ${rating.color}`} style={{ width: `${sentimentResult.score * 100}%` }} />
-                        </div>
-                        <div className="flex justify-between text-xs text-gray-500 mt-2">
-                          <span>😠 Negatif</span>
-                          <span>😐</span>
-                          <span>Positif 🤩</span>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })()
+                <SentimentResultDisplay sentimentResult={sentimentResult} />
               )}
 
-              {sentimentResult &&
-                (() => {
-                  const rating = SENTIMENT_RATINGS[sentimentResult.displayLabel] || SENTIMENT_RATINGS['Netral'];
-                  return <div className={`absolute top-0 right-0 w-64 h-64 ${rating.color} opacity-10 blur-[80px] rounded-full pointer-events-none -mt-10 -mr-10`} />;
-                })()}
+              {sentimentResult && (
+                <div className={`absolute top-0 right-0 w-64 h-64 ${SENTIMENT_RATINGS[sentimentResult.displayLabel]?.color || SENTIMENT_RATINGS['Netral'].color} opacity-10 blur-[80px] rounded-full pointer-events-none -mt-10 -mr-10`} />
+              )}
             </div>
           </div>
         </div>
@@ -526,5 +493,41 @@ export default function AILab() {
         </div>
       </div>
     </section>
+  );
+}
+
+// rerender-no-inline-components: Extract IIFE to a separate component
+function SentimentResultDisplay({ sentimentResult }: { sentimentResult: any }) {
+  const rating = SENTIMENT_RATINGS[sentimentResult.displayLabel as keyof typeof SENTIMENT_RATINGS] || SENTIMENT_RATINGS['Netral'];
+  return (
+    <div className="relative z-10 animate-in fade-in duration-700">
+      <div className="text-center py-4">
+        <div className="text-6xl mb-3">{rating.emoji}</div>
+        <h4 className={`text-3xl font-bold ${rating.text}`}>{sentimentResult.displayLabel}</h4>
+
+        <div className="flex justify-center gap-1 mt-4">
+          {[1, 2, 3, 4, 5].map((star) => (
+            <span key={star} className={`text-2xl transition-all ${star <= sentimentResult.stars ? 'text-yellow-400 scale-110' : 'text-gray-700'}`}>
+              ★
+            </span>
+          ))}
+        </div>
+
+        <p className="text-gray-400 mt-4 text-sm">
+          Confidence: <span className="text-white font-mono">{(sentimentResult.score * 100).toFixed(1)}%</span>
+        </p>
+      </div>
+
+      <div className="mt-4">
+        <div className="w-full h-3 bg-gray-800 rounded-full overflow-hidden">
+          <div className={`h-full rounded-full transition-all duration-1000 ${rating.color}`} style={{ width: `${sentimentResult.score * 100}%` }} />
+        </div>
+        <div className="flex justify-between text-xs text-gray-500 mt-2">
+          <span>😠 Negatif</span>
+          <span>😐</span>
+          <span>Positif 🤩</span>
+        </div>
+      </div>
+    </div>
   );
 }

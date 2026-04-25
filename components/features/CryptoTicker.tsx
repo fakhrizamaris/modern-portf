@@ -3,6 +3,7 @@
 import useSWR from 'swr';
 import { TrendingUp, TrendingDown, Bitcoin, Coins, RefreshCw, ArrowUpRight, ArrowDownRight } from 'lucide-react';
 import { useState } from 'react';
+import Image from 'next/image';
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
@@ -17,6 +18,22 @@ interface CryptoData {
   total_volume: number;
   image: string;
 }
+
+// js-cache-function-results: Cache expensive Intl.NumberFormat objects at module scope
+const formatters = {
+  idr: new Intl.NumberFormat('id-ID', {
+    style: 'currency',
+    currency: 'IDR',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  }),
+  usd: new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }),
+};
 
 export default function CryptoTicker() {
   const [currency, setCurrency] = useState<'idr' | 'usd'>('usd');
@@ -57,20 +74,7 @@ export default function CryptoTicker() {
   }
 
   const formatPrice = (price: number) => {
-    if (currency === 'idr') {
-      return new Intl.NumberFormat('id-ID', {
-        style: 'currency',
-        currency: 'IDR',
-        minimumFractionDigits: 0,
-        maximumFractionDigits: 0,
-      }).format(price);
-    }
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    }).format(price);
+    return formatters[currency].format(price);
   };
 
   const formatMarketCap = (cap: number) => {
@@ -136,7 +140,7 @@ export default function CryptoTicker() {
 
               {/* Coin Info */}
               <div className="col-span-4 flex items-center gap-2">
-                <img src={coin.image} alt={coin.name} className="w-5 h-5 rounded-full" />
+                <Image src={coin.image} alt={coin.name} width={20} height={20} className="w-5 h-5 rounded-full" />
                 <div>
                   <span className="text-[11px] font-bold text-white">{coin.symbol.toUpperCase()}</span>
                   <p className="text-[9px] text-gray-500 truncate max-w-[60px]">{coin.name}</p>

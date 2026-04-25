@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, LineChart, Line, CartesianGrid, Legend, PieChart, Pie, Cell } from 'recharts';
 import { TrendingUp, Code, Brain, Cloud, Layers, Activity } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
@@ -45,7 +45,9 @@ const projectCategories = [
 ];
 
 // Contribution Heatmap Data (simulated)
-const generateContributionData = () => {
+// server-no-shared-module-state: function stays at module scope but is called
+// inside the component with useMemo to avoid hydration mismatch from Math.random()
+function generateContributionData() {
   const data = [];
   const today = new Date();
   for (let i = 364; i >= 0; i--) {
@@ -57,9 +59,7 @@ const generateContributionData = () => {
     });
   }
   return data;
-};
-
-const contributionData = generateContributionData();
+}
 
 // Stats Cards Data
 const statsCards = [
@@ -72,6 +72,9 @@ const statsCards = [
 export default function Dashboard() {
   const [activeChart, setActiveChart] = useState<'radar' | 'bar'>('radar');
   const { t } = useLanguage();
+
+  // rerender-lazy-state-init: Generate contribution data only once on mount
+  const contributionData = useMemo(() => generateContributionData(), []);
 
   return (
     <section className="space-y-8">
@@ -195,6 +198,7 @@ export default function Dashboard() {
               key={idx}
               className={`w-3 h-3 rounded-sm transition-all hover:scale-125 ${day.count === 0 ? 'bg-gray-800' : day.count === 1 ? 'bg-green-900' : day.count === 2 ? 'bg-green-700' : day.count === 3 ? 'bg-green-500' : 'bg-green-400'}`}
               title={`${day.date}: ${day.count} contributions`}
+              style={{ contentVisibility: 'auto', containIntrinsicSize: '12px 12px' }}
             />
           ))}
         </div>

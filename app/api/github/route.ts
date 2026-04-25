@@ -1,41 +1,42 @@
 import { NextResponse } from 'next/server';
 
-export async function GET() {
-  const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
-  const USERNAME = 'fakhrizamaris';
 
-  // This query requests repo ownership and specific language stats
-  const query = `
-    query($username: String!) {
-      user(login: $username) {
-        contributionsCollection {
-          contributionCalendar {
-            totalContributions
-            weeks {
-              contributionDays {
-                contributionCount
-                date
-              }
+// server-hoist-static-io: Hoist static GraphQL query out of the request handler
+const GITHUB_GRAPHQL_QUERY = `
+  query($username: String!) {
+    user(login: $username) {
+      contributionsCollection {
+        contributionCalendar {
+          totalContributions
+          weeks {
+            contributionDays {
+              contributionCount
+              date
             }
           }
         }
-        repositories(first: 20, orderBy: {field: UPDATED_AT, direction: DESC}, ownerAffiliations: OWNER) {
-          nodes {
-            name
-            languages(first: 5, orderBy: {field: SIZE, direction: DESC}) {
-              edges {
-                size
-                node {
-                  name
-                  color
-                }
+      }
+      repositories(first: 20, orderBy: {field: UPDATED_AT, direction: DESC}, ownerAffiliations: OWNER) {
+        nodes {
+          name
+          languages(first: 5, orderBy: {field: SIZE, direction: DESC}) {
+            edges {
+              size
+              node {
+                name
+                color
               }
             }
           }
         }
       }
     }
-  `;
+  }
+`;
+
+export async function GET() {
+  const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+  const USERNAME = 'fakhrizamaris';
 
   try {
     const response = await fetch('https://api.github.com/graphql', {
@@ -44,7 +45,7 @@ export async function GET() {
         Authorization: `Bearer ${GITHUB_TOKEN}`,
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ query, variables: { username: USERNAME } }),
+      body: JSON.stringify({ query: GITHUB_GRAPHQL_QUERY, variables: { username: USERNAME } }),
     });
 
     if (!response.ok) {
@@ -72,24 +73,27 @@ export async function GET() {
     const weeks = calendar?.weeks || [];
 
     // 1. Calculate Streaks
+    // js-combine-iterations: Calculate streaks efficiently
     let currentStreak = 0;
     let longestStreak = 0;
     let tempStreak = 0;
     const today = new Date().toISOString().split('T')[0];
+    
+    // Flatten days
     const days = weeks.flatMap((w: any) => w.contributionDays);
 
-    // Longest Streak Logic
-    days.forEach((day: any) => {
+    // Calculate Longest Streak
+    for (const day of days) {
       if (day.contributionCount > 0) {
         tempStreak++;
       } else {
         longestStreak = Math.max(longestStreak, tempStreak);
         tempStreak = 0;
       }
-    });
+    }
     longestStreak = Math.max(longestStreak, tempStreak);
 
-    // Current Streak Logic (Iterate backwards)
+    // Calculate Current Streak (Iterate backwards)
     let foundEnd = false;
     for (let i = days.length - 1; i >= 0; i--) {
       const day = days[i];

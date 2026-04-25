@@ -116,11 +116,22 @@ const jsonLd = {
   description: 'Fresh graduate in Informatics Engineering from USU. Machine Learning Engineer, Data Scientist, and Fullstack Web Developer. Bangkit Academy 2024 graduate.',
 };
 
+import { preconnect, prefetchDNS } from 'react-dom';
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // rendering-resource-hints: preconnect to heavily used external domains
+  preconnect('https://api.github.com');
+  preconnect('https://cdn.jsdelivr.net'); // Devicons
+  
+  // prefetch DNS for domains that will be needed soon
+  prefetchDNS('https://api.coingecko.com');
+  prefetchDNS('https://api.open-meteo.com');
+  prefetchDNS('https://avatars.githubusercontent.com');
+
   return (
     <html lang="id" suppressHydrationWarning>
       <head>

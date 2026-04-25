@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useContext, useState, ReactNode } from 'react';
+import { createContext, useContext, useState, useCallback, useMemo, ReactNode } from 'react';
 
 type Language = 'en' | 'id';
 
@@ -138,16 +138,23 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [language, setLanguage] = useState<Language>('en');
 
-  const t = (key: string): string => {
+  // rerender-memo: Stabilize t() reference — only changes when language changes
+  const t = useCallback((key: string): string => {
     const translation = translations[key];
     if (!translation) {
       console.warn(`Translation not found for key: ${key}`);
       return key;
     }
     return translation[language];
-  };
+  }, [language]);
 
-  return <LanguageContext.Provider value={{ language, setLanguage, t }}>{children}</LanguageContext.Provider>;
+  // rerender-memo: Stable context value — prevents cascade re-renders
+  const contextValue = useMemo(
+    () => ({ language, setLanguage, t }),
+    [language, t]
+  );
+
+  return <LanguageContext.Provider value={contextValue}>{children}</LanguageContext.Provider>;
 }
 
 export function useLanguage() {

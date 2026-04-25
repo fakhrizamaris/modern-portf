@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { MapPin, Mail, Download, LayoutGrid, FolderGit2, Cpu, Award, BarChart3, Sparkles, Github, Linkedin, Menu, X, Rocket, BookOpen, Briefcase, Globe } from 'lucide-react';
 import Image from 'next/image';
 import { useLanguage } from '@/context/LanguageContext';
@@ -14,7 +14,7 @@ export default function ProfileSidebar({ activeTab, setActiveTab }: ProfileSideb
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { language, setLanguage, t } = useLanguage();
 
-  const menuItems = [
+  const menuItems = useMemo(() => [
     { id: 'overview', label: t('nav.overview'), icon: LayoutGrid },
     { id: 'dashboard', label: t('nav.dashboard'), icon: BarChart3 },
     { id: 'ailab', label: t('nav.ailab'), icon: Sparkles },
@@ -24,11 +24,53 @@ export default function ProfileSidebar({ activeTab, setActiveTab }: ProfileSideb
     { id: 'journey', label: t('nav.journey'), icon: Rocket },
     { id: 'blog', label: t('nav.blog'), icon: BookOpen },
     { id: 'hireme', label: t('nav.hireme'), icon: Briefcase },
-  ];
+  ], [t]);
 
   const handleTabChange = (tabId: string) => {
     setActiveTab(tabId);
     setMobileMenuOpen(false);
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && mobileMenuOpen) {
+        setMobileMenuOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [mobileMenuOpen]);
+
+  // bundle-preload: Preload the dynamic component for the given tab on hover
+  const preloadTab = (tabId: string) => {
+    switch (tabId) {
+      case 'dashboard':
+        import('@/components/sections/Dashboard');
+        break;
+      case 'ailab':
+        import('@/components/sections/AILab');
+        break;
+      case 'projects':
+        import('@/components/sections/Projects');
+        break;
+      case 'skills':
+        import('@/components/sections/Skills');
+        import('@/components/sections/SkillsMatrix');
+        break;
+      case 'certificates':
+        import('@/components/sections/Certificates');
+        break;
+      case 'journey':
+        import('@/components/sections/LearningTimeline');
+        import('@/components/sections/AchievementBadges');
+        break;
+      case 'blog':
+        import('@/components/sections/TILSection');
+        break;
+      case 'hireme':
+        import('@/components/sections/HireMeSection');
+        break;
+    }
   };
 
   return (
@@ -42,10 +84,10 @@ export default function ProfileSidebar({ activeTab, setActiveTab }: ProfileSideb
             </div>
             <div>
               <h1 className="text-sm font-bold text-white">Fakhri Djamaris</h1>
-              <p className="text-[10px] text-gray-500">ML Engineer • Web Dev</p>
+              <p className="text-[10px] text-gray-400">ML Engineer • Web Dev</p>
             </div>
           </div>
-          <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="p-2 rounded-lg bg-gray-800/50 text-gray-400 hover:text-white hover:bg-gray-800 transition-all">
+          <button aria-label="Toggle Menu" aria-expanded={mobileMenuOpen} onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="p-2 rounded-lg bg-gray-800/50 text-gray-400 hover:text-white hover:bg-gray-800 transition-all">
             {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
@@ -77,10 +119,10 @@ export default function ProfileSidebar({ activeTab, setActiveTab }: ProfileSideb
               <Download size={14} />
               CV
             </a>
-            <a href="https://github.com/fakhrizamaris" target="_blank" className="py-2 px-4 bg-gray-800/50 border border-gray-700/50 rounded-lg text-gray-400 text-xs flex items-center gap-2">
+            <a href="https://github.com/fakhrizamaris" aria-label="GitHub Profile" target="_blank" className="py-2 px-4 bg-gray-800/50 border border-gray-700/50 rounded-lg text-gray-400 text-xs flex items-center gap-2">
               <Github size={14} />
             </a>
-            <a href="https://linkedin.com/in/fakhri-djamaris" target="_blank" className="py-2 px-4 bg-gray-800/50 border border-gray-700/50 rounded-lg text-gray-400 text-xs flex items-center gap-2">
+            <a href="https://linkedin.com/in/fakhri-djamaris" aria-label="LinkedIn Profile" target="_blank" className="py-2 px-4 bg-gray-800/50 border border-gray-700/50 rounded-lg text-gray-400 text-xs flex items-center gap-2">
               <Linkedin size={14} />
             </a>
           </div>
@@ -107,7 +149,7 @@ export default function ProfileSidebar({ activeTab, setActiveTab }: ProfileSideb
             {/* Name & Username */}
             <div className="text-center">
               <h1 className="text-lg font-bold text-gray-100 tracking-tight">Fakhri Djamaris</h1>
-              <p className="text-xs text-gray-500 font-mono">@fakhrizamaris</p>
+              <p className="text-xs text-gray-400 font-mono">@fakhrizamaris</p>
             </div>
 
             {/* Bio */}
@@ -118,7 +160,7 @@ export default function ProfileSidebar({ activeTab, setActiveTab }: ProfileSideb
             </p>
 
             {/* Location */}
-            <div className="flex items-center gap-1.5 text-[11px] text-gray-500">
+            <div className="flex items-center gap-1.5 text-[11px] text-gray-400">
               <MapPin size={12} className="text-teal-500/70" />
               <span>Deli Serdang, Indonesia</span>
             </div>
@@ -165,6 +207,7 @@ export default function ProfileSidebar({ activeTab, setActiveTab }: ProfileSideb
                 <button
                   key={item.id}
                   onClick={() => setActiveTab(item.id)}
+                  onMouseEnter={() => preloadTab(item.id)}
                   className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs transition-all text-left ${
                     isActive ? 'bg-teal-500/10 text-teal-300 font-medium border-l-2 border-teal-400' : 'text-gray-400 hover:bg-gray-800/50 hover:text-gray-200'
                   }`}
@@ -180,20 +223,21 @@ export default function ProfileSidebar({ activeTab, setActiveTab }: ProfileSideb
           <div className="mt-auto pt-3 border-t border-gray-800/30 space-y-3">
             {/* Language Toggle */}
             <button
+              aria-label="Toggle Language"
               onClick={() => setLanguage(language === 'en' ? 'id' : 'en')}
               className="w-full flex items-center justify-between px-3 py-2 bg-gray-800/30 hover:bg-gray-800/50 border border-gray-700/50 hover:border-teal-500/30 rounded-lg transition-all group"
             >
               <div className="flex items-center gap-2">
-                <Globe size={12} className="text-gray-500 group-hover:text-teal-400" />
-                <span className="text-[11px] text-gray-400 group-hover:text-gray-200">{language === 'en' ? 'English' : 'Bahasa Indonesia'}</span>
+                <Globe size={12} className="text-gray-400 group-hover:text-teal-400" />
+                <span className="text-[11px] text-gray-300 group-hover:text-gray-100">{language === 'en' ? 'English' : 'Bahasa Indonesia'}</span>
               </div>
               <div className="flex gap-1">
-                <span className={`text-[10px] px-1.5 py-0.5 rounded ${language === 'en' ? 'bg-teal-500/20 text-teal-300' : 'text-gray-600'}`}>EN</span>
-                <span className={`text-[10px] px-1.5 py-0.5 rounded ${language === 'id' ? 'bg-teal-500/20 text-teal-300' : 'text-gray-600'}`}>ID</span>
+                <span className={`text-[10px] px-1.5 py-0.5 rounded ${language === 'en' ? 'bg-teal-500/20 text-teal-300' : 'text-gray-500'}`}>EN</span>
+                <span className={`text-[10px] px-1.5 py-0.5 rounded ${language === 'id' ? 'bg-teal-500/20 text-teal-300' : 'text-gray-500'}`}>ID</span>
               </div>
             </button>
 
-            <a href="mailto:djamarisfakhri@gmail.com" className="flex items-center gap-2 text-[10px] text-gray-500 hover:text-teal-400 transition-colors">
+            <a href="mailto:djamarisfakhri@gmail.com" className="flex items-center gap-2 text-[10px] text-gray-400 hover:text-teal-400 transition-colors">
               <Mail size={11} className="shrink-0" />
               <span className="truncate">djamarisfakhri@gmail.com</span>
             </a>

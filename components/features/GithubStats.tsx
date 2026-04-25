@@ -1,7 +1,7 @@
 'use client';
 
 import useSWR from 'swr';
-import { motion } from 'framer-motion';
+import { useEffect, useRef } from 'react';
 import { Github, Flame, Zap, Code2, GitCommit } from 'lucide-react';
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
@@ -27,8 +27,12 @@ export default function GithubStats() {
 
   if (error || data?.error) {
     return (
-      <div className="w-full bg-red-900/10 border border-red-900/30 p-6 rounded-2xl text-center">
-        <p className="text-red-400 text-sm">Unable to load GitHub data</p>
+      <div className="w-full bg-[#0a0c10] rounded-2xl border border-gray-800/50 p-6 flex flex-col items-center justify-center text-center opacity-70">
+        <div className="p-3 bg-gray-800/30 rounded-xl mb-3">
+          <Github className="w-6 h-6 text-gray-500" />
+        </div>
+        <h4 className="text-sm font-medium text-gray-300">GitHub Stats Unavailable</h4>
+        <p className="text-xs text-gray-500 mt-1 max-w-[200px]">Unable to fetch live statistics at the moment.</p>
       </div>
     );
   }
@@ -118,14 +122,15 @@ export default function GithubStats() {
       {/* Languages */}
       <div className="mb-4">
         <h4 className="text-[10px] text-gray-500 uppercase tracking-wider mb-3">Top Languages</h4>
-        <div className="space-y-2">
+      <div className="space-y-2">
           {stats?.languages?.slice(0, 4).map((lang: any, idx: number) => (
             <div key={idx} className="flex items-center gap-2">
               <div className="w-2 h-2 rounded-full" style={{ backgroundColor: lang.color || '#6b7280' }}></div>
               <span className="text-xs text-gray-300 flex-1">{lang.name}</span>
               <span className="text-[10px] text-gray-500">{lang.percentage}%</span>
               <div className="w-16 h-1 bg-gray-800 rounded-full overflow-hidden">
-                <motion.div initial={{ width: 0 }} animate={{ width: `${lang.percentage}%` }} transition={{ duration: 0.8, delay: idx * 0.1 }} className="h-full rounded-full" style={{ backgroundColor: lang.color || '#6b7280' }} />
+                {/* bundle-defer-third-party: CSS transition instead of framer-motion */}
+                <LanguageBar percentage={lang.percentage} color={lang.color} delay={idx * 100} />
               </div>
             </div>
           ))}
@@ -145,12 +150,38 @@ export default function GithubStats() {
                 if (day.contributionCount > 5) intensity = 'bg-teal-500';
                 if (day.contributionCount > 10) intensity = 'bg-teal-400';
 
-                return <div key={dIdx} className={`w-2.5 h-2.5 rounded-[2px] ${intensity} hover:ring-1 hover:ring-teal-400/50 transition-all`} title={`${day.date}: ${day.contributionCount} contributions`} />;
+                return <div key={dIdx} className={`w-2.5 h-2.5 rounded-[2px] ${intensity} hover:ring-1 hover:ring-teal-400/50 transition-all`} title={`${day.date}: ${day.contributionCount} contributions`} style={{ contentVisibility: 'auto', containIntrinsicSize: '10px 10px' }} />;
               })}
             </div>
           ))}
         </div>
       </div>
     </div>
+  );
+}
+
+// bundle-defer-third-party: Pure CSS animated progress bar replacing framer-motion
+function LanguageBar({ percentage, color, delay }: { percentage: number; color: string; delay: number }) {
+  const barRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (barRef.current) {
+        barRef.current.style.width = `${percentage}%`;
+      }
+    }, delay);
+    return () => clearTimeout(timer);
+  }, [percentage, delay]);
+
+  return (
+    <div
+      ref={barRef}
+      className="h-full rounded-full"
+      style={{
+        width: 0,
+        backgroundColor: color || '#6b7280',
+        transition: 'width 0.8s ease-out',
+      }}
+    />
   );
 }
