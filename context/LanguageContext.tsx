@@ -39,9 +39,9 @@ export const translations: Translations = {
   },
   'readme.certTitle': { en: '🏆 Certifications & Training', id: '🏆 Sertifikasi & Pelatihan' },
   'readme.focusTitle': { en: '🔭 Current Focus', id: '🔭 Fokus Saat Ini' },
-  'readme.focus1': { en: 'Learning to build end-to-end ML pipelines with TensorFlow & Cloud deployment', id: 'Belajar membangun ML pipeline end-to-end dengan TensorFlow & deployment Cloud' },
+  'readme.focus1': { en: 'Building native iOS apps with SwiftUI, ARKit, and Apple frameworks at Developer Academy', id: 'Membangun aplikasi iOS native dengan SwiftUI, ARKit, dan framework Apple di Developer Academy' },
   'readme.focus2': { en: 'Developing fullstack web applications using modern frameworks (Next.js, Laravel)', id: 'Mengembangkan aplikasi web fullstack menggunakan framework modern (Next.js, Laravel)' },
-  'readme.focus3': { en: 'Exploring data visualization and analysis with Python libraries', id: 'Mengeksplorasi visualisasi dan analisis data dengan library Python' },
+  'readme.focus3': { en: 'Applying Machine Learning & data analysis skills from Bangkit and TensorFlow certification', id: 'Menerapkan keahlian Machine Learning & analisis data dari Bangkit dan sertifikasi TensorFlow' },
   'readme.techTitle': { en: '🛠️ Technologies I Work With', id: '🛠️ Teknologi yang Saya Gunakan' },
   'readme.opportunityTitle': { en: '📫 Open to Opportunities', id: '📫 Terbuka untuk Kesempatan' },
   'readme.opportunityContent': {

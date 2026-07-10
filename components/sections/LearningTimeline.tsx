@@ -14,6 +14,13 @@ interface TimelineEvent {
 
 const timelineData: TimelineEvent[] = [
   {
+    date: 'Jan 2026 – Present',
+    title: 'Apple Developer Academy @ Infinite Learning Batam',
+    description: 'Participant in Apple\'s intensive app development program — building iOS/macOS apps with Swift, UIKit/SwiftUI, and design thinking methodology',
+    type: 'work',
+    highlight: true,
+  },
+  {
     date: 'May 2025',
     title: 'Dev Certification ML with TensorFlow',
     description: 'Passed comprehensive ML assessment including exam, project, and interview',

@@ -7,25 +7,22 @@ import { useLanguage } from '@/context/LanguageContext';
 
 // bundle-dynamic-imports: Lazy-load all tab components
 // Only the active tab's code is downloaded, reducing initial bundle ~60%
-const Dashboard = dynamic(() => import('@/components/sections/Dashboard'));
-const AILab = dynamic(() => import('@/components/sections/AILab'));
 const Projects = dynamic(() => import('@/components/sections/Projects'));
 const Skills = dynamic(() => import('@/components/sections/Skills'));
-const SkillsMatrix = dynamic(() => import('@/components/sections/SkillsMatrix'));
 const Certificates = dynamic(() => import('@/components/sections/Certificates'));
 const LearningTimeline = dynamic(() => import('@/components/sections/LearningTimeline'));
-const AchievementBadges = dynamic(() => import('@/components/sections/AchievementBadges'));
-const TILSection = dynamic(() => import('@/components/sections/TILSection'));
 const HireMeSection = dynamic(() => import('@/components/sections/HireMeSection'));
 
-// Overview widgets — also lazy-loaded since they fetch external APIs
+// Overview widget — lazy-loaded since it fetches external API
 const GithubStats = dynamic(() => import('@/components/features/GithubStats'));
-const ArcadeStats = dynamic(() => import('@/components/features/ArcadeStats'));
-const CryptoTicker = dynamic(() => import('@/components/features/CryptoTicker'));
-const WeatherWidget = dynamic(() => import('@/components/features/WeatherWidget'));
 
 // rendering-hoist-jsx: Static data hoisted to module scope (not recreated per render)
 const techStack = [
+  // iOS Development
+  { name: 'Swift', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swift/swift-original.svg' },
+  { name: 'SwiftUI', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swift/swift-original.svg' },
+  { name: 'ARKit', icon: 'https://cdn.simpleicons.org/arkit/FFFFFF' },
+  { name: 'Xcode', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/xcode/xcode-original.svg' },
   // Data Science & AI
   { name: 'Python', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg' },
   { name: 'TensorFlow', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg' },
@@ -93,12 +90,15 @@ export default function Home() {
                   <h3 className="text-xl text-teal-400 mt-4 mb-2">{t('readme.aboutTitle')}</h3>
                   <p className="text-gray-300 leading-relaxed">
                     {t('readme.aboutContent')}
-                    <span className="text-teal-400"> Machine Learning</span>,<span className="text-cyan-400"> Data Science</span>, and
+                    <span className="text-teal-400"> iOS Development</span>,<span className="text-cyan-400"> Machine Learning</span>, and
                     <span className="text-sky-400"> Web Development</span>.
                   </p>
 
                   <h3 className="text-xl text-teal-400 mt-6 mb-2">{t('readme.certTitle')}</h3>
                   <ul className="list-none text-gray-400 space-y-2 pl-0">
+                    <li>
+                      <b className="text-white">Apple Developer Academy @ Infinite Learning Batam</b> - 2026 Cohort
+                    </li>
                     <li>
                       🎓 <b className="text-white">Bangkit Academy 2024 Batch 2</b> - Machine Learning Cohort
                     </li>
@@ -132,49 +132,16 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Activity Stats Section — with Suspense boundaries */}
+              {/* GitHub Activity */}
               <div className="space-y-4">
                 <div className="flex items-center gap-2">
                   <div className="w-1 h-5 bg-teal-500 rounded-full"></div>
                   <h3 className="text-lg font-bold text-white">{t('section.liveActivity')}</h3>
                 </div>
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                  <Suspense fallback={<WidgetSkeleton />}>
-                    <GithubStats />
-                  </Suspense>
-                  <Suspense fallback={<WidgetSkeleton />}>
-                    <ArcadeStats />
-                  </Suspense>
-                </div>
+                <Suspense fallback={<WidgetSkeleton />}>
+                  <GithubStats />
+                </Suspense>
               </div>
-
-              {/* Real-time Widgets — with Suspense boundaries */}
-              <div className="space-y-4">
-                <div className="flex items-center gap-2">
-                  <div className="w-1 h-5 bg-orange-500 rounded-full"></div>
-                  <h3 className="text-lg font-bold text-white">{t('section.liveDataFeeds')}</h3>
-                </div>
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                  <Suspense fallback={<WidgetSkeleton />}>
-                    <CryptoTicker />
-                  </Suspense>
-                  <Suspense fallback={<WidgetSkeleton />}>
-                    <WeatherWidget />
-                  </Suspense>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {activeTab === 'dashboard' && (
-            <div className="animate-in fade-in duration-500">
-              <Dashboard />
-            </div>
-          )}
-
-          {activeTab === 'ailab' && (
-            <div className="animate-in fade-in duration-500">
-              <AILab />
             </div>
           )}
 
@@ -185,9 +152,8 @@ export default function Home() {
           )}
 
           {activeTab === 'skills' && (
-            <div className="space-y-12 animate-in fade-in duration-500">
+            <div className="animate-in fade-in duration-500">
               <Skills />
-              <SkillsMatrix />
             </div>
           )}
 
@@ -198,15 +164,8 @@ export default function Home() {
           )}
 
           {activeTab === 'journey' && (
-            <div className="space-y-8 animate-in fade-in duration-500">
-              <LearningTimeline />
-              <AchievementBadges />
-            </div>
-          )}
-
-          {activeTab === 'blog' && (
             <div className="animate-in fade-in duration-500">
-              <TILSection />
+              <LearningTimeline />
             </div>
           )}
 

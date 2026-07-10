@@ -1,5 +1,47 @@
 [
   {
+    "title": "Petner",
+    "category": "iOS App · Group Project",
+    "desc": "Aplikasi yang membantu pemilik hewan peliharaan menghidupkan kembali kenangan melalui representasi 3D hewan mereka. Berperan dari perumusan ide, riset, desain layout & flow aplikasi, hingga pengembangan fitur LiDAR untuk pemindaian 3D.",
+    "tech": ["SwiftUI", "ARKit", "RealityKit", "Vision", "CoreML", "SwiftData"],
+    "metrics": {
+      "ARKit & RealityKit": 35,
+      "SwiftUI": 30,
+      "Vision & CoreML": 20,
+      "SwiftData & AVFoundation": 15
+    },
+    "link": "https://github.com/luckyAkbar/C3-Nailoong-Pet",
+    "website": "https://testflight.apple.com/join/JD8WSjKg",
+    "image": "/images/projects/Petner.png"
+  },
+  {
+    "title": "StepUP",
+    "category": "iOS App · Group Project",
+    "desc": "Aplikasi yang memotivasi pelajar yang cenderung diam di tempat untuk tetap aktif dengan mengubah micro-exercise menjadi streak yang dapat dilacak. Berperan dalam perumusan ide, riset, dan pengembangan fitur aplikasi.",
+    "tech": ["WidgetKit", "ActivityKit", "Combine", "Firebase", "AVFoundation", "TipKit"],
+    "metrics": {
+      "Swift & SwiftUI": 45,
+      "WidgetKit & ActivityKit": 25,
+      "Firebase & Combine": 20,
+      "AVFoundation & TipKit": 10
+    },
+    "link": "https://github.com/fakhrizamaris/HeltekApp",
+    "image": "/images/projects/StepUp.png"
+  },
+  {
+    "title": "Nazeit",
+    "category": "iOS App · Personal Project",
+    "desc": "Aplikasi yang membantu traveler tetap fungsional lintas zona waktu dengan memberikan instruksi sederhana sepanjang persiapan dan perjalanan, berdasarkan kondisi sirkadian mereka. Dibangun secara mandiri dari desain UI, flow aplikasi, coding, hingga testing.",
+    "tech": ["SwiftUI", "Combine", "MapKit", "UserNotifications", "UIKit"],
+    "metrics": {
+      "SwiftUI": 65,
+      "Combine & MapKit": 20,
+      "UserNotifications & UIKit": 15
+    },
+    "link": "https://github.com/fakhrizamaris/NaZeit",
+    "image": "/images/projects/Nazeit.png"
+  },
+  {
     "title": "HairMuse App",
     "category": "Machine Learning & Android",
     "desc": "Aplikasi rekomendasi gaya rambut berbasis bentuk wajah menggunakan TensorFlow untuk membangun Model Machine Learningn dan Google Cloud Run untuk deploy API. Aplikasi ini dibangun menggunakan bahasa pemrograman Java dan Android Studio. Disini saya berperan sebagai Machine Learning Engineer yang membangun model untuk mendeteksi bentuk wajah dan menghitung proporsi wajah untuk memberikan rekomendasi gaya rambut yang cocok.",
@@ -47,5 +89,19 @@
     },
     "link": "https://github.com/fakhrizamaris/Opening_Chess_Recommendations",
     "image": "/images/projects/chess-recommender.png"
+  },
+  {
+    "title": "Chess Recs Svelte",
+    "category": "Fullstack Web Dev",
+    "desc": "Aplikasi web rekomendasi pembukaan catur yang dibangun ulang menggunakan Svelte sebagai frontend modern. Aplikasi ini menampilkan rekomendasi opening catur secara interaktif dengan antarmuka yang cepat dan responsif, serta dapat diakses langsung melalui web tanpa perlu instalasi.",
+    "tech": ["Svelte", "JavaScript", "CSS", "Vite"],
+    "metrics": {
+      "Svelte": 65,
+      "JavaScript": 25,
+      "CSS": 10
+    },
+    "link": "https://github.com/fakhrizamaris/chess-recs-svelte",
+    "website": "https://chess.fakhridjamaris.my.id",
+    "image": "/images/projects/chess-recs.png"
   }
 ]

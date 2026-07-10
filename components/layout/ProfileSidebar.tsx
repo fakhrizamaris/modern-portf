@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useMemo, useEffect } from 'react';
-import { MapPin, Mail, Download, LayoutGrid, FolderGit2, Cpu, Award, BarChart3, Sparkles, Github, Linkedin, Menu, X, Rocket, BookOpen, Briefcase, Globe } from 'lucide-react';
+import { MapPin, Mail, Download, LayoutGrid, FolderGit2, Cpu, Award, Github, Linkedin, Menu, X, Rocket, Briefcase, Globe } from 'lucide-react';
 import Image from 'next/image';
 import { useLanguage } from '@/context/LanguageContext';
 
@@ -16,13 +16,10 @@ export default function ProfileSidebar({ activeTab, setActiveTab }: ProfileSideb
 
   const menuItems = useMemo(() => [
     { id: 'overview', label: t('nav.overview'), icon: LayoutGrid },
-    { id: 'dashboard', label: t('nav.dashboard'), icon: BarChart3 },
-    { id: 'ailab', label: t('nav.ailab'), icon: Sparkles },
     { id: 'projects', label: t('nav.projects'), icon: FolderGit2 },
     { id: 'skills', label: t('nav.skills'), icon: Cpu },
     { id: 'certificates', label: t('nav.certificates'), icon: Award },
     { id: 'journey', label: t('nav.journey'), icon: Rocket },
-    { id: 'blog', label: t('nav.blog'), icon: BookOpen },
     { id: 'hireme', label: t('nav.hireme'), icon: Briefcase },
   ], [t]);
 
@@ -44,28 +41,17 @@ export default function ProfileSidebar({ activeTab, setActiveTab }: ProfileSideb
   // bundle-preload: Preload the dynamic component for the given tab on hover
   const preloadTab = (tabId: string) => {
     switch (tabId) {
-      case 'dashboard':
-        import('@/components/sections/Dashboard');
-        break;
-      case 'ailab':
-        import('@/components/sections/AILab');
-        break;
       case 'projects':
         import('@/components/sections/Projects');
         break;
       case 'skills':
         import('@/components/sections/Skills');
-        import('@/components/sections/SkillsMatrix');
         break;
       case 'certificates':
         import('@/components/sections/Certificates');
         break;
       case 'journey':
         import('@/components/sections/LearningTimeline');
-        import('@/components/sections/AchievementBadges');
-        break;
-      case 'blog':
-        import('@/components/sections/TILSection');
         break;
       case 'hireme':
         import('@/components/sections/HireMeSection');
@@ -84,7 +70,7 @@ export default function ProfileSidebar({ activeTab, setActiveTab }: ProfileSideb
             </div>
             <div>
               <h1 className="text-sm font-bold text-white">Fakhri Djamaris</h1>
-              <p className="text-[10px] text-gray-400">ML Engineer • Web Dev</p>
+              <p className="text-[10px] text-gray-400">Apple Dev Academy • ML & Web</p>
             </div>
           </div>
           <button aria-label="Toggle Menu" aria-expanded={mobileMenuOpen} onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="p-2 rounded-lg bg-gray-800/50 text-gray-400 hover:text-white hover:bg-gray-800 transition-all">
@@ -154,9 +140,9 @@ export default function ProfileSidebar({ activeTab, setActiveTab }: ProfileSideb
 
             {/* Bio */}
             <p className="text-xs text-gray-400 leading-relaxed text-center px-1">
-              Informatics Engineering Graduate @ USU
+              Apple Developer Academy @ Infinite Learning
               <br />
-              ML Engineer • Data Scientist • Web Dev
+              ML Engineer • iOS Dev • Web Dev
             </p>
 
             {/* Location */}

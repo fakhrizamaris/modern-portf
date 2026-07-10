@@ -1,5 +1,11 @@
 const customSkills = [
   {
+    category: 'iOS Development',
+    items: ['Swift', 'SwiftUI', 'ARKit', 'RealityKit', 'WidgetKit', 'Combine', 'CoreML', 'Xcode'],
+    color: 'orange',
+    description: 'Native iOS apps with AR, widgets, and Apple frameworks',
+  },
+  {
     category: 'Data Science & AI',
     items: ['Python', 'TensorFlow', 'PyTorch', 'Scikit-Learn', 'Pandas', 'NumPy', 'Matplotlib', 'OpenCV', 'Tableau', 'Looker'],
     color: 'teal',
@@ -20,6 +26,14 @@ const customSkills = [
 ];
 
 const skillIcons: { [key: string]: string } = {
+  Swift: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swift/swift-original.svg',
+  SwiftUI: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swift/swift-original.svg',
+  ARKit: 'https://cdn.simpleicons.org/arkit/000000',
+  RealityKit: 'https://cdn.simpleicons.org/apple/000000',
+  WidgetKit: 'https://cdn.simpleicons.org/apple/000000',
+  Combine: 'https://cdn.simpleicons.org/apple/000000',
+  CoreML: 'https://cdn.simpleicons.org/apple/000000',
+  Xcode: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/xcode/xcode-original.svg',
   // Data Science & AI
   Python: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg',
   TensorFlow: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg',
@@ -52,7 +66,7 @@ const skillIcons: { [key: string]: string } = {
 };
 
 // js-set-map-lookups: Use Set for O(1) lookups
-const invertIcons = new Set(['Next.js', 'Pandas']);
+const invertIcons = new Set(['Next.js', 'Pandas', 'ARKit', 'RealityKit', 'WidgetKit', 'Combine', 'CoreML']);
 
 export default function Skills() {
 
@@ -65,7 +79,7 @@ export default function Skills() {
         <p className="text-gray-400 mt-2 text-sm">Technologies and tools I use in my projects. Continuously learning and expanding.</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
         {customSkills.map((skillGroup, idx) => (
           <div key={idx} className="bg-[#0a0c10] border border-gray-800/50 rounded-xl p-5 hover:border-teal-500/30 transition-all group">
             <div className="flex items-center gap-2 mb-2">
