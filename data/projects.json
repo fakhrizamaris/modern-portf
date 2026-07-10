@@ -12,7 +12,7 @@
     },
     "link": "https://github.com/luckyAkbar/C3-Nailoong-Pet",
     "website": "https://testflight.apple.com/join/JD8WSjKg",
-    "image": "/images/projects/Petner.png"
+    "image": "/images/projects/Petner.webp"
   },
   {
     "title": "StepUP",
@@ -26,7 +26,7 @@
       "AVFoundation & TipKit": 10
     },
     "link": "https://github.com/fakhrizamaris/HeltekApp",
-    "image": "/images/projects/StepUp.png"
+    "image": "/images/projects/StepUp.webp"
   },
   {
     "title": "Nazeit",
@@ -39,7 +39,7 @@
       "UserNotifications & UIKit": 15
     },
     "link": "https://github.com/fakhrizamaris/NaZeit",
-    "image": "/images/projects/Nazeit.png"
+    "image": "/images/projects/Nazeit.webp"
   },
   {
     "title": "HairMuse App",
@@ -52,7 +52,7 @@
       "GCP": 10
     },
     "link": "https://github.com/C242-PS317-HairMuseApp",
-    "image": "/images/projects/hairmuse.png"
+    "image": "/images/projects/hairmuse.webp"
   },
   {
     "title": "VocIntern Platform",
@@ -65,7 +65,7 @@
       "JavaScript": 10
     },
     "link": "https://github.com/VocIntern",
-    "image": "/images/projects/vocintern.png"
+    "image": "/images/projects/vocintern.webp"
   },
   {
     "title": "Tesla Stock Prediction",
@@ -76,7 +76,7 @@
       "Python": 100
     },
     "link": "https://github.com/fakhrizamaris/final-project-forecasting",
-    "image": "/images/projects/forecasting.jpg"
+    "image": "/images/projects/forecasting.webp"
   },
   {
     "title": "Chess Opening Recommender",
@@ -88,7 +88,7 @@
       "Streamlit": 10
     },
     "link": "https://github.com/fakhrizamaris/Opening_Chess_Recommendations",
-    "image": "/images/projects/chess-recommender.png"
+    "image": "/images/projects/chess-recommender.webp"
   },
   {
     "title": "Chess Recs Svelte",
@@ -102,6 +102,6 @@
     },
     "link": "https://github.com/fakhrizamaris/chess-recs-svelte",
     "website": "https://chess.fakhridjamaris.my.id",
-    "image": "/images/projects/chess-recs.png"
+    "image": "/images/projects/chess-recs.webp"
   }
 ]

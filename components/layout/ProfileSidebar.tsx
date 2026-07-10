@@ -66,7 +66,7 @@ export default function ProfileSidebar({ activeTab, setActiveTab }: ProfileSideb
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="relative w-8 h-8 rounded-lg overflow-hidden">
-              <Image src="/images/hero-profile.png" alt="FD Logo" fill className="object-contain" />
+              <Image src="/images/logo.svg" alt="FD Logo" fill className="object-contain" />
             </div>
             <div>
               <h1 className="text-sm font-bold text-white">Fakhri Djamaris</h1>
@@ -127,7 +127,7 @@ export default function ProfileSidebar({ activeTab, setActiveTab }: ProfileSideb
             <div className="relative group">
               <div className="absolute -inset-1 bg-gradient-to-r from-teal-500/40 via-cyan-500/40 to-teal-400/40 rounded-full opacity-0 group-hover:opacity-100 blur-md transition-opacity duration-500"></div>
               <div className="relative w-[100px] h-[100px] rounded-full border border-teal-500/30 bg-gray-900 overflow-hidden shadow-lg shadow-teal-500/10">
-                <Image src="/images/hero-profile.png" alt="Fakhri Djamaris" fill className="object-cover" priority />
+                <Image src="/images/hero-profile.webp" alt="Fakhri Djamaris" fill className="object-cover" priority />
               </div>
               <div className="absolute bottom-0.5 right-0.5 w-3 h-3 bg-teal-400 rounded-full border-2 border-[#0d1117]"></div>
             </div>

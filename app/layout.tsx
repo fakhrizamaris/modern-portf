@@ -101,7 +101,7 @@ const jsonLd = {
   '@type': 'Person',
   name: 'Fakhri Djamaris',
   url: 'https://fakhridjamaris.my.id',
-  image: 'https://fakhridjamaris.my.id/images/hero-profile.png',
+  image: 'https://fakhridjamaris.my.id/images/hero-profile.webp',
   sameAs: ['https://github.com/fakhrizamaris', 'https://linkedin.com/in/fakhri-djamaris'],
   jobTitle: 'Machine Learning Engineer',
   worksFor: {

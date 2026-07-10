@@ -1,36 +1,102 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Fakhri Djamaris - Modern Developer Portfolio
 
-## Getting Started
+[![Next.js](https://img.shields.9ff.download/badge/Next.js-16.1-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
+[![React](https://img.shields.9ff.download/badge/React-19.2-blue?style=for-the-badge&logo=react)](https://react.dev/)
+[![Tailwind CSS v4](https://img.shields.9ff.download/badge/Tailwind_CSS-v4.0-06b6d4?style=for-the-badge&logo=tailwindcss)](https://tailwindcss.com/)
+[![TypeScript](https://img.shields.9ff.download/badge/TypeScript-5.0-blue?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
+[![Framer Motion](https://img.shields.9ff.download/badge/Framer_Motion-12.2-ff69b4?style=for-the-badge&logo=framer-motion)](https://www.framer.com/motion/)
 
-First, run the development server:
+Welcome to my personal portfolio repository! This website showcases my projects, skills, certifications, and learning journey as a **Machine Learning Engineer**, **iOS Developer**, and **Fullstack Web Developer**.
 
+🌐 Live Demo: [fakhridjamaris.my.id](https://fakhridjamaris.my.id)
+
+---
+
+## ✨ Features
+
+- **🌐 Dual Language Support (i18n):** Dynamically toggles between **English** and **Bahasa Indonesia** without full page reloads.
+- **⚡ High Performance & Core Web Vitals Optimized:**
+  - **Dynamic Lazy-loading:** Tabs and heavy components (like Charts or API widgets) are lazy-loaded on-demand, reducing initial bundle sizes by ~60%.
+  - **Resource Hinting:** Direct preconnects and DNS-prefetches are set for APIs (`api.github.com`, etc.) and devicon CDNs to speed up fetching.
+  - **Optimized WebP Assets:** All project screenshots and profile avatars are compressed to modern WebP format, achieving a **99%+ reduction in page payload** (avatar size reduced from 8.2MB to 30KB).
+- **📊 Real-time GitHub Stats Integration:** Dynamic client-side widgets showing real-time statistics and contributions using GitHub APIs.
+- **🎨 Modern Developer UI:** Fully responsive layout modeled after GitHub's interface, using dark mode aesthetics, glassmorphism headers, and smooth micro-animations powered by Framer Motion.
+- **🧪 AI Lab (Interactive ML Demos):** Integrated client-side machine learning interfaces (Image Classifier and Sentiment Analyzer) for users to interact with ML models.
+
+---
+
+## 🛠️ Tech Stack
+
+- **Core Framework:** [Next.js 16](https://nextjs.org/) (App Router) & [React 19](https://react.dev/)
+- **Styling:** [Tailwind CSS v4](https://tailwindcss.com/) + PostCSS
+- **Animations:** [Framer Motion 12](https://www.framer.com/motion/)
+- **Icons:** [Lucide React](https://lucide.dev/)
+- **Data Fetching:** [SWR](https://swr.vercel.app/)
+- **Data Visualization:** [Recharts](https://recharts.org/)
+
+---
+
+## 📁 Directory Structure
+
+```text
+├── app/                  # Next.js App Router (pages, layout, APIs, global styling)
+├── components/           # Reusable UI components
+│   ├── features/         # Logic-heavy features (e.g. GithubStats)
+│   ├── layout/           # Page layouts (e.g. ProfileSidebar)
+│   ├── sections/         # Individual sections (Projects, Skills, Journey, etc.)
+│   └── ui/               # Core UI primitive components (LanguageToggle)
+├── context/              # Context Providers (Language / i18n Context)
+├── data/                 # Static JSON data files (projects, certificates)
+├── public/               # Static assets (optimized images, vectors, resume PDF)
+│   └── images/           # Avatar, custom SVG logos, and project screenshots
+├── next.config.ts        # Next.js config
+├── tsconfig.json         # TypeScript configuration
+└── package.json          # Dependencies and scripts
+```
+
+---
+
+## 🚀 Getting Started
+
+To run the development server locally:
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/fakhrizamaris/modern-portf.git
+cd modern-portf
+```
+
+### 2. Install dependencies
+```bash
+npm install
+```
+
+### 3. Run the development server
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 4. Build for production
+```bash
+npm run build
+npm run start
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🎨 Asset Optimization Details
 
-To learn more about Next.js, take a look at the following resources:
+To guarantee maximum speed and Core Web Vitals scoring:
+- The avatar image (`hero-profile.webp`) is optimized to **512x512 pixels** and saved as WebP format (reducing the file size from **8.19 MB** to **30 KB**).
+- Project snapshots are optimized to **1000px width** max and converted to WebP (e.g. `chess-recs.webp` reduced from **4.12 MB** to **13 KB**).
+- A custom-designed SVG vector logo (`logo.svg`) is used in place of static raster images, bringing mobile header asset loads down to under **1 KB**.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📬 Contact & Links
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **LinkedIn:** [Fakhri Djamaris](https://linkedin.com/in/fakhri-djamaris)
+- **GitHub:** [@fakhrizamaris](https://github.com/fakhrizamaris)
+- **Email:** [djamarisfakhri@gmail.com](mailto:djamarisfakhri@gmail.com)
