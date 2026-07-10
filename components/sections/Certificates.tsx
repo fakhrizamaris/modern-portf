@@ -1,13 +1,16 @@
 'use client';
 import Image from 'next/image';
+import { useLanguage } from '@/context/LanguageContext';
 import certificates from '@/data/certificates.json';
 
 export default function Certificates() {
+  const { t } = useLanguage();
+
   return (
     <section className="py-20 border-t border-dashed border-gray-800">
       <div className="mb-10 text-center">
-        <h2 className="text-3xl font-bold text-white mb-4">Verified Certificates</h2>
-        <p className="text-gray-400 max-w-2xl mx-auto">Validasi kompetensi profesional melalui sertifikasi industri yang diakui secara global.</p>
+        <h2 className="text-3xl font-bold text-white mb-4">{t('certificates.title')}</h2>
+        <p className="text-gray-400 max-w-2xl mx-auto">{t('certificates.subtitle')}</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

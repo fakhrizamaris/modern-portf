@@ -1,8 +1,10 @@
 [
   {
     "title": "Petner",
-    "category": "iOS App · Group Project",
-    "desc": "Aplikasi yang membantu pemilik hewan peliharaan menghidupkan kembali kenangan melalui representasi 3D hewan mereka. Berperan dari perumusan ide, riset, desain layout & flow aplikasi, hingga pengembangan fitur LiDAR untuk pemindaian 3D.",
+    "category_en": "iOS App · Group Project",
+    "category_id": "iOS App · Proyek Kelompok",
+    "desc_en": "An application that helps pet owners revive memories through 3D representations of their pets. Involved in ideation, research, layout & flow design, and LiDAR 3D scanning feature development.",
+    "desc_id": "Aplikasi yang membantu pemilik hewan peliharaan menghidupkan kembali kenangan melalui representasi 3D hewan mereka. Berperan dari perumusan ide, riset, desain layout & flow aplikasi, hingga pengembangan fitur LiDAR untuk pemindaian 3D.",
     "tech": ["SwiftUI", "ARKit", "RealityKit", "Vision", "CoreML", "SwiftData"],
     "metrics": {
       "ARKit & RealityKit": 35,
@@ -16,8 +18,10 @@
   },
   {
     "title": "StepUP",
-    "category": "iOS App · Group Project",
-    "desc": "Aplikasi yang memotivasi pelajar yang cenderung diam di tempat untuk tetap aktif dengan mengubah micro-exercise menjadi streak yang dapat dilacak. Berperan dalam perumusan ide, riset, dan pengembangan fitur aplikasi.",
+    "category_en": "iOS App · Group Project",
+    "category_id": "iOS App · Proyek Kelompok",
+    "desc_en": "An application that motivates sedentary students to stay active by turning micro-exercises into trackable streaks. Contributed to ideation, research, and app feature development.",
+    "desc_id": "Aplikasi yang memotivasi pelajar yang cenderung diam di tempat untuk tetap aktif dengan mengubah micro-exercise menjadi streak yang dapat dilacak. Berperan dalam perumusan ide, riset, dan pengembangan fitur aplikasi.",
     "tech": ["WidgetKit", "ActivityKit", "Combine", "Firebase", "AVFoundation", "TipKit"],
     "metrics": {
       "Swift & SwiftUI": 45,
@@ -30,8 +34,10 @@
   },
   {
     "title": "Nazeit",
-    "category": "iOS App · Personal Project",
-    "desc": "Aplikasi yang membantu traveler tetap fungsional lintas zona waktu dengan memberikan instruksi sederhana sepanjang persiapan dan perjalanan, berdasarkan kondisi sirkadian mereka. Dibangun secara mandiri dari desain UI, flow aplikasi, coding, hingga testing.",
+    "category_en": "iOS App · Personal Project",
+    "category_id": "iOS App · Proyek Pribadi",
+    "desc_en": "An application that helps travelers stay functional across time zones by providing simple instructions throughout preparation and travel, based on their circadian conditions. Built independently from UI design, app flow, coding, to testing.",
+    "desc_id": "Aplikasi yang membantu traveler tetap fungsional lintas zona waktu dengan memberikan instruksi sederhana sepanjang persiapan dan perjalanan, berdasarkan kondisi sirkadian mereka. Dibangun secara mandiri dari desain UI, flow aplikasi, coding, hingga testing.",
     "tech": ["SwiftUI", "Combine", "MapKit", "UserNotifications", "UIKit"],
     "metrics": {
       "SwiftUI": 65,
@@ -43,8 +49,10 @@
   },
   {
     "title": "HairMuse App",
-    "category": "Machine Learning & Android",
-    "desc": "Aplikasi rekomendasi gaya rambut berbasis bentuk wajah menggunakan TensorFlow untuk membangun Model Machine Learningn dan Google Cloud Run untuk deploy API. Aplikasi ini dibangun menggunakan bahasa pemrograman Java dan Android Studio. Disini saya berperan sebagai Machine Learning Engineer yang membangun model untuk mendeteksi bentuk wajah dan menghitung proporsi wajah untuk memberikan rekomendasi gaya rambut yang cocok.",
+    "category_en": "Machine Learning & Android",
+    "category_id": "Machine Learning & Android",
+    "desc_en": "A face shape-based haircut recommendation app using TensorFlow for ML modeling and Google Cloud Run for API deployment. Developed in Java with Android Studio. Acted as a Machine Learning Engineer building models to detect face shape and calculate face proportions for matching haircut recommendations.",
+    "desc_id": "Aplikasi rekomendasi gaya rambut berbasis bentuk wajah menggunakan TensorFlow untuk membangun Model Machine Learningn dan Google Cloud Run untuk deploy API. Aplikasi ini dibangun menggunakan bahasa pemrograman Java dan Android Studio. Disini saya berperan sebagai Machine Learning Engineer yang membangun model untuk mendeteksi bentuk wajah dan menghitung proporsi wajah untuk memberikan rekomendasi gaya rambut yang cocok.",
     "tech": ["TensorFlow", "Python", "GCP", "Android"],
     "metrics": {
       "Python": 60,
@@ -56,8 +64,10 @@
   },
   {
     "title": "VocIntern Platform",
-    "category": "Fullstack Web Dev",
-    "desc": "Platform pencarian magang untuk mahasiswa vokasi USU. Dibangun dengan Laravel (MVC), Queue, dan MySQL. Pada projek ini saya berperan sebagai Fullstack Developer yang mengembangkan beberapa fitur utama dari platform tersebut seperti Dashboard, Magang, dan Pendaftaran.",
+    "category_en": "Fullstack Web Dev",
+    "category_id": "Fullstack Web Dev",
+    "desc_en": "An internship matching platform for USU vocational students. Built with Laravel (MVC), Queues, and MySQL. Acted as a Fullstack Developer developing core features including dashboard, internship listings, and registrations.",
+    "desc_id": "Platform pencarian magang untuk mahasiswa vokasi USU. Dibangun dengan Laravel (MVC), Queue, dan MySQL. Pada projek ini saya berperan sebagai Fullstack Developer yang mengembangkan beberapa fitur utama dari platform tersebut seperti Dashboard, Magang, dan Pendaftaran.",
     "tech": ["Laravel", "MySQL", "Bootstrap", "MVC"],
     "metrics": {
       "PHP (Laravel)": 70,
@@ -69,8 +79,10 @@
   },
   {
     "title": "Tesla Stock Prediction",
-    "category": "Data Science",
-    "desc": "Sistem peramalan harga saham Tesla menggunakan metode SARIMA dan analisis Time Series. Pada projek ini saya berperan untuk membuat model SARIMA dan melakukan visualisasi data menggunakan Matplotlib. Saya juga membuat dashboard untuk menampilkan hasil peramalan harga saham Tesla dan membandingkan 3 model forecasting yaitu SARIMA, ARIMA, dan Exponential Smoothing.",
+    "category_en": "Data Science",
+    "category_id": "Data Science",
+    "desc_en": "Tesla stock price forecasting system using SARIMA and Time Series analysis. Responsible for building the SARIMA model and data visualization using Matplotlib. Created a dashboard to display forecasting results and compare 3 models: SARIMA, ARIMA, and Exponential Smoothing.",
+    "desc_id": "Sistem peramalan harga saham Tesla menggunakan metode SARIMA dan analisis Time Series. Pada projek ini saya berperan untuk membuat model SARIMA dan melakukan visualisasi data menggunakan Matplotlib. Saya juga membuat dashboard untuk menampilkan hasil peramalan harga saham Tesla dan membandingkan 3 model forecasting yaitu SARIMA, ARIMA, dan Exponential Smoothing.",
     "tech": ["Python", "SARIMA", "Pandas", "Matplotlib"],
     "metrics": {
       "Python": 100
@@ -80,25 +92,15 @@
   },
   {
     "title": "Chess Opening Recommender",
-    "category": "AI System",
-    "desc": "Sistem rekomendasi pembukaan catur menggunakan Hybrid Filtering (Content-Based & Collaborative). Sistem ini menggunakan metode Content-Based Filtering untuk merekomendasikan pembukaan catur berdasarkan pembukaan catur yang paling sering dimainkan oleh pengguna dan Collaborative Filtering untuk merekomendasikan pembukaan catur berdasarkan rating yang diberikan oleh pengguna.",
-    "tech": ["Streamlit", "Python", "Scikit-Learn", "Pandas", "Matplotlib"],
+    "category_en": "AI System & Fullstack Web",
+    "category_id": "Sistem AI & Web Fullstack",
+    "desc_en": "A chess opening recommendation system using Hybrid Filtering (Content-Based & Collaborative). Originally built using Python & Streamlit for the AI recommendation engine, then rebuilt using Svelte as a modern, fast, and interactive web interface.",
+    "desc_id": "Sistem rekomendasi pembukaan catur menggunakan Hybrid Filtering (Content-Based & Collaborative). Awalnya dibangun menggunakan Python & Streamlit untuk mesin rekomendasi AI, kemudian dibangun ulang menggunakan Svelte sebagai frontend modern yang cepat dan interaktif.",
+    "tech": ["Svelte", "Python", "Streamlit", "Scikit-Learn", "Vite", "JavaScript"],
     "metrics": {
-      "Python": 90,
-      "Streamlit": 10
-    },
-    "link": "https://github.com/fakhrizamaris/Opening_Chess_Recommendations",
-    "image": "/images/projects/chess-recommender.webp"
-  },
-  {
-    "title": "Chess Recs Svelte",
-    "category": "Fullstack Web Dev",
-    "desc": "Aplikasi web rekomendasi pembukaan catur yang dibangun ulang menggunakan Svelte sebagai frontend modern. Aplikasi ini menampilkan rekomendasi opening catur secara interaktif dengan antarmuka yang cepat dan responsif, serta dapat diakses langsung melalui web tanpa perlu instalasi.",
-    "tech": ["Svelte", "JavaScript", "CSS", "Vite"],
-    "metrics": {
-      "Svelte": 65,
-      "JavaScript": 25,
-      "CSS": 10
+      "Svelte & Frontend": 45,
+      "Python & Streamlit": 35,
+      "Scikit-Learn & ML": 20
     },
     "link": "https://github.com/fakhrizamaris/chess-recs-svelte",
     "website": "https://chess.fakhridjamaris.my.id",

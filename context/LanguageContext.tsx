@@ -81,11 +81,13 @@ export const translations: Translations = {
 
   // Projects
   'projects.title': { en: 'Featured Projects', id: 'Proyek Unggulan' },
+  'projects.subtitle': { en: 'Some of the best works I have worked on.', id: 'Beberapa karya terbaik yang pernah saya kerjakan.' },
   'projects.viewProject': { en: 'View Project', id: 'Lihat Proyek' },
   'projects.viewCode': { en: 'View Code', id: 'Lihat Kode' },
 
   // Certificates
   'certificates.title': { en: 'Certifications', id: 'Sertifikasi' },
+  'certificates.subtitle': { en: 'Validation of professional competence through globally recognized industry certifications.', id: 'Validasi kompetensi profesional melalui sertifikasi industri yang diakui secara global.' },
   'certificates.viewCert': { en: 'View Certificate', id: 'Lihat Sertifikat' },
 
   // AI Lab

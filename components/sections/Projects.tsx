@@ -1,12 +1,14 @@
 import Image from 'next/image';
-
+import { useLanguage } from '@/context/LanguageContext';
 import projectsData from '@/data/projects.json';
 
 // Define the type for better safety
 interface Project {
   title: string;
-  category: string;
-  desc: string;
+  category_en: string;
+  category_id: string;
+  desc_en: string;
+  desc_id: string;
   image: string;
   tech: string[];
   link: string;
@@ -17,12 +19,14 @@ interface Project {
 const PROJECTS: Project[] = projectsData as unknown as Project[];
 
 export default function Projects() {
+  const { language, t } = useLanguage();
+
   return (
     <section id="projects" className="scroll-mt-24">
       <div className="flex justify-between items-end mb-10">
         <div>
-          <h2 className="text-3xl font-bold text-white">Featured Projects</h2>
-          <p className="text-gray-400 mt-2">Beberapa karya terbaik yang pernah saya kerjakan.</p>
+          <h2 className="text-3xl font-bold text-white">{t('projects.title')}</h2>
+          <p className="text-gray-400 mt-2">{t('projects.subtitle')}</p>
         </div>
       </div>
 
@@ -39,7 +43,9 @@ export default function Projects() {
 
               {/* Overlay Categories */}
               <div className="absolute top-4 left-4">
-                <span className="px-3 py-1 bg-black/60 backdrop-blur-md text-white text-xs font-bold rounded-full border border-white/10 shadow-lg">{project.category}</span>
+                <span className="px-3 py-1 bg-black/60 backdrop-blur-md text-white text-xs font-bold rounded-full border border-white/10 shadow-lg">
+                  {language === 'en' ? project.category_en : project.category_id}
+                </span>
               </div>
             </a>
 
@@ -64,7 +70,9 @@ export default function Projects() {
                   </svg>
                 </h3>
               </a>
-              <p className="text-gray-400 text-sm mb-6 leading-relaxed line-clamp-3">{project.desc}</p>
+              <p className="text-gray-400 text-sm mb-6 leading-relaxed line-clamp-3">
+                {language === 'en' ? project.desc_en : project.desc_id}
+              </p>
 
               {/* Metrics Visualization */}
               <div className="space-y-3 mb-6">
