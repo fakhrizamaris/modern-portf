@@ -27,15 +27,15 @@ export const translations: Translations = {
   // Sidebar profile
   'profile.downloadCV': { en: 'Download CV', id: 'Unduh CV' },
   'profile.online': { en: 'Online', id: 'Online' },
-  'profile.bio': { en: 'Software Developer focused on iOS development and machine learning. D3 Informatics Engineering, USU (GPA 3.86).', id: 'Software Developer dengan fokus iOS development dan machine learning. D3 Teknik Informatika USU (IPK 3,86).' },
+  'profile.bio': { en: 'Software Developer focused on iOS development and machine learning. Associate Degree in Informatics Engineering, USU (GPA 3.86).', id: 'Software Developer dengan fokus iOS development dan machine learning. Associate Degree Teknik Informatika USU (IPK 3,86).' },
   'profile.role': { en: 'Software Developer • iOS • Machine Learning', id: 'Software Developer • iOS • Machine Learning' },
 
   // Overview - README
   'readme.greeting': { en: "Hi there, I'm Fakhri! 👋", id: 'Halo, Saya Fakhri! 👋' },
   'readme.aboutTitle': { en: '🎯 About Me', id: '🎯 Tentang Saya' },
   'readme.aboutContent': {
-    en: 'I am a learner at Apple Developer Academy @ Infinite Learning in Batam, building iOS apps with SwiftUI in cross-functional teams, from user research to features running on physical devices. I hold a D3 in Informatics Engineering from the University of North Sumatra (GPA 3.86/4.00). As a freelance developer I build and deploy web applications and machine learning services (TensorFlow, FastAPI, Google Cloud Run), and I completed an internship at LLDIKTI Region I working with institutional data.',
-    id: 'Saya adalah learner di Apple Developer Academy @ Infinite Learning, Batam, yang membangun aplikasi iOS dengan SwiftUI dalam tim lintas fungsi, mulai dari riset pengguna hingga fitur yang berjalan di perangkat fisik. Saya lulusan D3 Teknik Informatika Universitas Sumatera Utara (IPK 3,86/4,00). Sebagai freelance developer, saya membangun dan men-deploy aplikasi web serta layanan machine learning (TensorFlow, FastAPI, Google Cloud Run), dan pernah magang di LLDIKTI Wilayah I mengelola data institusi.',
+    en: 'I am a learner at Apple Developer Academy @ Infinite Learning in Batam, building iOS apps with SwiftUI in cross-functional teams, from user research to features running on physical devices. I hold an Associate Degree in Informatics Engineering from the University of North Sumatra (GPA 3.86/4.00). As a freelance developer I build and deploy web applications and machine learning services (TensorFlow, FastAPI, Google Cloud Run), and I completed an internship at LLDIKTI Region I working with institutional data.',
+    id: 'Saya adalah learner di Apple Developer Academy @ Infinite Learning, Batam, yang membangun aplikasi iOS dengan SwiftUI dalam tim lintas fungsi, mulai dari riset pengguna hingga fitur yang berjalan di perangkat fisik. Saya lulusan Associate Degree Teknik Informatika Universitas Sumatera Utara (IPK 3,86/4,00). Sebagai freelance developer, saya membangun dan men-deploy aplikasi web serta layanan machine learning (TensorFlow, FastAPI, Google Cloud Run), dan pernah magang di LLDIKTI Wilayah I mengelola data institusi.',
   },
   'readme.aboutContent2': {
     en: 'Building models taught me that analysis is only half of the work. The technology has to become an app that real people find useful.',

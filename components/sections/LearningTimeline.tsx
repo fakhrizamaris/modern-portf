@@ -29,7 +29,7 @@ const timelineData: TimelineEvent[] = [
   },
   {
     date: 'Jul 2025',
-    title: 'Graduated D3 Informatics Engineering, USU',
+    title: 'Associate Degree in Informatics Engineering, USU',
     description: 'GPA 3.86/4.00. Final project: Opening Chess Recommender System',
     type: 'education',
     highlight: true,
@@ -73,7 +73,7 @@ const timelineData: TimelineEvent[] = [
   {
     date: 'Aug 2022',
     title: 'Started at USU',
-    description: 'Enrolled in D3 Informatics Engineering at Universitas Sumatera Utara',
+    description: 'Enrolled in the Associate Degree in Informatics Engineering at Universitas Sumatera Utara',
     type: 'education',
   },
 ];
