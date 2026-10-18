@@ -60,8 +60,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: '/images/favicon.png',
-        width: 800,
-        height: 800,
+        width: 512,
+        height: 512,
         alt: 'Fakhri Djamaris Logo',
       },
     ],
