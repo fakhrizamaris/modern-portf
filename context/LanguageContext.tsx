@@ -27,15 +27,15 @@ export const translations: Translations = {
   // Sidebar profile
   'profile.downloadCV': { en: 'Download CV', id: 'Unduh CV' },
   'profile.online': { en: 'Online', id: 'Online' },
-  'profile.bio': { en: 'iOS Developer and Machine Learning. D3 Informatics Engineering graduate from USU.', id: 'iOS Developer dan Machine Learning. Lulusan D3 Teknik Informatika USU.' },
-  'profile.role': { en: 'iOS Developer • Machine Learning', id: 'iOS Developer • Machine Learning' },
+  'profile.bio': { en: 'Software Developer focused on iOS development and machine learning. D3 Informatics Engineering, USU (GPA 3.86).', id: 'Software Developer dengan fokus iOS development dan machine learning. D3 Teknik Informatika USU (IPK 3,86).' },
+  'profile.role': { en: 'Software Developer • iOS • Machine Learning', id: 'Software Developer • iOS • Machine Learning' },
 
   // Overview - README
   'readme.greeting': { en: "Hi there, I'm Fakhri! 👋", id: 'Halo, Saya Fakhri! 👋' },
   'readme.aboutTitle': { en: '🎯 About Me', id: '🎯 Tentang Saya' },
   'readme.aboutContent': {
-    en: 'I am a learner at Apple Developer Academy @ Infinite Learning in Batam, with a D3 in Informatics Engineering from the University of North Sumatra (GPA 3.86). I build iOS apps in cross-functional teams, from user research to features running on physical devices, and I train and deploy machine learning models as a freelance developer.',
-    id: 'Saya adalah learner di Apple Developer Academy @ Infinite Learning, Batam, dan lulusan D3 Teknik Informatika Universitas Sumatera Utara (IPK 3,86). Saya membangun aplikasi iOS dalam tim lintas fungsi, mulai dari riset pengguna hingga fitur yang berjalan di perangkat fisik, serta melatih dan men-deploy model machine learning sebagai freelance developer.',
+    en: 'I am a learner at Apple Developer Academy @ Infinite Learning in Batam, building iOS apps with SwiftUI in cross-functional teams, from user research to features running on physical devices. I hold a D3 in Informatics Engineering from the University of North Sumatra (GPA 3.86/4.00). As a freelance developer I build and deploy web applications and machine learning services (TensorFlow, FastAPI, Google Cloud Run), and I completed an internship at LLDIKTI Region I working with institutional data.',
+    id: 'Saya adalah learner di Apple Developer Academy @ Infinite Learning, Batam, yang membangun aplikasi iOS dengan SwiftUI dalam tim lintas fungsi, mulai dari riset pengguna hingga fitur yang berjalan di perangkat fisik. Saya lulusan D3 Teknik Informatika Universitas Sumatera Utara (IPK 3,86/4,00). Sebagai freelance developer, saya membangun dan men-deploy aplikasi web serta layanan machine learning (TensorFlow, FastAPI, Google Cloud Run), dan pernah magang di LLDIKTI Wilayah I mengelola data institusi.',
   },
   'readme.aboutContent2': {
     en: 'Building models taught me that analysis is only half of the work. The technology has to become an app that real people find useful.',
@@ -44,13 +44,13 @@ export const translations: Translations = {
   'readme.certTitle': { en: '🏆 Certifications & Training', id: '🏆 Sertifikasi & Pelatihan' },
   'readme.focusTitle': { en: '🔭 Current Focus', id: '🔭 Fokus Saat Ini' },
   'readme.focus1': { en: 'Building iOS apps in cross-functional teams at Apple Developer Academy, from user research to features on real devices', id: 'Membangun aplikasi iOS dalam tim lintas fungsi di Apple Developer Academy, dari riset pengguna hingga fitur di perangkat asli' },
-  'readme.focus2': { en: 'Training and deploying machine learning models as a freelance developer, including Indonesian NLP with IndoBERT', id: 'Melatih dan men-deploy model machine learning sebagai freelance developer, termasuk NLP bahasa Indonesia dengan IndoBERT' },
+  'readme.focus2': { en: 'Building and deploying web applications and machine learning services for freelance clients', id: 'Membangun dan men-deploy aplikasi web serta layanan machine learning untuk klien freelance' },
   'readme.focus3': { en: 'Turning strong technology into apps that are intuitive and useful for people', id: 'Mengubah teknologi yang kuat menjadi aplikasi yang intuitif dan berguna bagi orang' },
   'readme.techTitle': { en: '🛠️ Technologies I Work With', id: '🛠️ Teknologi yang Saya Gunakan' },
   'readme.opportunityTitle': { en: '📫 Open to Opportunities', id: '📫 Terbuka untuk Kesempatan' },
   'readme.opportunityContent': {
-    en: 'I am looking for opportunities in iOS Development and Machine Learning, especially in a team that brings together engineering, design and business to build digital products with real impact.',
-    id: 'Saya mencari kesempatan di bidang iOS Development dan Machine Learning, terutama dalam tim yang menyatukan engineering, desain, dan bisnis untuk membangun produk digital yang berdampak nyata.',
+    en: 'I am looking for a role in digital product development, in mobile engineering or Data/ML, where I can keep learning from experienced teams.',
+    id: 'Saya mencari peran di pengembangan produk digital, baik di mobile engineering maupun Data/ML, sambil terus belajar dari tim yang berpengalaman.',
   },
 
   // Section headers
@@ -124,6 +124,7 @@ export const translations: Translations = {
   'hire.sent': { en: 'Message Sent!', id: 'Pesan Terkirim!' },
   'hire.sentDesc': { en: "I'll get back to you as soon as possible.", id: 'Saya akan membalas secepat mungkin.' },
   'hire.location': { en: 'Based in Batam, Indonesia (Open to Remote)', id: 'Berbasis di Batam, Indonesia (Terbuka untuk Remote)' },
+  'hire.languages': { en: 'Indonesian (native), English (limited working proficiency)', id: 'Bahasa Indonesia (native), Bahasa Inggris (limited working proficiency)' },
 
   // Common
   'common.showMore': { en: 'Show more', id: 'Tampilkan lebih' },

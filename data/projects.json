@@ -32,8 +32,8 @@
     "category_id": "iOS App · Proyek Kelompok",
     "context_en": "Apple Developer Academy · 5-person team · 7 May to 25 Jun 2026",
     "context_id": "Apple Developer Academy · Tim 5 orang · 7 Mei hingga 25 Jun 2026",
-    "desc_en": "An iPhone app that uses LiDAR to scan real-world subjects and turn them into 3D pet models, for iPhone 12 Pro up to iPhone 17 Pro. Built with Swift, ARKit and RealityKit.",
-    "desc_id": "Aplikasi iPhone yang memanfaatkan LiDAR untuk memindai objek di dunia nyata dan mengubahnya menjadi model 3D hewan peliharaan, untuk iPhone 12 Pro hingga iPhone 17 Pro. Dibangun dengan Swift, ARKit, dan RealityKit.",
+    "desc_en": "An iPhone app that uses LiDAR to scan real-world subjects and turn them into 3D pet models, for iPhone 12 Pro up to iPhone 17 Pro. Built with Swift, ARKit and RealityKit, and now live on the App Store as Petner: 3D Pet Memories.",
+    "desc_id": "Aplikasi iPhone yang memanfaatkan LiDAR untuk memindai objek di dunia nyata dan mengubahnya menjadi model 3D hewan peliharaan, untuk iPhone 12 Pro hingga iPhone 17 Pro. Dibangun dengan Swift, ARKit, dan RealityKit, dan kini sudah tersedia di App Store dengan nama Petner: 3D Pet Memories.",
     "contribution_en": "I developed the LiDAR proof of concept with ARKit and RealityKit, from scanning to a viewable 3D model, and delivered a working build to TestFlight so the team could test on real devices.",
     "contribution_id": "Saya mengembangkan proof of concept LiDAR dengan ARKit dan RealityKit, mulai dari pemindaian hingga model 3D yang bisa dilihat, lalu mengirimkan build yang berfungsi ke TestFlight agar tim bisa menguji di perangkat asli.",
     "tech": ["SwiftUI", "ARKit", "RealityKit", "Vision", "CoreML", "SwiftData"],
@@ -44,6 +44,7 @@
       "SwiftData & AVFoundation": 15
     },
     "link": "https://github.com/fakhrizamaris/C3-Nailoong-Pet",
+    "app_store": "https://apps.apple.com/id/app/petner-3d-pet-memories/id6781758641",
     "website": "https://testflight.apple.com/join/JD8WSjKg",
     "image": "/images/projects/Petner.webp"
   },
