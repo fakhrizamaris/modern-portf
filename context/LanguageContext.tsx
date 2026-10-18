@@ -27,7 +27,7 @@ export const translations: Translations = {
   // Sidebar profile
   'profile.downloadCV': { en: 'Download CV', id: 'Unduh CV' },
   'profile.online': { en: 'Online', id: 'Online' },
-  'profile.bio': { en: 'Informatics Engineering Graduate @ USU', id: 'Lulusan Teknik Informatika @ USU' },
+  'profile.bio': { en: 'iOS Developer and Machine Learning. D3 Informatics Engineering graduate from USU.', id: 'iOS Developer dan Machine Learning. Lulusan D3 Teknik Informatika USU.' },
   'profile.role': { en: 'iOS Developer • Machine Learning', id: 'iOS Developer • Machine Learning' },
 
   // Overview - README
