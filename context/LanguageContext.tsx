@@ -123,7 +123,7 @@ export const translations: Translations = {
   'hire.sending': { en: 'Sending...', id: 'Mengirim...' },
   'hire.sent': { en: 'Message Sent!', id: 'Pesan Terkirim!' },
   'hire.sentDesc': { en: "I'll get back to you as soon as possible.", id: 'Saya akan membalas secepat mungkin.' },
-  'hire.location': { en: 'Based in Deli Serdang, Indonesia (Open to Remote)', id: 'Berbasis di Deli Serdang, Indonesia (Terbuka untuk Remote)' },
+  'hire.location': { en: 'Based in Batam, Indonesia (Open to Remote)', id: 'Berbasis di Batam, Indonesia (Terbuka untuk Remote)' },
 
   // Common
   'common.showMore': { en: 'Show more', id: 'Tampilkan lebih' },

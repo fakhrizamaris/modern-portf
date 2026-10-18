@@ -12,7 +12,7 @@ interface ProfileSidebarProps {
 
 const profileLinks = [
   { icon: Building2, label: 'Apple Developer Academy', href: undefined },
-  { icon: MapPin, label: 'Deli Serdang, Indonesia', href: undefined },
+  { icon: MapPin, label: 'Batam, Indonesia', href: undefined },
   { icon: Mail, label: 'djamarisfakhri@gmail.com', href: 'mailto:djamarisfakhri@gmail.com' },
   { icon: Github, label: 'fakhrizamaris', href: 'https://github.com/fakhrizamaris' },
   { icon: Linkedin, label: 'in/fakhri-djamaris', href: 'https://linkedin.com/in/fakhri-djamaris' },

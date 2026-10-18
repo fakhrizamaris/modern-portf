@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     'USU',
     'Universitas Sumatera Utara',
     'Portfolio',
-    'Deli Serdang',
+    'Batam',
     'Medan',
     'Indonesia',
   ],
