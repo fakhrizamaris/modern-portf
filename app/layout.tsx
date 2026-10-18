@@ -16,14 +16,18 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   // Basic SEO
   title: {
-    default: 'Fakhri Djamaris | ML Engineer & Web Developer',
+    default: 'Fakhri Djamaris | iOS Developer & Machine Learning',
     template: '%s | Fakhri Djamaris',
   },
-  description: 'Portfolio website of Fakhri Djamaris - Informatics Engineering Graduate, Machine Learning Engineer, Data Scientist, and Fullstack Web Developer based in Deli Serdang, Indonesia.',
+  description: 'Portfolio website of Fakhri Djamaris, iOS Developer and Machine Learning learner at Apple Developer Academy @ Infinite Learning, Batam, and D3 Informatics Engineering graduate from Universitas Sumatera Utara.',
   keywords: [
     'Fakhri Djamaris',
     'Fakhri',
     'Djamaris',
+    'iOS Developer',
+    'Apple Developer Academy',
+    'Infinite Learning',
+    'SwiftUI',
     'Machine Learning Engineer',
     'Data Scientist',
     'Web Developer',
@@ -49,8 +53,8 @@ export const metadata: Metadata = {
 
   // Open Graph for social sharing
   openGraph: {
-    title: 'Fakhri Djamaris | ML Engineer & Web Developer',
-    description: 'Fresh graduate ML Engineer & Web Developer from Indonesia. Bangkit Academy 2024 graduate with expertise in TensorFlow, Python, and modern web technologies.',
+    title: 'Fakhri Djamaris | iOS Developer & Machine Learning',
+    description: 'iOS Developer and Machine Learning learner at Apple Developer Academy @ Infinite Learning, Batam. Building iOS apps in cross-functional teams and training ML models that become useful apps.',
     url: 'https://fakhridjamaris.my.id',
     siteName: 'Fakhri Djamaris Portfolio',
     images: [
@@ -68,8 +72,8 @@ export const metadata: Metadata = {
   // Twitter Card
   twitter: {
     card: 'summary_large_image',
-    title: 'Fakhri Djamaris | ML Engineer & Web Developer',
-    description: 'Fresh graduate ML Engineer & Web Developer from Indonesia. Bangkit Academy 2024 graduate.',
+    title: 'Fakhri Djamaris | iOS Developer & Machine Learning',
+    description: 'iOS Developer and Machine Learning learner at Apple Developer Academy @ Infinite Learning, Batam.',
     images: ['/images/favicon.png'],
   },
 
@@ -103,7 +107,7 @@ const jsonLd = {
   url: 'https://fakhridjamaris.my.id',
   image: 'https://fakhridjamaris.my.id/images/hero-profile.webp',
   sameAs: ['https://github.com/fakhrizamaris', 'https://linkedin.com/in/fakhri-djamaris'],
-  jobTitle: 'Machine Learning Engineer',
+  jobTitle: 'iOS Developer and Machine Learning Engineer',
   worksFor: {
     '@type': 'Organization',
     name: 'Freelance',
@@ -112,8 +116,8 @@ const jsonLd = {
     '@type': 'CollegeOrUniversity',
     name: 'Universitas Sumatera Utara',
   },
-  knowsAbout: ['Machine Learning', 'Data Science', 'Web Development', 'TensorFlow', 'Python', 'JavaScript', 'Next.js'],
-  description: 'Fresh graduate in Informatics Engineering from USU. Machine Learning Engineer, Data Scientist, and Fullstack Web Developer. Bangkit Academy 2024 graduate.',
+  knowsAbout: ['iOS Development', 'Swift', 'SwiftUI', 'ARKit', 'Machine Learning', 'NLP', 'TensorFlow', 'Python', 'FastAPI'],
+  description: 'Learner at Apple Developer Academy @ Infinite Learning, Batam, and D3 Informatics Engineering graduate from USU (GPA 3.86). Builds iOS apps in cross-functional teams and trains and deploys machine learning models as a freelance developer.',
 };
 
 import { preconnect, prefetchDNS } from 'react-dom';

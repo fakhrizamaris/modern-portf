@@ -28,25 +28,29 @@ export const translations: Translations = {
   'profile.downloadCV': { en: 'Download CV', id: 'Unduh CV' },
   'profile.online': { en: 'Online', id: 'Online' },
   'profile.bio': { en: 'Informatics Engineering Graduate @ USU', id: 'Lulusan Teknik Informatika @ USU' },
-  'profile.role': { en: 'ML Engineer • Data Scientist • Web Dev', id: 'ML Engineer • Data Scientist • Web Dev' },
+  'profile.role': { en: 'iOS Developer • Machine Learning', id: 'iOS Developer • Machine Learning' },
 
   // Overview - README
   'readme.greeting': { en: "Hi there, I'm Fakhri! 👋", id: 'Halo, Saya Fakhri! 👋' },
   'readme.aboutTitle': { en: '🎯 About Me', id: '🎯 Tentang Saya' },
   'readme.aboutContent': {
-    en: "Informatics Engineering Graduate from Universitas Sumatera Utara. I'm a junior developer passionate about building practical solutions using",
-    id: 'Lulusan Teknik Informatika dari Universitas Sumatera Utara. Saya seorang junior developer yang antusias membangun solusi praktis menggunakan',
+    en: 'I am a learner at Apple Developer Academy @ Infinite Learning in Batam, with a D3 in Informatics Engineering from the University of North Sumatra (GPA 3.86). I build iOS apps in cross-functional teams, from user research to features running on physical devices, and I train and deploy machine learning models as a freelance developer.',
+    id: 'Saya adalah learner di Apple Developer Academy @ Infinite Learning, Batam, dan lulusan D3 Teknik Informatika Universitas Sumatera Utara (IPK 3,86). Saya membangun aplikasi iOS dalam tim lintas fungsi, mulai dari riset pengguna hingga fitur yang berjalan di perangkat fisik, serta melatih dan men-deploy model machine learning sebagai freelance developer.',
+  },
+  'readme.aboutContent2': {
+    en: 'Building models taught me that analysis is only half of the work. The technology has to become an app that real people find useful.',
+    id: 'Membangun model mengajarkan saya bahwa analisis hanyalah separuh dari pekerjaan. Teknologi itu harus menjadi aplikasi yang benar-benar berguna bagi orang.',
   },
   'readme.certTitle': { en: '🏆 Certifications & Training', id: '🏆 Sertifikasi & Pelatihan' },
   'readme.focusTitle': { en: '🔭 Current Focus', id: '🔭 Fokus Saat Ini' },
-  'readme.focus1': { en: 'Building native iOS apps with SwiftUI, ARKit, and Apple frameworks at Developer Academy', id: 'Membangun aplikasi iOS native dengan SwiftUI, ARKit, dan framework Apple di Developer Academy' },
-  'readme.focus2': { en: 'Developing fullstack web applications using modern frameworks (Next.js, Laravel)', id: 'Mengembangkan aplikasi web fullstack menggunakan framework modern (Next.js, Laravel)' },
-  'readme.focus3': { en: 'Applying Machine Learning & data analysis skills from Bangkit and TensorFlow certification', id: 'Menerapkan keahlian Machine Learning & analisis data dari Bangkit dan sertifikasi TensorFlow' },
+  'readme.focus1': { en: 'Building iOS apps in cross-functional teams at Apple Developer Academy, from user research to features on real devices', id: 'Membangun aplikasi iOS dalam tim lintas fungsi di Apple Developer Academy, dari riset pengguna hingga fitur di perangkat asli' },
+  'readme.focus2': { en: 'Training and deploying machine learning models as a freelance developer, including Indonesian NLP with IndoBERT', id: 'Melatih dan men-deploy model machine learning sebagai freelance developer, termasuk NLP bahasa Indonesia dengan IndoBERT' },
+  'readme.focus3': { en: 'Turning strong technology into apps that are intuitive and useful for people', id: 'Mengubah teknologi yang kuat menjadi aplikasi yang intuitif dan berguna bagi orang' },
   'readme.techTitle': { en: '🛠️ Technologies I Work With', id: '🛠️ Teknologi yang Saya Gunakan' },
   'readme.opportunityTitle': { en: '📫 Open to Opportunities', id: '📫 Terbuka untuk Kesempatan' },
   'readme.opportunityContent': {
-    en: "As a fresh graduate, I'm actively seeking internship or entry-level positions in Machine Learning, Data Science, or Web Development. I'm eager to learn and contribute to impactful projects.",
-    id: 'Sebagai fresh graduate, saya aktif mencari posisi magang atau entry-level di bidang Machine Learning, Data Science, atau Web Development. Saya ingin belajar dan berkontribusi pada proyek-proyek berdampak.',
+    en: 'I am looking for opportunities in iOS Development and Machine Learning, especially in a team that brings together engineering, design and business to build digital products with real impact.',
+    id: 'Saya mencari kesempatan di bidang iOS Development dan Machine Learning, terutama dalam tim yang menyatukan engineering, desain, dan bisnis untuk membangun produk digital yang berdampak nyata.',
   },
 
   // Section headers
@@ -63,7 +67,10 @@ export const translations: Translations = {
   'section.til': { en: 'Today I Learned', id: 'Hari Ini Saya Belajar' },
   'section.tilDesc': { en: 'Quick notes on things I discover while building', id: 'Catatan singkat tentang hal yang saya temukan saat membangun' },
   'section.hireMeTitle': { en: "Let's Work Together", id: 'Mari Bekerja Sama' },
-  'section.hireMeDesc': { en: "I'm actively looking for opportunities to grow and contribute to impactful projects.", id: 'Saya aktif mencari kesempatan untuk berkembang dan berkontribusi pada proyek berdampak.' },
+  'section.hireMeDesc': {
+    en: 'My work follows one idea: strong technology only matters when it becomes something intuitive and useful for people. I am ready to learn, contribute and work across disciplines to build digital products with real impact.',
+    id: 'Karya saya berpegang pada satu ide: teknologi yang kuat baru berarti ketika menjadi sesuatu yang intuitif dan berguna bagi orang. Saya siap belajar, berkontribusi, dan bekerja lintas disiplin untuk membangun produk digital yang berdampak nyata.',
+  },
 
   // Dashboard
   'dashboard.title': { en: 'Analytics Dashboard', id: 'Dashboard Analitik' },
@@ -81,9 +88,11 @@ export const translations: Translations = {
 
   // Projects
   'projects.title': { en: 'Featured Projects', id: 'Proyek Unggulan' },
-  'projects.subtitle': { en: 'Some of the best works I have worked on.', id: 'Beberapa karya terbaik yang pernah saya kerjakan.' },
+  'projects.subtitle': { en: 'From the Academy apps to the machine learning projects before them.', id: 'Dari aplikasi di Academy hingga proyek machine learning sebelumnya.' },
   'projects.viewProject': { en: 'View Project', id: 'Lihat Proyek' },
   'projects.viewCode': { en: 'View Code', id: 'Lihat Kode' },
+  'projects.contribution': { en: 'My Contribution', id: 'Kontribusi Saya' },
+  'projects.techComposition': { en: 'Tech Stack Composition', id: 'Komposisi Tech Stack' },
 
   // Certificates
   'certificates.title': { en: 'Certifications', id: 'Sertifikasi' },

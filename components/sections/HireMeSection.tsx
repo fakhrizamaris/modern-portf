@@ -46,7 +46,7 @@ export default function HireMeSection() {
     { label: t('hire.contract'), available: false },
   ];
 
-  const preferredRoles = ['Machine Learning Engineer', 'Data Scientist', 'AI Engineer', 'Fullstack Developer', 'Backend Developer'];
+  const preferredRoles = ['iOS Developer', 'Machine Learning Engineer', 'AI Engineer', 'Data Scientist', 'Fullstack Developer'];
 
   return (
     <section className="py-12">

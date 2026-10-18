@@ -70,7 +70,7 @@ export default function ProfileSidebar({ activeTab, setActiveTab }: ProfileSideb
             </div>
             <div>
               <h1 className="text-sm font-bold text-white">Fakhri Djamaris</h1>
-              <p className="text-[10px] text-gray-400">Apple Dev Academy • ML & Web</p>
+              <p className="text-[10px] text-gray-400">Apple Dev Academy • iOS & ML</p>
             </div>
           </div>
           <button aria-label="Toggle Menu" aria-expanded={mobileMenuOpen} onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="p-2 rounded-lg bg-gray-800/50 text-gray-400 hover:text-white hover:bg-gray-800 transition-all">
@@ -142,7 +142,7 @@ export default function ProfileSidebar({ activeTab, setActiveTab }: ProfileSideb
             <p className="text-xs text-gray-400 leading-relaxed text-center px-1">
               Apple Developer Academy @ Infinite Learning
               <br />
-              ML Engineer • iOS Dev • Web Dev
+              {t('profile.role')}
             </p>
 
             {/* Location */}
