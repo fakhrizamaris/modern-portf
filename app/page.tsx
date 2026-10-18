@@ -23,10 +23,13 @@ const techStack = [
   { name: 'SwiftUI', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swift/swift-original.svg' },
   { name: 'ARKit', icon: 'https://cdn.simpleicons.org/arkit/FFFFFF' },
   { name: 'Xcode', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/xcode/xcode-original.svg' },
+  { name: 'Firebase', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-original.svg' },
   // Data Science & AI
   { name: 'Python', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg' },
   { name: 'TensorFlow', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg' },
   { name: 'PyTorch', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg' },
+  { name: 'Hugging Face', icon: 'https://cdn.simpleicons.org/huggingface/FFD21E' },
+  { name: 'FastAPI', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg' },
   { name: 'Pandas', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg', invert: true },
   { name: 'Scikit-Learn', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/scikitlearn/scikitlearn-original.svg' },
   { name: 'Matplotlib', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/matplotlib/matplotlib-original.svg' },
@@ -88,11 +91,8 @@ export default function Home() {
                   <h1 className="text-3xl border-b border-gray-800 pb-2 mb-6">{t('readme.greeting')}</h1>
 
                   <h3 className="text-xl text-teal-400 mt-4 mb-2">{t('readme.aboutTitle')}</h3>
-                  <p className="text-gray-300 leading-relaxed">
-                    {t('readme.aboutContent')}
-                    <span className="text-teal-400"> iOS Development</span>,<span className="text-cyan-400"> Machine Learning</span>, and
-                    <span className="text-sky-400"> Web Development</span>.
-                  </p>
+                  <p className="text-gray-300 leading-relaxed">{t('readme.aboutContent')}</p>
+                  <p className="text-gray-300 leading-relaxed mt-3">{t('readme.aboutContent2')}</p>
 
                   <h3 className="text-xl text-teal-400 mt-6 mb-2">{t('readme.certTitle')}</h3>
                   <ul className="list-none text-gray-400 space-y-2 pl-0">

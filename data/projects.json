@@ -1,10 +1,41 @@
 [
   {
+    "title": "Sprout",
+    "category_en": "iOS App · NLP",
+    "category_id": "iOS App · NLP",
+    "context_en": "Apple Developer Academy · Team project",
+    "context_id": "Apple Developer Academy · Proyek tim",
+    "desc_en": "A journaling app for Indonesian speakers. It helps users put a name to what they feel, so they can regulate their emotions more clearly.",
+    "desc_id": "Aplikasi jurnal untuk penutur bahasa Indonesia. Aplikasi ini membantu pengguna memberi nama pada apa yang mereka rasakan, sehingga mereka bisa meregulasi emosi dengan lebih jernih.",
+    "contribution_en": "I trained the NLP model that reads Indonesian journal text and understands three sentiments: positive, negative and neutral. It is built on IndoBERT (macro F1 0.883 on SmSA review text, with journal testing as the next step). It narrows down the emotion options, and the user still picks the exact emotion themselves.",
+    "contribution_id": "Saya melatih model NLP yang membaca teks jurnal berbahasa Indonesia dan memahami tiga sentimen: positif, negatif, dan netral. Model ini dibangun di atas IndoBERT (macro F1 0,883 pada teks ulasan SmSA, dengan pengujian pada teks jurnal sebagai langkah berikutnya). Model ini mempersempit pilihan emosi, dan pengguna tetap memilih sendiri emosi yang paling tepat.",
+    "tech": ["IndoBERT", "NLP", "Python", "Sentiment Analysis"],
+    "image": "/images/projects/Sprout.webp"
+  },
+  {
+    "title": "Redire",
+    "category_en": "iOS App · UX Research & Design",
+    "category_id": "iOS App · Riset & Desain UX",
+    "context_en": "Apple Developer Academy · 10-person team · 2 Jul to 13 Aug 2026",
+    "context_id": "Apple Developer Academy · Tim 10 orang · 2 Jul hingga 13 Agu 2026",
+    "desc_en": "An app concept for workers who struggle to regain focus after a scrolling break. It is designed around FamilyControls and ActivityKit.",
+    "desc_id": "Konsep aplikasi untuk pekerja yang kesulitan kembali fokus setelah jeda scrolling. Aplikasi ini dirancang dengan memanfaatkan FamilyControls dan ActivityKit.",
+    "contribution_en": "I investigated the problem through observations and interviews with workers, helped shape the idea, and designed the UI/UX in Sketch, iterating after Academy review feedback. My role was research and design, not code.",
+    "contribution_id": "Saya menggali masalah melalui observasi dan wawancara dengan para pekerja, ikut membentuk ide, lalu mendesain UI/UX di Sketch dan melakukan iterasi berdasarkan feedback review dari Academy. Peran saya adalah riset dan desain, bukan coding.",
+    "tech": ["UX Research", "UI/UX Design", "Sketch", "FamilyControls", "ActivityKit"],
+    "website": "https://sketch.com/s/4e1ada14-a1f2-4c2d-ad65-fe3d281396e9/prototype/6547C9AF-B31E-40ED-81EA-44AFA2AD96C7/a/6547C9AF-B31E-40ED-81EA-44AFA2AD96C7",
+    "image": "/images/projects/Redire.webp"
+  },
+  {
     "title": "Petner",
     "category_en": "iOS App · Group Project",
     "category_id": "iOS App · Proyek Kelompok",
-    "desc_en": "An application that helps pet owners revive memories through 3D representations of their pets. Involved in ideation, research, layout & flow design, and LiDAR 3D scanning feature development.",
-    "desc_id": "Aplikasi yang membantu pemilik hewan peliharaan menghidupkan kembali kenangan melalui representasi 3D hewan mereka. Berperan dari perumusan ide, riset, desain layout & flow aplikasi, hingga pengembangan fitur LiDAR untuk pemindaian 3D.",
+    "context_en": "Apple Developer Academy · 5-person team · 7 May to 25 Jun 2026",
+    "context_id": "Apple Developer Academy · Tim 5 orang · 7 Mei hingga 25 Jun 2026",
+    "desc_en": "An iPhone app that uses LiDAR to scan real-world subjects and turn them into 3D pet models, for iPhone 12 Pro up to iPhone 17 Pro. Built with Swift, ARKit and RealityKit.",
+    "desc_id": "Aplikasi iPhone yang memanfaatkan LiDAR untuk memindai objek di dunia nyata dan mengubahnya menjadi model 3D hewan peliharaan, untuk iPhone 12 Pro hingga iPhone 17 Pro. Dibangun dengan Swift, ARKit, dan RealityKit.",
+    "contribution_en": "I developed the LiDAR proof of concept with ARKit and RealityKit, from scanning to a viewable 3D model, and delivered a working build to TestFlight so the team could test on real devices.",
+    "contribution_id": "Saya mengembangkan proof of concept LiDAR dengan ARKit dan RealityKit, mulai dari pemindaian hingga model 3D yang bisa dilihat, lalu mengirimkan build yang berfungsi ke TestFlight agar tim bisa menguji di perangkat asli.",
     "tech": ["SwiftUI", "ARKit", "RealityKit", "Vision", "CoreML", "SwiftData"],
     "metrics": {
       "ARKit & RealityKit": 35,
@@ -12,16 +43,39 @@
       "Vision & CoreML": 20,
       "SwiftData & AVFoundation": 15
     },
-    "link": "https://github.com/luckyAkbar/C3-Nailoong-Pet",
+    "link": "https://github.com/fakhrizamaris/C3-Nailoong-Pet",
     "website": "https://testflight.apple.com/join/JD8WSjKg",
     "image": "/images/projects/Petner.webp"
   },
   {
-    "title": "StepUP",
+    "title": "Nazeit",
+    "category_en": "iOS App · Personal Project",
+    "category_id": "iOS App · Proyek Pribadi",
+    "context_en": "Apple Developer Academy · Individual project · 30 Mar to 28 Apr 2026",
+    "context_id": "Apple Developer Academy · Proyek individu · 30 Mar hingga 28 Apr 2026",
+    "desc_en": "A jetlag adaptation app. From a flight route it plans sleep schedules and daily routines across three phases: pre-flight, in-flight and recovery.",
+    "desc_id": "Aplikasi adaptasi jetlag. Dari rute penerbangan, aplikasi ini menyusun jadwal tidur dan rutinitas harian dalam tiga fase: sebelum terbang, selama penerbangan, dan pemulihan.",
+    "contribution_en": "I designed the three-phase adaptation engine that generates the schedules. The early Engage and Investigate phases were done with a team, and I completed the design and development on my own using SwiftUI, Combine and MapKit.",
+    "contribution_id": "Saya merancang mesin adaptasi tiga fase yang menghasilkan jadwal tersebut. Fase awal Engage dan Investigate dikerjakan bersama tim, lalu saya menyelesaikan desain dan pengembangannya secara mandiri menggunakan SwiftUI, Combine, dan MapKit.",
+    "tech": ["SwiftUI", "Combine", "MapKit", "UserNotifications", "UIKit"],
+    "metrics": {
+      "SwiftUI": 65,
+      "Combine & MapKit": 20,
+      "UserNotifications & UIKit": 15
+    },
+    "link": "https://github.com/fakhrizamaris/NaZeit",
+    "image": "/images/projects/Nazeit.webp"
+  },
+  {
+    "title": "Step Up",
     "category_en": "iOS App · Group Project",
     "category_id": "iOS App · Proyek Kelompok",
-    "desc_en": "An application that motivates sedentary students to stay active by turning micro-exercises into trackable streaks. Contributed to ideation, research, and app feature development.",
-    "desc_id": "Aplikasi yang memotivasi pelajar yang cenderung diam di tempat untuk tetap aktif dengan mengubah micro-exercise menjadi streak yang dapat dilacak. Berperan dalam perumusan ide, riset, dan pengembangan fitur aplikasi.",
+    "context_en": "Apple Developer Academy · 5-person team · 3 to 13 Mar 2026",
+    "context_id": "Apple Developer Academy · Tim 5 orang · 3 hingga 13 Mar 2026",
+    "desc_en": "A micro-exercise tracker with a timer, daily streaks and a leaderboard, built to make short movement breaks easy to keep up.",
+    "desc_id": "Aplikasi pelacak micro-exercise dengan timer, streak harian, dan leaderboard, dibuat agar jeda gerak singkat mudah dijadikan kebiasaan.",
+    "contribution_en": "I built the authentication system and the User Profile feature, and connected Firebase Firestore so timer, streak and leaderboard data sync in real time.",
+    "contribution_id": "Saya membangun sistem autentikasi dan fitur User Profile, serta menghubungkan Firebase Firestore agar data timer, streak, dan leaderboard tersinkron secara real time.",
     "tech": ["WidgetKit", "ActivityKit", "Combine", "Firebase", "AVFoundation", "TipKit"],
     "metrics": {
       "Swift & SwiftUI": 45,
@@ -33,56 +87,55 @@
     "image": "/images/projects/StepUp.webp"
   },
   {
-    "title": "Nazeit",
-    "category_en": "iOS App · Personal Project",
-    "category_id": "iOS App · Proyek Pribadi",
-    "desc_en": "An application that helps travelers stay functional across time zones by providing simple instructions throughout preparation and travel, based on their circadian conditions. Built independently from UI design, app flow, coding, to testing.",
-    "desc_id": "Aplikasi yang membantu traveler tetap fungsional lintas zona waktu dengan memberikan instruksi sederhana sepanjang persiapan dan perjalanan, berdasarkan kondisi sirkadian mereka. Dibangun secara mandiri dari desain UI, flow aplikasi, coding, hingga testing.",
-    "tech": ["SwiftUI", "Combine", "MapKit", "UserNotifications", "UIKit"],
+    "title": "Opening Chess Recommender System",
+    "category_en": "Machine Learning · Final Project",
+    "category_id": "Machine Learning · Tugas Akhir",
+    "context_en": "Final Associate Project · Individual project",
+    "context_id": "Tugas Akhir D3 · Proyek individu",
+    "desc_en": "A recommender system that suggests chess openings in real time. It was my final project for the D3 Informatics Engineering program.",
+    "desc_id": "Sistem rekomendasi yang menyarankan pembukaan catur secara real time. Proyek ini merupakan tugas akhir saya di program D3 Teknik Informatika.",
+    "contribution_en": "I built and deployed the machine learning microservice behind the recommendations, optimized for low latency, using Python and FastAPI on Google Cloud Run.",
+    "contribution_id": "Saya membangun dan men-deploy microservice machine learning di balik rekomendasi tersebut, dioptimalkan untuk latensi rendah, menggunakan Python dan FastAPI di Google Cloud Run.",
+    "note_en": "The live demo is offline now, because the Cloud Run service was shut down after the project.",
+    "note_id": "Live demo saat ini offline karena layanan Cloud Run sudah dimatikan setelah proyek selesai.",
+    "tech": ["Python", "FastAPI", "Google Cloud Run", "TensorFlow", "Scikit-Learn", "Svelte"],
     "metrics": {
-      "SwiftUI": 65,
-      "Combine & MapKit": 20,
-      "UserNotifications & UIKit": 15
+      "Svelte & TypeScript (Frontend)": 65,
+      "Python & FastAPI (ML Service)": 28,
+      "Rust (API Gateway)": 7
     },
-    "link": "https://github.com/fakhrizamaris/NaZeit",
-    "image": "/images/projects/Nazeit.webp"
+    "link": "https://github.com/fakhrizamaris/chess-recs-svelte",
+    "image": "/images/projects/chess-recs.webp"
   },
   {
     "title": "HairMuse App",
     "category_en": "Machine Learning & Android",
     "category_id": "Machine Learning & Android",
-    "desc_en": "A face shape-based haircut recommendation app using TensorFlow for ML modeling and Google Cloud Run for API deployment. Developed in Java with Android Studio. Acted as a Machine Learning Engineer building models to detect face shape and calculate face proportions for matching haircut recommendations.",
-    "desc_id": "Aplikasi rekomendasi gaya rambut berbasis bentuk wajah menggunakan TensorFlow untuk membangun Model Machine Learningn dan Google Cloud Run untuk deploy API. Aplikasi ini dibangun menggunakan bahasa pemrograman Java dan Android Studio. Disini saya berperan sebagai Machine Learning Engineer yang membangun model untuk mendeteksi bentuk wajah dan menghitung proporsi wajah untuk memberikan rekomendasi gaya rambut yang cocok.",
+    "context_en": "Bangkit Academy 2024 · Machine Learning path · 5-person team",
+    "context_id": "Bangkit Academy 2024 · Learning path Machine Learning · Tim 5 orang",
+    "desc_en": "An Android app that recommends hairstyles based on face shape: oval, square, heart and round.",
+    "desc_id": "Aplikasi Android yang merekomendasikan gaya rambut berdasarkan bentuk wajah: oval, kotak, hati, dan bulat.",
+    "contribution_en": "As the Machine Learning Developer, I built the face shape detection model and prepared its API for deployment on Google Cloud Run. It also sharpened my time management and teamwork.",
+    "contribution_id": "Sebagai Machine Learning Developer, saya membangun model deteksi bentuk wajah dan menyiapkan API-nya untuk di-deploy di Google Cloud Run. Proyek ini juga mengasah manajemen waktu dan kerja tim saya.",
     "tech": ["TensorFlow", "Python", "GCP", "Android"],
     "metrics": {
       "Python": 60,
       "TensorFlow": 30,
       "GCP": 10
     },
-    "link": "https://github.com/C242-PS317-HairMuseApp",
+    "link": "https://github.com/C242-PS317-HairMuseApp/HairMuseApp-ML",
     "image": "/images/projects/hairmuse.webp"
   },
   {
-    "title": "VocIntern Platform",
-    "category_en": "Fullstack Web Dev",
-    "category_id": "Fullstack Web Dev",
-    "desc_en": "An internship matching platform for USU vocational students. Built with Laravel (MVC), Queues, and MySQL. Acted as a Fullstack Developer developing core features including dashboard, internship listings, and registrations.",
-    "desc_id": "Platform pencarian magang untuk mahasiswa vokasi USU. Dibangun dengan Laravel (MVC), Queue, dan MySQL. Pada projek ini saya berperan sebagai Fullstack Developer yang mengembangkan beberapa fitur utama dari platform tersebut seperti Dashboard, Magang, dan Pendaftaran.",
-    "tech": ["Laravel", "MySQL", "Bootstrap", "MVC"],
-    "metrics": {
-      "PHP (Laravel)": 70,
-      "MySQL": 20,
-      "JavaScript": 10
-    },
-    "link": "https://github.com/VocIntern",
-    "image": "/images/projects/vocintern.webp"
-  },
-  {
     "title": "Tesla Stock Prediction",
-    "category_en": "Data Science",
-    "category_id": "Data Science",
-    "desc_en": "Tesla stock price forecasting system using SARIMA and Time Series analysis. Responsible for building the SARIMA model and data visualization using Matplotlib. Created a dashboard to display forecasting results and compare 3 models: SARIMA, ARIMA, and Exponential Smoothing.",
-    "desc_id": "Sistem peramalan harga saham Tesla menggunakan metode SARIMA dan analisis Time Series. Pada projek ini saya berperan untuk membuat model SARIMA dan melakukan visualisasi data menggunakan Matplotlib. Saya juga membuat dashboard untuk menampilkan hasil peramalan harga saham Tesla dan membandingkan 3 model forecasting yaitu SARIMA, ARIMA, dan Exponential Smoothing.",
+    "category_en": "Data Science · Time Series",
+    "category_id": "Data Science · Time Series",
+    "context_en": "Celerates Indonesia · MSIB program · Group project",
+    "context_id": "Celerates Indonesia · Program MSIB · Proyek kelompok",
+    "desc_en": "A time series system that forecasts Tesla stock prices, built during the MSIB program at Celerates Indonesia.",
+    "desc_id": "Sistem time series yang meramalkan harga saham Tesla, dibangun selama program MSIB di Celerates Indonesia.",
+    "contribution_en": "I developed and compared several machine learning models, then implemented the best one. I learned that data normalization matters a lot for prediction accuracy.",
+    "contribution_id": "Saya mengembangkan dan membandingkan beberapa model machine learning, lalu mengimplementasikan model terbaik. Dari sini saya belajar bahwa normalisasi data sangat berpengaruh pada akurasi prediksi.",
     "tech": ["Python", "SARIMA", "Pandas", "Matplotlib"],
     "metrics": {
       "Python": 100
@@ -91,19 +144,22 @@
     "image": "/images/projects/forecasting.webp"
   },
   {
-    "title": "Chess Opening Recommender",
-    "category_en": "AI System & Fullstack Web",
-    "category_id": "Sistem AI & Web Fullstack",
-    "desc_en": "A chess opening recommendation system using Hybrid Filtering (Content-Based & Collaborative). Originally built using Python & Streamlit for the AI recommendation engine, then rebuilt using Svelte as a modern, fast, and interactive web interface.",
-    "desc_id": "Sistem rekomendasi pembukaan catur menggunakan Hybrid Filtering (Content-Based & Collaborative). Awalnya dibangun menggunakan Python & Streamlit untuk mesin rekomendasi AI, kemudian dibangun ulang menggunakan Svelte sebagai frontend modern yang cepat dan interaktif.",
-    "tech": ["Svelte", "Python", "Streamlit", "Scikit-Learn", "Vite", "JavaScript"],
+    "title": "VocIntern Platform",
+    "category_en": "Fullstack Web Dev",
+    "category_id": "Fullstack Web Dev",
+    "context_en": "Team project · Laravel",
+    "context_id": "Proyek tim · Laravel",
+    "desc_en": "An internship job board for vocational students, built with Laravel.",
+    "desc_id": "Platform lowongan magang untuk mahasiswa vokasi, dibangun dengan Laravel.",
+    "contribution_en": "I managed the backend, built the landing page and made the admin dashboard. Along the way I learned Laravel queues, data seeders and the MVC concept.",
+    "contribution_id": "Saya mengelola backend, membangun landing page, dan membuat dashboard admin. Dari proyek ini saya mempelajari Laravel queue, data seeder, dan konsep MVC.",
+    "tech": ["Laravel", "MySQL", "Bootstrap", "MVC"],
     "metrics": {
-      "Svelte & Frontend": 45,
-      "Python & Streamlit": 35,
-      "Scikit-Learn & ML": 20
+      "PHP (Laravel)": 70,
+      "MySQL": 20,
+      "JavaScript": 10
     },
-    "link": "https://github.com/fakhrizamaris/chess-recs-svelte",
-    "website": "https://chess.fakhridjamaris.my.id",
-    "image": "/images/projects/chess-recs.webp"
+    "link": "https://github.com/VocIntern",
+    "image": "/images/projects/vocintern.webp"
   }
 ]

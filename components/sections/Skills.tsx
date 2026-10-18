@@ -1,19 +1,19 @@
 const customSkills = [
   {
     category: 'iOS Development',
-    items: ['Swift', 'SwiftUI', 'ARKit', 'RealityKit', 'WidgetKit', 'Combine', 'CoreML', 'Xcode'],
+    items: ['Swift', 'SwiftUI', 'ARKit', 'RealityKit', 'WidgetKit', 'ActivityKit', 'Combine', 'MapKit', 'CoreML', 'Firebase', 'Xcode', 'Sketch'],
     color: 'orange',
-    description: 'Native iOS apps with AR, widgets, and Apple frameworks',
+    description: 'Native iOS apps with Apple frameworks, from UI design to real-device testing',
   },
   {
     category: 'Data Science & AI',
-    items: ['Python', 'TensorFlow', 'PyTorch', 'Scikit-Learn', 'Pandas', 'NumPy', 'Matplotlib', 'OpenCV', 'Tableau', 'Looker'],
+    items: ['Python', 'TensorFlow', 'PyTorch', 'Hugging Face', 'Scikit-Learn', 'Pandas', 'NumPy', 'Matplotlib', 'OpenCV', 'Tableau', 'Looker'],
     color: 'teal',
     description: 'Tools for building ML models, data analysis, and visualization',
   },
   {
     category: 'Web Development',
-    items: ['JavaScript', 'TypeScript', 'React', 'Next.js', 'Laravel', 'Bootstrap', 'Tailwind CSS', 'Go'],
+    items: ['JavaScript', 'TypeScript', 'React', 'Next.js', 'Laravel', 'FastAPI', 'Bootstrap', 'Tailwind CSS', 'Go'],
     color: 'cyan',
     description: 'Frontend & backend technologies for modern web apps',
   },
@@ -31,13 +31,18 @@ const skillIcons: { [key: string]: string } = {
   ARKit: 'https://cdn.simpleicons.org/arkit/000000',
   RealityKit: 'https://cdn.simpleicons.org/apple/000000',
   WidgetKit: 'https://cdn.simpleicons.org/apple/000000',
+  ActivityKit: 'https://cdn.simpleicons.org/apple/000000',
   Combine: 'https://cdn.simpleicons.org/apple/000000',
+  MapKit: 'https://cdn.simpleicons.org/apple/000000',
   CoreML: 'https://cdn.simpleicons.org/apple/000000',
+  Firebase: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-original.svg',
   Xcode: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/xcode/xcode-original.svg',
+  Sketch: 'https://cdn.simpleicons.org/sketch/F7B500',
   // Data Science & AI
   Python: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg',
   TensorFlow: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg',
   PyTorch: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg',
+  'Hugging Face': 'https://cdn.simpleicons.org/huggingface/FFD21E',
   'Scikit-Learn': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/scikitlearn/scikitlearn-original.svg',
   Pandas: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg',
   NumPy: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg',
@@ -49,6 +54,7 @@ const skillIcons: { [key: string]: string } = {
   React: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',
   'Next.js': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg',
   Laravel: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg',
+  FastAPI: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg',
   Bootstrap: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg',
   'Tailwind CSS': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg',
   Go: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg',
@@ -66,7 +72,7 @@ const skillIcons: { [key: string]: string } = {
 };
 
 // js-set-map-lookups: Use Set for O(1) lookups
-const invertIcons = new Set(['Next.js', 'Pandas', 'ARKit', 'RealityKit', 'WidgetKit', 'Combine', 'CoreML']);
+const invertIcons = new Set(['Next.js', 'Pandas', 'ARKit', 'RealityKit', 'WidgetKit', 'ActivityKit', 'Combine', 'MapKit', 'CoreML']);
 
 export default function Skills() {
 

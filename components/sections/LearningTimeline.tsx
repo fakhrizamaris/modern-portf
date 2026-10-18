@@ -16,9 +16,15 @@ const timelineData: TimelineEvent[] = [
   {
     date: 'Mar 2026 – Present',
     title: 'Apple Developer Academy @ Infinite Learning Batam',
-    description: 'Participant in Apple\'s intensive app development program — building iOS/macOS apps with Swift, UIKit/SwiftUI, and design thinking methodology',
+    description: 'Learner building iOS apps in cross-functional teams, from user research to features running on physical devices. Projects: Step Up, Nazeit, Petner, Redire and Sprout',
     type: 'work',
     highlight: true,
+  },
+  {
+    date: '2025',
+    title: 'Graduated D3 Informatics Engineering, USU',
+    description: 'Graduated with a GPA of 3.86. Final project: Opening Chess Recommender System',
+    type: 'education',
   },
   {
     date: 'May 2025',
