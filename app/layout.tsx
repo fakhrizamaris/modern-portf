@@ -117,7 +117,7 @@ const jsonLd = {
     name: 'Universitas Sumatera Utara',
   },
   knowsAbout: ['iOS Development', 'Swift', 'SwiftUI', 'ARKit', 'Machine Learning', 'TensorFlow', 'Python', 'FastAPI', 'Laravel', 'Google Cloud Platform'],
-  description: 'Learner at Apple Developer Academy @ Infinite Learning, Batam, and Associate Degree graduate in Informatics Engineering from USU (GPA 3.86/4.00). Builds iOS apps with SwiftUI in cross-functional teams, and builds and deploys web applications and machine learning services as a freelance developer.',
+  description: 'Learner at Apple Developer Academy @ Infinite Learning, Batam, and Associate Degree graduate in Informatics Engineering from USU. Builds iOS apps with SwiftUI in cross-functional teams, and builds and deploys web applications and machine learning services as a freelance developer.',
 };
 
 import { preconnect, prefetchDNS } from 'react-dom';

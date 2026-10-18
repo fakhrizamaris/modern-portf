@@ -30,7 +30,7 @@ const timelineData: TimelineEvent[] = [
   {
     date: 'Jul 2025',
     title: 'Associate Degree in Informatics Engineering, USU',
-    description: 'GPA 3.86/4.00. Final project: Opening Chess Recommender System',
+    description: 'Final project: Opening Chess Recommender System',
     type: 'education',
     highlight: true,
   },
