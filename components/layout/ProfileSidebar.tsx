@@ -88,7 +88,7 @@ export default function ProfileSidebar({ activeTab, setActiveTab }: ProfileSideb
       <div className="md:hidden fixed top-0 left-0 right-0 z-50 bg-[#0d1117]/95 backdrop-blur-md border-b border-[#21262d] px-4 py-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="relative w-8 h-8 rounded-full overflow-hidden border border-[#30363d]">
+            <div className="relative shrink-0 w-8 h-8 rounded-full overflow-hidden border border-[#30363d]">
               <Image src="/images/hero-profile.webp" alt="Fakhri Djamaris" fill className="object-cover" />
             </div>
             <div>
@@ -138,7 +138,7 @@ export default function ProfileSidebar({ activeTab, setActiveTab }: ProfileSideb
       <aside className="hidden md:flex md:w-[264px] lg:w-[296px] md:shrink-0 flex-col md:sticky md:top-0 md:h-screen border-r border-[#21262d] bg-[#0d1117] sidebar-scroll">
         <div className="px-6 py-8 flex flex-col overflow-y-auto flex-1">
           {/* Profile Header */}
-          <div className="relative w-[140px] h-[140px] lg:w-[160px] lg:h-[160px] rounded-full overflow-hidden border border-[#30363d]">
+          <div className="relative shrink-0 w-[140px] h-[140px] lg:w-[160px] lg:h-[160px] rounded-full overflow-hidden border border-[#30363d]">
             <Image src="/images/hero-profile.webp" alt="Fakhri Djamaris" fill sizes="160px" className="object-cover" priority />
           </div>
 
