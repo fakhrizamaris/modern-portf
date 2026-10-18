@@ -1,6 +1,6 @@
 'use client';
 
-import { Briefcase, MapPin, Mail, Send, Clock, CheckCircle, Loader2 } from 'lucide-react';
+import { Briefcase, MapPin, Mail, Send, Clock, CheckCircle, Loader2, Languages } from 'lucide-react';
 import { useState } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 
@@ -46,7 +46,7 @@ export default function HireMeSection() {
     { label: t('hire.contract'), available: false },
   ];
 
-  const preferredRoles = ['iOS Developer', 'Machine Learning Engineer', 'AI Engineer', 'Data Scientist', 'Fullstack Developer'];
+  const preferredRoles = ['Software Developer', 'iOS Developer', 'Mobile Engineer', 'Machine Learning Engineer', 'Data Analyst'];
 
   return (
     <section className="py-12">
@@ -97,6 +97,10 @@ export default function HireMeSection() {
             <div className="flex items-center gap-2 text-sm text-gray-400">
               <MapPin className="w-4 h-4 text-teal-400" />
               <span>{t('hire.location')}</span>
+            </div>
+            <div className="flex items-center gap-2 text-sm text-gray-400">
+              <Languages className="w-4 h-4 text-teal-400" />
+              <span>{t('hire.languages')}</span>
             </div>
             <div className="flex items-center gap-2 text-sm text-gray-400">
               <Mail className="w-4 h-4 text-teal-400" />

@@ -1,78 +1,66 @@
+// Mirrors the "Technical Skills" groups in public/resume.pdf, keep both in sync
 const customSkills = [
   {
-    category: 'iOS Development',
-    items: ['Swift', 'SwiftUI', 'ARKit', 'RealityKit', 'WidgetKit', 'ActivityKit', 'Combine', 'MapKit', 'CoreML', 'Firebase', 'Xcode', 'Sketch'],
-    color: 'orange',
-    description: 'Native iOS apps with Apple frameworks, from UI design to real-device testing',
+    category: 'iOS',
+    items: ['Swift', 'SwiftUI', 'SwiftData', 'UIKit', 'ARKit', 'RealityKit', 'WidgetKit', 'ActivityKit', 'Combine', 'Firebase Firestore', 'Git'],
+    dot: 'bg-orange-400',
+    titleColor: 'text-orange-400',
+    description: 'Native iOS apps built in cross-functional teams, from user research to real devices',
   },
   {
-    category: 'Data Science & AI',
-    items: ['Python', 'TensorFlow', 'PyTorch', 'Hugging Face', 'Scikit-Learn', 'Pandas', 'NumPy', 'Matplotlib', 'OpenCV', 'Tableau', 'Looker'],
-    color: 'teal',
-    description: 'Tools for building ML models, data analysis, and visualization',
+    category: 'ML & Backend',
+    items: ['Python', 'FastAPI', 'TensorFlow', 'Deep Learning', 'Computer Vision (YOLO/CNN)', 'CoreML', 'Gemini API', 'SQL', 'PostgreSQL', 'MySQL', 'ETL Pipelines'],
+    dot: 'bg-teal-400',
+    titleColor: 'text-teal-400',
+    description: 'Training models and serving them as low-latency services',
   },
   {
-    category: 'Web Development',
-    items: ['JavaScript', 'TypeScript', 'React', 'Next.js', 'Laravel', 'FastAPI', 'Bootstrap', 'Tailwind CSS', 'Go'],
-    color: 'cyan',
-    description: 'Frontend & backend technologies for modern web apps',
-  },
-  {
-    category: 'Database & Cloud',
-    items: ['MySQL', 'PostgreSQL', 'Supabase', 'DBeaver', 'Google Cloud Platform', 'Docker', 'Git'],
-    color: 'purple',
-    description: 'Data storage and cloud infrastructure services',
+    category: 'Web & Cloud',
+    items: ['PHP', 'Laravel', 'Next.js', 'React', 'Vue.js', 'Prisma ORM', 'Google Cloud Platform', 'Cloud Run', 'Cloud Build', 'Cloud Storage', 'Docker', 'CI/CD'],
+    dot: 'bg-cyan-400',
+    titleColor: 'text-cyan-400',
+    description: 'Web applications for clients, deployed to the cloud and Linux servers',
   },
 ];
 
 const skillIcons: { [key: string]: string } = {
+  // iOS
   Swift: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swift/swift-original.svg',
   SwiftUI: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swift/swift-original.svg',
+  SwiftData: 'https://cdn.simpleicons.org/apple/000000',
+  UIKit: 'https://cdn.simpleicons.org/apple/000000',
   ARKit: 'https://cdn.simpleicons.org/arkit/000000',
   RealityKit: 'https://cdn.simpleicons.org/apple/000000',
   WidgetKit: 'https://cdn.simpleicons.org/apple/000000',
   ActivityKit: 'https://cdn.simpleicons.org/apple/000000',
   Combine: 'https://cdn.simpleicons.org/apple/000000',
-  MapKit: 'https://cdn.simpleicons.org/apple/000000',
-  CoreML: 'https://cdn.simpleicons.org/apple/000000',
-  Firebase: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-original.svg',
-  Xcode: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/xcode/xcode-original.svg',
-  Sketch: 'https://cdn.simpleicons.org/sketch/F7B500',
-  // Data Science & AI
-  Python: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg',
-  TensorFlow: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg',
-  PyTorch: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg',
-  'Hugging Face': 'https://cdn.simpleicons.org/huggingface/FFD21E',
-  'Scikit-Learn': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/scikitlearn/scikitlearn-original.svg',
-  Pandas: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg',
-  NumPy: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg',
-  Matplotlib: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/matplotlib/matplotlib-original.svg',
-  OpenCV: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/opencv/opencv-original.svg',
-  // Web Development
-  JavaScript: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg',
-  TypeScript: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg',
-  React: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',
-  'Next.js': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg',
-  Laravel: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg',
-  FastAPI: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg',
-  Bootstrap: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg',
-  'Tailwind CSS': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg',
-  Go: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg',
-  // Database & Cloud
-  MySQL: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg',
-  PostgreSQL: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg',
-  Supabase: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg',
-  DBeaver: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dbeaver/dbeaver-original.svg',
-  'Google Cloud Platform': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg',
-  Docker: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg',
+  'Firebase Firestore': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-original.svg',
   Git: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg',
-  // Data Visualization
-  Tableau: 'https://billigence.com/wp-content/uploads/2022/08/2-1024x1024.png',
-  Looker: 'https://cdn.simpleicons.org/looker/4285F4',
+  // ML & Backend
+  Python: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg',
+  FastAPI: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg',
+  TensorFlow: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg',
+  CoreML: 'https://cdn.simpleicons.org/apple/000000',
+  'Gemini API': 'https://cdn.simpleicons.org/googlegemini/8E75B2',
+  PostgreSQL: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg',
+  MySQL: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg',
+  // Web & Cloud
+  PHP: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg',
+  Laravel: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg',
+  'Next.js': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg',
+  React: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',
+  'Vue.js': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg',
+  'Prisma ORM': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prisma/prisma-original.svg',
+  'Google Cloud Platform': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg',
+  'Cloud Run': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg',
+  'Cloud Build': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg',
+  'Cloud Storage': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg',
+  Docker: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg',
+  'CI/CD': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/githubactions/githubactions-original.svg',
 };
 
 // js-set-map-lookups: Use Set for O(1) lookups
-const invertIcons = new Set(['Next.js', 'Pandas', 'ARKit', 'RealityKit', 'WidgetKit', 'ActivityKit', 'Combine', 'MapKit', 'CoreML']);
+const invertIcons = new Set(['Next.js', 'Prisma ORM', 'SwiftData', 'UIKit', 'ARKit', 'RealityKit', 'WidgetKit', 'ActivityKit', 'Combine', 'CoreML']);
 
 export default function Skills() {
 
@@ -85,12 +73,12 @@ export default function Skills() {
         <p className="text-gray-400 mt-2 text-sm">Technologies and tools I use in my projects. Continuously learning and expanding.</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {customSkills.map((skillGroup, idx) => (
           <div key={idx} className="bg-[#0a0c10] border border-gray-800/50 rounded-xl p-5 hover:border-teal-500/30 transition-all group">
             <div className="flex items-center gap-2 mb-2">
-              <div className={`w-2 h-2 rounded-full bg-${skillGroup.color}-400`}></div>
-              <h3 className={`text-lg font-bold text-${skillGroup.color}-400`}>{skillGroup.category}</h3>
+              <div className={`w-2 h-2 rounded-full ${skillGroup.dot}`}></div>
+              <h3 className={`text-lg font-bold ${skillGroup.titleColor}`}>{skillGroup.category}</h3>
             </div>
             <p className="text-xs text-gray-500 mb-4">{skillGroup.description}</p>
 

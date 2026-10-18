@@ -16,10 +16,10 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   // Basic SEO
   title: {
-    default: 'Fakhri Djamaris | iOS Developer & Machine Learning',
+    default: 'Fakhri Djamaris | Software Developer, iOS & Machine Learning',
     template: '%s | Fakhri Djamaris',
   },
-  description: 'Portfolio website of Fakhri Djamaris, iOS Developer and Machine Learning learner at Apple Developer Academy @ Infinite Learning, Batam, and D3 Informatics Engineering graduate from Universitas Sumatera Utara.',
+  description: 'Portfolio of Fakhri Djamaris, Software Developer in iOS development and machine learning. Learner at Apple Developer Academy @ Infinite Learning, Batam, freelance web and ML developer, and D3 Informatics Engineering graduate from Universitas Sumatera Utara.',
   keywords: [
     'Fakhri Djamaris',
     'Fakhri',
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     'USU',
     'Universitas Sumatera Utara',
     'Portfolio',
-    'Deli Serdang',
+    'Batam',
     'Medan',
     'Indonesia',
   ],
@@ -53,8 +53,8 @@ export const metadata: Metadata = {
 
   // Open Graph for social sharing
   openGraph: {
-    title: 'Fakhri Djamaris | iOS Developer & Machine Learning',
-    description: 'iOS Developer and Machine Learning learner at Apple Developer Academy @ Infinite Learning, Batam. Building iOS apps in cross-functional teams and training ML models that become useful apps.',
+    title: 'Fakhri Djamaris | Software Developer, iOS & Machine Learning',
+    description: 'Software Developer in iOS development and machine learning. Building iOS apps at Apple Developer Academy @ Infinite Learning, Batam, and deploying web and ML services as a freelancer.',
     url: 'https://fakhridjamaris.my.id',
     siteName: 'Fakhri Djamaris Portfolio',
     images: [
@@ -72,8 +72,8 @@ export const metadata: Metadata = {
   // Twitter Card
   twitter: {
     card: 'summary_large_image',
-    title: 'Fakhri Djamaris | iOS Developer & Machine Learning',
-    description: 'iOS Developer and Machine Learning learner at Apple Developer Academy @ Infinite Learning, Batam.',
+    title: 'Fakhri Djamaris | Software Developer, iOS & Machine Learning',
+    description: 'Software Developer in iOS development and machine learning, based in Batam.',
     images: ['/images/favicon.png'],
   },
 
@@ -107,7 +107,7 @@ const jsonLd = {
   url: 'https://fakhridjamaris.my.id',
   image: 'https://fakhridjamaris.my.id/images/hero-profile.webp',
   sameAs: ['https://github.com/fakhrizamaris', 'https://linkedin.com/in/fakhri-djamaris'],
-  jobTitle: 'iOS Developer and Machine Learning Engineer',
+  jobTitle: 'Software Developer',
   worksFor: {
     '@type': 'Organization',
     name: 'Freelance',
@@ -116,8 +116,8 @@ const jsonLd = {
     '@type': 'CollegeOrUniversity',
     name: 'Universitas Sumatera Utara',
   },
-  knowsAbout: ['iOS Development', 'Swift', 'SwiftUI', 'ARKit', 'Machine Learning', 'NLP', 'TensorFlow', 'Python', 'FastAPI'],
-  description: 'Learner at Apple Developer Academy @ Infinite Learning, Batam, and D3 Informatics Engineering graduate from USU (GPA 3.86). Builds iOS apps in cross-functional teams and trains and deploys machine learning models as a freelance developer.',
+  knowsAbout: ['iOS Development', 'Swift', 'SwiftUI', 'ARKit', 'Machine Learning', 'TensorFlow', 'Python', 'FastAPI', 'Laravel', 'Google Cloud Platform'],
+  description: 'Learner at Apple Developer Academy @ Infinite Learning, Batam, and D3 Informatics Engineering graduate from USU (GPA 3.86/4.00). Builds iOS apps with SwiftUI in cross-functional teams, and builds and deploys web applications and machine learning services as a freelance developer.',
 };
 
 import { preconnect, prefetchDNS } from 'react-dom';
