@@ -27,9 +27,6 @@ interface Project {
 
 const PROJECTS: Project[] = projectsData as unknown as Project[];
 
-// Segment colors for the language bar, brightest first so the main stack stands out
-const METRIC_COLORS = ['#2dd4bf', '#1d7f74', '#8b949e', '#484f58'];
-
 const PRIMARY_BUTTON = 'bg-teal-500/15 hover:bg-teal-500/25 border-teal-500/30 text-teal-300';
 const SECONDARY_BUTTON = 'bg-[#21262d] hover:bg-[#30363d] border-[#30363d] text-gray-200';
 
@@ -74,7 +71,6 @@ export default function Projects() {
         {PROJECTS.map((project, idx) => {
           const href = project.app_store ?? project.website ?? project.link;
           const note = language === 'en' ? project.note_en : project.note_id;
-          const metrics = project.metrics ? Object.entries(project.metrics) : [];
 
           return (
             <article key={idx} className="group flex flex-col bg-[#0a0c10] border border-gray-800/60 rounded-xl overflow-hidden hover:border-gray-700 transition-colors">
@@ -109,31 +105,10 @@ export default function Projects() {
                   </p>
                 )}
 
-                {/* Language bar */}
-                {metrics.length > 0 && (
-                  <div className="mt-5">
-                    <p className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider mb-2">{t('projects.techComposition')}</p>
-                    <div className="flex h-2 rounded-full overflow-hidden gap-px bg-[#21262d]">
-                      {metrics.map(([tech, percentage], i) => (
-                        <span key={tech} title={`${tech} ${percentage}%`} style={{ width: `${percentage}%`, backgroundColor: METRIC_COLORS[i % METRIC_COLORS.length] }} />
-                      ))}
-                    </div>
-                    <ul className="flex flex-wrap gap-x-4 gap-y-1 mt-2 text-xs">
-                      {metrics.map(([tech, percentage], i) => (
-                        <li key={tech} className="flex items-center gap-1.5">
-                          <span className="w-2 h-2 rounded-full" style={{ backgroundColor: METRIC_COLORS[i % METRIC_COLORS.length] }} />
-                          <span className="text-gray-300">{tech}</span>
-                          <span className="text-gray-500">{percentage}%</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-
-                {/* Topics */}
+                {/* Topics / Tech Badges */}
                 <div className="flex flex-wrap gap-1.5 mt-5">
                   {project.tech.map((tech) => (
-                    <span key={tech} className="px-2.5 py-0.5 bg-teal-500/10 text-teal-300 text-xs font-medium rounded-full">
+                    <span key={tech} className="px-2.5 py-0.5 bg-teal-500/10 text-teal-300 text-xs font-medium rounded-full border border-teal-500/20">
                       {tech}
                     </span>
                   ))}
