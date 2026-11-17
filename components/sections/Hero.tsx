@@ -38,7 +38,7 @@ export default function Hero() {
             Explore Dashboard
           </Link>
           <a
-            href="/resume.pdf"
+            href="/cv"
             target="_blank"
             className="px-8 py-4 bg-[#111] border border-gray-700 text-white font-bold text-lg rounded-full hover:border-blue-500 hover:text-blue-400 transition-all hover:scale-105 active:scale-95 shadow-lg"
           >
