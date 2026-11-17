@@ -1,4 +1,4 @@
-// Mirrors the "Technical Skills" groups in public/resume.pdf, keep both in sync
+// Mirrors the "Technical Skills" groups in public/cv, keep both in sync
 const customSkills = [
   {
     category: 'iOS',

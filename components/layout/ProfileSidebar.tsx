@@ -122,7 +122,7 @@ export default function ProfileSidebar({ activeTab, setActiveTab }: ProfileSideb
             })}
           </nav>
           <div className="flex items-center gap-2">
-            <a href="/resume.pdf" target="_blank" className="flex-1 py-2 bg-[#21262d] hover:bg-[#30363d] border border-[#30363d] rounded-md text-gray-200 text-sm font-medium text-center flex items-center justify-center gap-2 transition-colors">
+            <a href="/cv" target="_blank" className="flex-1 py-2 bg-[#21262d] hover:bg-[#30363d] border border-[#30363d] rounded-md text-gray-200 text-sm font-medium text-center flex items-center justify-center gap-2 transition-colors">
               <Download size={14} />
               {t('profile.downloadCV')}
             </a>
@@ -150,7 +150,7 @@ export default function ProfileSidebar({ activeTab, setActiveTab }: ProfileSideb
           <p className="mt-3 text-sm text-gray-300 leading-relaxed">{t('profile.bio')}</p>
 
           <a
-            href="/resume.pdf"
+            href="/cv"
             target="_blank"
             className="mt-4 w-full py-1.5 px-4 bg-[#21262d] hover:bg-[#30363d] border border-[#30363d] hover:border-[#8b949e] rounded-md text-gray-200 text-sm font-medium transition-colors text-center flex items-center justify-center gap-2"
           >
